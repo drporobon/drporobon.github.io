@@ -1,7 +1,7 @@
 /*const datosXML = `<?xml version="1.0" encoding="UTF-8"?>
 <biblioteca>
     <item id="001" tipo="articulo_tecnico">
-        <imagen_ruta>manual_servidor.png</imagen_ruta>
+        <imagen_ruta>https://cdn-icons-png.flaticon.com/128/47/47246.png</imagen_ruta>
         <textos>
             <contenido xml:lang="es">
                 <titulo>Configuración del Servidor Interno</titulo>
@@ -39,7 +39,7 @@ if (item) {
 const datosXML = `<?xml version="1.0" encoding="UTF-8"?>
 <biblioteca>
     <item id="001" tipo="articulo_tecnico">
-        <imagen_ruta>/assets/images/manual_servidor.png</imagen_ruta>
+        <imagen_ruta>https://cdn-icons-png.flaticon.com/128/47/47246.png</imagen_ruta>
         <textos>
             <contenido xml:lang="es">
                 <titulo>Configuración del Servidor Interno</titulo>
@@ -57,7 +57,7 @@ const datosXML = `<?xml version="1.0" encoding="UTF-8"?>
     </item>
 
     <item id="002" tipo="guia_usuario">
-        <imagen_ruta>/assets/images/usuario_perfil.png</imagen_ruta>
+        <imagen_ruta>https://cdn-icons-png.flaticon.com/128/8062/8062723.png</imagen_ruta>
         <textos>
             <contenido xml:lang="es">
                 <titulo>Manual de Usuario</titulo>
