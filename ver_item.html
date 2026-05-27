@@ -115,10 +115,16 @@
             console.error(error);
         }
     }
+
 		
-gtag('event', 'click_boton_item', {
-    'id_item': idBuscado // Así sabrás incluso QUÉ ítem están pulsando
-});
+		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+
+  		gtag('config', 'G-HWPX3FGFZ2');
+		gtag('event', 'click_boton_item', {
+    		'id_item': idBuscado // Así sabrás incluso QUÉ ítem están pulsando
+		});
 </script>
 </body>
 </html>
