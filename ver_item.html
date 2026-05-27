@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Item</title>
+    <style>
+        /* CSS para que la imagen ocupe TODA la pantalla */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Evita barras de desplazamiento */
+            font-family: Arial, sans-serif;
+        }
+
+        #fondo-pantalla {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Estos estilos aseguran que la imagen cubra todo sin deformarse */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        /* Capa oscura opcional para que el texto se lea bien sobre cualquier imagen */
+        .capa-oscura {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 2;
+        }
+
+        /* Contenedor del texto */
+        #contenido {
+            position: relative;
+            z-index: 3;
+            color: white;
+            padding: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+    </style>
+	<script src="biblioteca.js"></script>
+</head>
+<body>
+
+    <div id="fondo-pantalla">
+        <div class="capa-oscura"></div>
+    </div>
+
+    <div id="contenido">
+        <h1 id="titulo">Cargando...</h1>
+        <p id="descripcion"></p>
+        <small id="metadatos"></small>
+    </div>
+
+    <script>
+    // 1. Obtener el parámetro "id" desde la URL de la web
+    const urlParams = new URLSearchParams(window.location.search);
+    const idBuscado = urlParams.get('id');
+
+    // Idioma por defecto
+    const idiomaSeleccionado = 'es'; 
+
+    if (!idBuscado) {
+        document.getElementById('titulo').textContent = "Error: No se especificó ningún ID en la URL";
+    } else {
+        try {
+            // 2. YA NO USAMOS FETCH. Procesamos directamente la cadena de texto 'datosXML' que viene de biblioteca.js
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(datosXML, "text/xml");
+
+            // 3. Buscar el <item> que tenga el atributo id igual al de la URL
+            const item = xmlDoc.querySelector(`item[id="${idBuscado}"]`);
+
+            if (item) {
+                // Extraer la ruta de la imagen
+                const rutaImagen = item.querySelector('imagen_ruta').textContent;
+                // Extraer el identificador interno (tipo)
+                const tipoInterno = item.getAttribute('tipo');
+
+                // Extraer el texto según el idioma seleccionado
+                //const bloqueTexto = item.querySelector(`contenido[xml\\:lang="${idiomaSeleccionado}"]`);
+				// Busca cualquier atributo que termine exactamente en 'lang' con el valor deseado
+				const bloqueTexto = item.querySelector(`contenido[attr|="xml:lang"]`) || 
+                    Array.from(item.querySelectorAll('contenido')).find(el => el.getAttribute('xml:lang') === idiomaSeleccionado);
+                
+                let titulo = "Sin título en este idioma";
+                let descripcion = "Sin descripción";
+
+                if (bloqueTexto) {
+                    titulo = bloqueTexto.querySelector('titulo').textContent;
+                    descripcion = bloqueTexto.querySelector('descripcion').textContent;
+                }
+
+                // 4. Aplicar los datos a la pantalla
+                document.getElementById('fondo-pantalla').style.backgroundImage = `url('${rutaImagen}')`;
+                document.getElementById('titulo').textContent = titulo;
+                document.getElementById('descripcion').textContent = descripcion;
+                document.getElementById('metadatos').textContent = `ID: ${idBuscado} | Tipo: ${tipoInterno}`;
+
+            } else {
+                document.getElementById('titulo').textContent = `El ID ${idBuscado} no existe en la base de datos`;
+            }
+        } catch (error) {
+            document.getElementById('titulo').textContent = "Error procesando los datos estructurados";
+            console.error(error);
+        }
+    }
+</script>
+</body>
+</html>

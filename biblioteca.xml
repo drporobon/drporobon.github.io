@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+
+    <!-- Cada elemento principal tiene su ID y su Tipo (identificador interno) como atributos -->
+    <item id="001" tipo="articulo_tecnico">
+        
+        <!-- Ruta interna de la imagen asociada -->
+        <imagen_ruta>/assets/images/manual_servidor.png</imagen_ruta>
+        
+        <!-- Bloque de textos: Usamos el atributo estándar 'xml:lang' para separar los idiomas -->
+        <textos>
+            <contenido xml:lang="es">
+                <titulo>Configuración del Servidor Interno</titulo>
+                <descripcion>Guía paso a paso para configurar el entorno local sin XAMPP.</descripcion>
+            </contenido>
+            
+            <contenido xml:lang="en">
+                <titulo>Internal Server Setup</titulo>
+                <descripcion>Step-by-step guide to configure the local environment without XAMPP.</descripcion>
+            </contenido>
+            
+            <contenido xml:lang="fr">
+                <titulo>Configuration du Serveur Interne</titulo>
+                <descripcion>Guide étape par étape pour configurer l'environnement local sans XAMPP.</descripcion>
+            </contenido>
+        </textos>
+        
+    </item>
+
+    <item id="002" tipo="guia_usuario">
+        <imagen_ruta>/assets/images/usuario_perfil.png</imagen_ruta>
+        <textos>
+            <contenido xml:lang="es">
+                <titulo>Manual de Usuario</titulo>
+                <descripcion>Bienvenido a la red interna de la empresa.</descripcion>
+            </contenido>
+            <contenido xml:lang="en">
+                <titulo>User Manual</titulo>
+                <descripcion>Welcome to the company's internal network.</descripcion>
+            </contenido>
+            <contenido xml:lang="fr">
+                <titulo>Manuel de l'Utilisateur</titulo>
+                <descripcion>Bienvenue sur le réseau interne de l'entreprise.</descripcion>
+            </contenido>
+        </textos>
+    </item>
+
+    <item id="003" tipo="guia_usuario">
+        <imagen_ruta>/assets/images/usuario_perfil.png</imagen_ruta>
+        <textos>
+            <contenido xml:lang="es">
+                <titulo>Manual de Usuario</titulo>
+                <descripcion>Bienvenido a la red interna de la empresa 003.</descripcion>
+            </contenido>
+            <contenido xml:lang="en">
+                <titulo>User Manual</titulo>
+                <descripcion>Welcome to the company's internal network 003.</descripcion>
+            </contenido>
+            <contenido xml:lang="fr">
+                <titulo>Manuel de l'Utilisateur</titulo>
+                <descripcion>Bienvenue sur le réseau interne de l'entreprise 003.</descripcion>
+            </contenido>
+        </textos>
+    </item>
+
+</biblioteca>
