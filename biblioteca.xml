@@ -28,7 +28,7 @@
     </item>
 
     <item id="002" tipo="guia_usuario">
-        <imagen_ruta>/assets/images/usuario_perfil.png</imagen_ruta>
+        <imagen_ruta>https://cdn-icons-png.flaticon.com/128/47/47128.png</imagen_ruta>
         <textos>
             <contenido xml:lang="es">
                 <titulo>Manual de Usuario</titulo>
