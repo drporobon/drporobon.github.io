@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón de Vela Consumible por Fases</title>
+    <style>
+        /* Fondo con cuadrícula transparente */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%),
+                linear-gradient(45deg, #e0e0e0 25%, #ffffff 25%, #ffffff 75%, #e0e0e0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            font-family: sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* El botón en la esquina inferior derecha (20% de la pantalla) */
+        .boton-vela {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 20vw; 
+            height: 20vw; 
+            min-width: 90px;
+            max-width: 180px;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .boton-vela:hover:not(:disabled) {
+            background-color: #f7f7f7;
+            transform: translateY(-2px);
+        }
+
+        .boton-vela:disabled {
+            background-color: #f0f0f0;
+            border-color: #888888;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* --- ESTILOS DEL ICONO --- */
+        .icono-vela {
+            stroke: #000000;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* Ocultamos los elementos de luz por defecto */
+        .llama, .rayos-luz {
+            display: none;
+        }
+
+        /* Transiciones suaves para el efecto de derretido de la cera */
+        .cuerpo-vela, .mecha, .detalles-lineas, .llama {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- CONTROL DE FASES Y ALTURAS --- */
+        
+        /* Inicialmente (Fase 3 líneas): El tamaño base es alto */
+        .cuerpo-vela { transform: scaleY(1); transform-origin: bottom; }
+
+        /* Fase 2: Tras 3 segundos (Tamaño anterior del archivo) */
+        .boton-vela.fase-2 .cuerpo-vela { transform: scaleY(0.82); }
+        .boton-vela.fase-2 .mecha,
+        .boton-vela.fase-2 .llama,
+        .boton-vela.fase-2 .detalles-lineas { transform: translateY(6px); }
+        .boton-vela.fase-2 .linea-3 { display: none; } /* Desaparece la de arriba */
+
+        /* Fase 1: Tras 6 segundos (Más pequeña) */
+        .boton-vela.fase-1 .cuerpo-vela { transform: scaleY(0.64); }
+        .boton-vela.fase-1 .mecha,
+        .boton-vela.fase-1 .llama,
+        .boton-vela.fase-1 .detalles-lineas { transform: translateY(12px); }
+        .boton-vela.fase-1 .linea-2, .boton-vela.fase-1 .linea-3 { display: none; }
+
+        /* Fase 0: Tras 8 segundos (Mínimo tamaño, sin rayas) */
+        .boton-vela.fase-0 .cuerpo-vela { transform: scaleY(0.46); }
+        .boton-vela.fase-0 .mecha,
+        .boton-vela.fase-0 .llama,
+        .boton-vela.fase-0 .detalles-lineas { transform: translateY(18px); }
+        .boton-vela.fase-0 .detalles-lineas line { display: none; } /* Ninguna línea visible */
+
+
+        /* --- ESTADO ENCENDIDO --- */
+        .boton-vela.encendida .llama {
+            display: block;
+            fill: #ffcc00; 
+            stroke: #ff9900; 
+            stroke-width: 2;
+            /* La animación hereda el desplazamiento dinámico de la fase activa */
+            animation: parpadeoLlama 0.15s infinite alternate ease-in-out;
+        }
+
+        .boton-vela.encendida .rayos-luz {
+            display: block;
+        }
+
+        .boton-vela.encendida .rayos-luz line {
+            stroke: #ff9900; 
+            animation: brilloRayos 0.3s infinite alternate ease-in-out;
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes parpadeoLlama {
+            0% {
+                transform: var(--movimiento-fase, translateY(0px)) scale(0.95) skewX(-2deg);
+                filter: drop-shadow(0 0 2px #ffcc00);
+            }
+            100% {
+                transform: var(--movimiento-fase, translateY(0px)) scale(1.05) skewX(2deg);
+                filter: drop-shadow(0 0 6px #ff9900);
+            }
+        }
+
+        /* Definición del desfase Y en la llama por cada fase para la animación */
+        .boton-vela.encendida { --movimiento-fase: translateY(0px); }
+        .boton-vela.fase-2.encendida { --movimiento-fase: translateY(6px); }
+        .boton-vela.fase-1.encendida { --movimiento-fase: translateY(12px); }
+        .boton-vela.fase-0.encendida { --movimiento-fase: translateY(18px); }
+
+        @keyframes brilloRayos {
+            from { opacity: 0.3; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnVela" class="boton-vela">
+        <svg viewBox="0 0 100 100" width="85%" height="85%" class="icono-vela">
+            
+            <g class="rayos-luz">
+                <line x1="50" y1="12" x2="50" y2="2" />
+                <line x1="28" y1="23" x2="21" y2="16" />
+                <line x1="72" y1="23" x2="79" y2="16" />
+                <line x1="20" y1="42" x2="10" y2="42" />
+                <line x1="80" y1="42" x2="90" y2="42" />
+            </g>
+
+            <path class="llama" d="M50,12 C46,20 43,26 43,32 C43,37 46,40 50,40 C54,40 57,37 57,32 C57,26 54,20 50,12 Z" />
+            
+            <line class="mecha" x1="50" y1="40" x2="50" y2="48" stroke-width="3" />
+            
+            <path class="cuerpo-vela" d="M35,48 L65,48 L65,88 L35,88 Z" />
+            
+            <g class="detalles-lineas">
+                <line class="linea-1" x1="45" y1="74" x2="55" y2="74" />
+                <line class="linea-2" x1="42" y1="65" x2="58" y2="65" />
+                <line class="linea-3" x1="44" y1="56" x2="56" y2="56" />
+            </g>
+        </svg>
+    </button>
+
+    <script>
+        const boton = document.getElementById('btnVela');
+
+        boton.addEventListener('click', () => {
+            // Inicialización del botón al pulsarse
+            boton.classList.add('encendida');
+            boton.disabled = true;
+
+            // FASE 2: A los 3 segundos pasa a tener 2 rayas (reducción intermedia)
+            setTimeout(() => {
+                boton.classList.add('fase-2');
+            }, 3000);
+
+            // FASE 1: A los 6 segundos (3s + 3s) pasa a tener 1 raya
+            setTimeout(() => {
+                boton.classList.remove('fase-2');
+                boton.classList.add('fase-1');
+            }, 6000);
+
+            // FASE 0: A los 8 segundos (6s + 2s) se queda sin rayas y muy pequeña
+            setTimeout(() => {
+                boton.classList.remove('fase-1');
+                boton.classList.add('fase-0');
+            }, 8000);
+
+            // FIN DEL TEMPORIZADOR: A los 10 segundos totales se apaga la llama
+            setTimeout(() => {
+                boton.classList.remove('encendida', 'fase-0');
+                boton.disabled = false; // Se vuelve a activar en su tamaño grande inicial
+            }, 10000); 
+        });
+    </script>
+
+</body>
+</html>
