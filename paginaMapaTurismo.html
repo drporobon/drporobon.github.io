@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa minimalista con XML y botones</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #f5f5f5;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Caja de botones dentro del mapa */
+    .map-buttons {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Botones base */
+    .map-buttons button {
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #e0e0e0;
+      color: #333;
+      transition: all 0.2s ease;
+    }
+
+    /* Hover suave */
+    .map-buttons button:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Botón activo */
+    .map-buttons button.active {
+      background-color: #d62828;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Iconos emoji */
+    .wc-icon, .cafe-icon {
+      font-size: 22px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Animación CSS para parpadeo */
+    .blinking-circle {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+	
+    .leyenda {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script type="text/xml" id="p1">
+    <markers>	 
+	  <marker lat="40.48254835404197" lng="-3.364267613849666" type="p1" id="1" idTipo="1" infoTipo="Plaza" name="Plaza Cervantes" texto="Este es el texto descriptivo de la Plaza Cervantes"/>
+	  <marker lat="40.48081016788735" lng="-3.369202878339459" type="p1" id="2" idTipo="1" infoTipo="Plaza" name="Plaza de los Santos Niños" texto="Este es el texto descriptivo de la Plaza de los Santos Niños"/>
+      <marker lat="40.48045926099691" lng="-3.369202878339459" type="p1" id="3" idTipo="2" infoTipo="Iglesia" name="Catedral Magistral" texto="Este es el texto descriptivo de la Catedral Magistral"/>
+	  <marker lat="40.48293189140438" lng="-3.363098170742303" type="p1" id="4" idTipo="3" infoTipo="Edificio" name="Fachada Universidad" texto="Este es el texto descriptivo de la Fachada de la Universidad"/>
+	  <marker lat="40.48316854102412" lng="-3.364954259343899" type="p1" id="5" idTipo="4" infoTipo="Calle/Paseo/Boulevar" name="Calle Mayor" texto="Este es el texto descriptivo de la Calle Mayor"/>
+    </markers>
+  </script>
+  
+<script type="text/xml" id="mapas">
+  <mapas>
+    <mapa id="1" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés"  centerLat="40.48360378560484" centerLng="-3.364866961135693" zoom="16" maxZoom="18" minZoom="16" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
+    <mapa id="2" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" centerLat="40.48360378560484" centerLng="-3.364866961135693" zoom="18" maxZoom="18" minZoom="18" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
+  </mapas>
+</script>
+
+  <script>
+  
+	const params = new URLSearchParams(window.location.search);	
+	let idURL = params.get('id');
+	let idTipoURL = params.get('idTipo');
+	let idMapURL = params.get('idMap');
+	
+	let boundsLat1 = 0;
+	let boundsLng1 = 0;
+	let boundsLat2 = 0;
+	let boundsLng2 = 0;
+	let centerLat = 0;
+	let centerLng = 0;
+	let mapZoom = 0;
+	let mapMaxZoom = 0;
+	let mapMinZoom = 0;
+
+	loadMapXML();
+	  
+    function loadMapXML() {
+      //markersLayer.clearLayers();
+      const xmlString = document.getElementById('mapas').textContent.trim();
+      const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('mapa');
+	  
+		for (let i = 0; i < items.length; i++) {
+			let mapId = items[i].getAttribute('id');
+			if(mapId===idMapURL){
+				boundsLat1 = items[i].getAttribute('boundsLat1');
+				boundsLng1 = items[i].getAttribute('boundsLng1');
+				boundsLat2 = items[i].getAttribute('boundsLat2');
+				boundsLng2 = items[i].getAttribute('boundsLng2');
+				
+				centerLat  = items[i].getAttribute('centerLat');
+				centerLng  = items[i].getAttribute('centerLng');
+				mapZoom  = items[i].getAttribute('zoom');
+				mapMaxZoom  = items[i].getAttribute('maxZoom');
+				mapMinZoom  = items[i].getAttribute('minZoom');
+			}
+		}
+	}
+
+	const bounds = L.latLngBounds(
+	  //[40.45, -3.45],  // suroeste (lat, lon)
+	  //[40.54, -3.24]   // noreste (lat, lon)
+	  [boundsLat1, boundsLng1],
+	  [boundsLat2, boundsLng2]
+	);	
+	
+    // 🗺️ Mapa base minimalista
+    //const map = L.map('map').setView([40.4168, -3.7038], 14);
+
+	const map = L.map('map', {
+		//center: [40.4168, -3.7038], // Coordenadas iniciales (por ejemplo, Madrid)
+		center: [centerLat, centerLng],
+		zoom: mapZoom,		// Zoom inicial
+		maxZoom: mapMaxZoom,    // Zoom máximo permitido
+		minZoom: mapMinZoom,     // (opcional) Zoom mínimo
+		zoomControl: false, // 🔴 Esto desactiva los botones de zoom
+	  maxBounds: bounds,
+	  maxBoundsViscosity: 1.0 // Qué tan "pegajoso" es el límite
+	});	
+	
+    const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap & CartoDB',
+    }).addTo(map);
+
+
+    // Capa para los marcadores
+    const markersLayer = L.layerGroup().addTo(map);
+	
+	let hayRojo = 0;
+	
+	
+    // Cargar XML desde el HTML
+    function loadXML(id) {
+      markersLayer.clearLayers();
+      const xmlString = document.getElementById(id).textContent.trim();
+      const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('marker');
+
+      for (let i = 0; i < items.length; i++) {
+        const lat = parseFloat(items[i].getAttribute('lat'));
+        const lng = parseFloat(items[i].getAttribute('lng'));
+        const type = items[i].getAttribute('type');
+		const idMarker = items[i].getAttribute('id');
+		const idTipo = items[i].getAttribute('idTipo');
+        const infoTipo = items[i].getAttribute('infoTipo');
+        const name = items[i].getAttribute('name');
+        const texto = items[i].getAttribute('texto');
+
+        //const marker = L.marker([lat, lng], { icon: icons[tipo] }).addTo(markersLayer);
+        //marker.bindPopup(`<b>${nombre}</b><br/>${info}`);
+		
+		let opacidad=1;
+		let clase='';
+		let color='';
+		if(idURL!=null){
+			if(idMarker == idURL){
+				opacidad = 1;
+				clase = 'blinking-circle';
+				color = 'red';
+				hayRojo = 1;
+			}else{
+				opacidad = 0.3;
+				clase = 'none';
+				color = 'gray';
+			}
+		}else if(idTipoURL!=null){
+			if(idTipo == idTipoURL){
+				opacidad = 1;
+				clase = 'blinking-circle';
+				color = 'red';
+				hayRojo = 1;
+			}else{
+				opacidad = 0.3;
+				clase = 'none';
+				color = 'gray';
+			}
+		}
+		
+		const marker = L.circleMarker([lat, lng], {
+			radius: 8,
+			fillColor: color,
+			fillOpacity: opacidad,
+			className: clase,
+			stroke: false // Esto quita el borde
+		}).addTo(map);
+		
+		marker.myId = idMarker;
+		marker.bindPopup(name, {
+		  autoClose: true,
+		  closeOnClick: true
+		});
+		
+		//marker.setPopupContent('<b>'+nombre+'</b><br/>'+info);
+		marker.setPopupContent('<div onclick="window.location.href=\'paginaDetalle.html?idMap='+params.get('idMap')+'&id='+idMarker+'\'" style="cursor:pointer;"><strong>'+name+'</strong><br></div>');
+		markersLayer.addLayer(marker);
+      }
+    }
+	
+	
+	loadXML('p1');
+	
+
+
+  // Crear la "leyenda"
+  const leyenda = L.control({ position: 'bottomleft' });
+
+  leyenda.onAdd = function (map) {
+    const div = L.DomUtil.create('div', 'leyenda');
+    div.innerHTML = '<strong>Texto Aleatorio</strong>';
+    return div;
+  };
+
+  leyenda.addTo(map);
+  
+  /*
+// 5. Utilizar la API del navegador para pedir la ubicación real del usuario
+        if (navigator.geolocation) {
+            
+            // Le pedimos la posición actual
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    // Si el usuario acepta el permiso, extraemos la latitud y longitud
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    // Centramos el mapa dinámicamente en la ubicación real con zoom detallado (nivel 16)
+                    map.setView([lat, lng], 16);
+
+                    // Creamos el pin marcador en esa posición exacta
+                    const marcador = L.marker([lat, lng]).addTo(map);
+                    
+                    // Añadimos un globo flotante de texto (Popup) que se abre al hacer clic
+                    marcador.bindPopup("<b>¡Estás aquí!</b><br>Ubicación detectada.").openPopup();
+                },
+                function(error) {
+                    // Si ocurre un error o el usuario rechaza el permiso
+                    console.warn("Error al obtener la ubicación: " + error.message);
+                    alert("No se pudo obtener tu ubicación. Por favor, asegúrate de dar permisos en el navegador.");
+                    // Como alternativa, centramos el mapa en una ubicación por defecto
+                    map.setView([40.4167, -3.7037], 13); // Ejemplo: Madrid
+                },
+                {
+                    enableHighAccuracy: true, // Forzar al dispositivo a usar GPS si está disponible
+                    timeout: 5000,            // Tiempo máximo de espera en milisegundos
+                    maximumAge: 0             // No usar ubicaciones guardadas en caché
+                }
+            );
+
+        } else {
+            // El navegador es muy antiguo y no soporta geolocalización
+            alert("Tu navegador no soporta la detección de ubicación.");
+            map.setView([40.4167, -3.7037], 13);
+        }
+		*/
+  </script>
+</body>
+</html>

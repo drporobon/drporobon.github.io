@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    </style>
+</head>
+<body>
+
+
+  <script type="text/xml" id="p1">
+    <markers>	 
+	  <marker lat="40.48254835404197" lng="-3.364267613849666" type="p1" id="1" idTipo="1" infoTipo="Plaza" name="Plaza Cervantes" texto="Este es el texto descriptivo de la Plaza Cervantes"/>
+	  <marker lat="40.48081016788735" lng="-3.369202878339459" type="p1" id="2" idTipo="1" infoTipo="Plaza" name="Plaza de los Santos Niños" texto="Este es el texto descriptivo de la Plaza de los Santos Niños"/>
+      <marker lat="40.48045926099691" lng="-3.369202878339459" type="p1" id="3" idTipo="2" infoTipo="Iglesia" name="Catedral Magistral" texto="Este es el texto descriptivo de la Catedral Magistral"/>
+	  <marker lat="40.48293189140438" lng="-3.363098170742303" type="p1" id="4" idTipo="3" infoTipo="Edificio" name="Fachada Universidad" texto="Este es el texto descriptivo de la Fachada de la Universidad"/>
+	  <marker lat="40.48316854102412" lng="-3.364954259343899" type="p1" id="5" idTipo="4" infoTipo="Calle/Paseo/Boulevar" name="Calle Mayor" texto="Este es el texto descriptivo de la Calle Mayor"/>
+    </markers>
+  </script>
+  
+PAGINA DE DETALLE
+
+
+
+<div id="resultado"></div>
+
+<script>
+const contenedor = document.getElementById('resultado');
+  
+	const params = new URLSearchParams(window.location.search);	
+	let idURL = params.get('id');
+	let idTipoURL = params.get('idTipo');
+	let mapId = params.get('idMap');
+	
+    // Cargar XML desde el HTML
+    function loadXML(id) {
+      const xmlString = document.getElementById(id).textContent.trim();
+      const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('marker');
+
+		const p = document.createElement('p');
+		let texto='';
+		
+      for (let i = 0; i < items.length; i++) {
+        const type = items[i].getAttribute('type');
+		const idMarker = items[i].getAttribute('id');
+		const nameMarker = items[i].getAttribute('name');	
+		const textoMarker = items[i].getAttribute('texto');	
+		
+		if(idMarker===idURL){
+			p.innerHTML = `<h1>${nameMarker}</h1><br/>${textoMarker}`;
+			contenedor.appendChild(p);
+		}
+		
+		
+	  }
+	}
+
+	loadXML('p1');
+  </script>
+	
+</body>
+</html>
