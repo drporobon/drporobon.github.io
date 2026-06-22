@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El Misterio de la Taquilla 13</title>
+    <style>/* Tus estilos CSS aquí */</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="titulo">Cargando historia...</h1>
+    <p id="texto"></p>
+    <div id="opciones-container" class="btn-container"></div>
+</div>
+
+<script>
+    let historia = {};
+
+    // 1. Cargamos el archivo JSON de forma oculta al abrir la página
+    async function cargarHistoria() {
+        const respuesta = await fetch('historia.json');
+        historia = await respuesta.json();
+        mostrarPaso(1); // Empezamos en el paso 1
+    }
+
+    // 2. Esta función dibuja el paso actual borrando por completo el anterior
+    function mostrarPaso(numero) {
+        const paso = historia[numero];
+        
+        document.getElementById('titulo').innerText = paso.titulo;
+        document.getElementById('texto').innerText = paso.texto;
+        
+        const container = document.getElementById('opciones-container');
+        container.innerHTML = ''; // Borramos los botones anteriores
+        
+        // Creamos los nuevos botones dinámicamente
+        paso.opciones.forEach(opcion => {
+            const boton = document.createElement('button');
+            boton.innerText = opcion.texto;
+            boton.onclick = () => mostrarPaso(opcion.siguiente);
+            container.appendChild(boton);
+        });
+    }
+
+    // Arrancar el juego
+    cargarHistoria();
+</script>
+</body>
+</html>

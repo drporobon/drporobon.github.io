@@ -1,0 +1,18 @@
+{
+  "1": {
+    "titulo": "Paso 1: El Inicio",
+    "texto": "Es tu primer día en el instituto. Buscas la clase de Matemáticas cuando pasas por el pasillo del sótano...",
+    "opciones": [
+      {"texto": "Investigar la mochila en el suelo", "siguiente": 2},
+      {"texto": "Seguir el rastro de papeles hacia el cuarto de la limpieza", "siguiente": 3}
+    ]
+  },
+  "2": {
+    "titulo": "Paso 2: La Mochila Brillante",
+    "texto": "Te agachas y la abres. Dentro hay un bote de pintura luminiscente...",
+    "opciones": [
+      {"texto": "Esconderte rápidamente en el cuarto de la limpieza", "siguiente": 3},
+      {"texto": "Huir corriendo por el pasillo hacia las escaleras", "siguiente": 4}
+    ]
+  }
+}
