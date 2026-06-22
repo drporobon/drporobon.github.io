@@ -2,6 +2,7 @@
   "1": {
     "titulo": "Paso 1: El Inicio",
     "texto": "Es tu primer día en el instituto. Buscas la clase de Matemáticas cuando pasas por el pasillo del sótano. Escuchas un fuerte ¡CLANG! y un grito ahogado. Al dar la vuelta, ves la Taquilla 13 abierta de par en par. En el suelo hay una mochila abandonada con un brillo extraño dentro y un rastro de papeles que se mete hacia el cuarto de la limpieza.",
+    "imagen": "imagenes/pasillo_sotano.jpg",
     "opciones": [
       { "texto": "Investigar la mochila en el suelo", "siguiente": 2 },
       { "texto": "Seguir el rastro de papeles hacia el cuarto de la limpieza", "siguiente": 3 }
