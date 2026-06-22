@@ -33,10 +33,10 @@
   },
   "5": {
     "titulo": "Paso 5: Puerta Bloqueada",
-    "texto": "Trabas el picaporte con el palo de una escoba. Alguien intenta abrir desde fuera con fuerza. \"¡¿Quién hay ahí?!\", grita la voz del conserje. Leo entra en pánico. \"Si nos pillan aquí dentro con la pintura, estamos expulsados antes de empezar\", susurra. Hay un conducto de ventilación grande en la pared.",
+    "texto": "Trabas el picaporte con el palo de una escoba. Alguien intenta abrir desde fuera con fuerza. \"¡¿Quién hay ahí?!\", grita la voz del conserje. Leo entra en pánico. \"Si nos pillan aquí dentro con la pintura, estamos expulsados antes de empezar\", susurra. Hay un conducto de ventilación grande en la pared y una trampilla en el suelo.",
     "opciones": [
-      { "texto": "Intentar abrir el conducto de ventilación para escapar", "siguiente": 9 },
-      { "texto": "Decidir que es mejor abrir la puerta y dar la cara", "siguiente": 10 }
+      { "texto": "Intentar abrir el conducto de ventilación de la pared", "siguiente": 9 },
+      { "texto": "Levantar la trampilla del suelo para ver a dónde lleva", "siguiente": 21 }
     ]
   },
   "6": {
@@ -44,7 +44,7 @@
     "texto": "Abrís la ventana y saltáis a un pequeño patio interior. Justo en ese momento, una profesora asoma la cabeza por una ventana del primer piso: \"¡Eh, vosotros! ¡Está prohibido estar en ese patio! Subid inmediatamente a Jefatura de Estudios\".",
     "opciones": [
       { "texto": "Obedecer e ir hacia la Jefatura", "siguiente": 11 },
-      { "texto": "Convencer a Leo para correr y camuflaros entre la multitud del patio", "siguiente": 12 }
+      { "texto": "Arriesgaros y correr hacia un aula vacía que se ve enfrente", "siguiente": 22 }
     ]
   },
   "7": {
@@ -57,7 +57,7 @@
   },
   "8": {
     "titulo": "Paso 8: El Vestíbulo Principal",
-    "texto": "Luegos al vestíbulo, pero tropiezas directamente con el Jefe de Estudios, que te mira con sospecha. \"A estas horas ya deberíais estar todos en el patio para la presentación\", dice, cruzándose de brazos. Nota el brillo fluorescente en tus dedos.",
+    "texto": "Llegas al vestíbulo, pero tropiezas directamente con el Jefe de Estudios, que te mira con sospecha. \"A estas horas ya deberíais estar todos en el patio para la presentación\", dice, cruzándose de brazos. Nota el brillo fluorescente en tus dedos.",
     "opciones": [
       { "texto": "Contarle la verdad sobre el sótano y la taquilla", "siguiente": 14 },
       { "texto": "Inventar que te habías perdido buscando el baño de primero", "siguiente": 15 }
@@ -73,18 +73,18 @@
   },
   "10": {
     "titulo": "Paso 10: Cara a Cara con el Conserje",
-    "texto": "Quitas la escoba y abres la puerta. El conserje os mira furioso, pero antes de que pueda decir nada, Leo reacciona rápido: \"¡Señor! Menos mal que abre. Estábamos buscando la clase de música y unos chicos mayores nos han empujado aquí dentro\". El conserje duda, pero os dice: \"Iros al patio ahora mismo, la presentación va a empezar\".",
+    "texto": "El conserje os mira furioso tras descubriros, pero antes de que pueda decir nada, Leo reacciona rápido: \"¡Señor! Menos mal que llega. Unos chicos mayores nos han empujado aquí dentro y se han ido riendo\". El conserje arruga el entrecejo, dudando de la historia.",
     "opciones": [
-      { "texto": "Acompañar a Leo al patio para ayudarle con la pintura", "siguiente": 12 },
-      { "texto": "Aprovechar para separarte de Leo e irte por tu cuenta", "siguiente": 15 }
+      { "texto": "Darle la razón a Leo y poner cara de asustado", "siguiente": 23 },
+      { "texto": "Aprovechar la distracción para salir corriendo hacia el patio", "siguiente": 15 }
     ]
   },
   "11": {
     "titulo": "Paso 11: Camino a Jefatura",
-    "texto": "Llegas a la puerta de Jefatura de Estudios. Sabes que si entras, tendrás que contarlo todo. Mientras esperas en la puerta, ves pasar al chico de segundo de la capucha; te guiña un ojo de forma burlona.",
+    "texto": "Llegas a la puerta de Jefatura de Estudios. Sabes que si entras, tendrás que contarlo todo. Mientras esperas en la puerta, ves pasar al chico de segundo de la capucha; te hace un gesto amenazante con la mano pasándosela por el cuello.",
     "opciones": [
-      { "texto": "Entrar y delatar el plan de los de segundo", "siguiente": 14 },
-      { "texto": "Darte la vuelta en el último segundo y correr al patio", "siguiente": 12 }
+      { "texto": "Entrar sin miedo y delatar el plan de los de segundo", "siguiente": 14 },
+      { "texto": "Darte la vuelta en el último segundo y huir hacia el patio", "siguiente": 12 }
     ]
   },
   "12": {
@@ -92,7 +92,7 @@
     "texto": "Lográis mezclaros con la multitud de alumnos de primero en el patio principal. El Director empieza a hablar por el micrófono. Leo te mira, todavía con el bote de pintura escondido en la sudadera. \"Si no hacemos algo, los de segundo entrarán al despacho mientras todos están aquí\", te susurra.",
     "opciones": [
       { "texto": "Ayudar a Leo a esconder la pintura en un contenedor y montar guardia", "siguiente": 17 },
-      { "texto": "Decidirle que estás harto de líos, dejarlo solo y alejarte", "siguiente": 18 }
+      { "texto": "Decirle que estás harto de líos, dejarlo solo y alejarte", "siguiente": 18 }
     ]
   },
   "13": {
@@ -100,7 +100,7 @@
     "texto": "Sigues al chico de la capucha. Lo ves reunirse con otros dos estudiantes de segundo cerca del despacho del director. Tienen botes de spray listos. Te graban con el móvil desde lejos para tener una \"prueba\" de que estabas merodeando por allí por si investigan. ¡Estás atrapado!",
     "opciones": [
       { "texto": "Correr a buscar a un profesor para pararlos", "siguiente": 14 },
-      { "texto": "Decidir huir al patio y rezar para que no te involucren", "siguiente": 15 }
+      { "texto": "Intentar sacar tu propio móvil para hacerles una foto como contraprueba", "siguiente": 24 }
     ]
   },
   "14": {
@@ -122,6 +122,69 @@
     "texto": "Bajo la mesa de Jefatura, el Jefe de Estudios entra y se sienta. Empieza a revisar unos papeles. Estáis atrapados. Pasan los minutos y empieza el discurso en el patio. Leo accidentalmente pisa un bote de pintura que gotea. El Jefe de Estudios mira hacia abajo... ¡Cazados!",
     "opciones": [
       { "texto": "El Jefe de Estudios os lleva a rastras al patio...", "siguiente": 18 }
+    ]
+  },
+  "21": {
+    "titulo": "Paso 21: El Sótano de Calderas",
+    "texto": "Bajáis por la trampilla y caéis en una sala llena de tuberías ruidosas. Está oscuro, pero al fondo se ve una puerta metálica que da al patio trasero. Sin embargo, escucháis pasos al otro lado de la puerta. Alguien está bloqueando la salida.",
+    "opciones": [
+      { "texto": "Empujar la puerta con fuerza para salir pase lo que pase", "siguiente": 10 },
+      { "texto": "Volver a subir y arriesgarse con el conducto de ventilación", "siguiente": 9 }
+    ]
+  },
+  "22": {
+    "titulo": "Paso 22: El Aula de Música Vacía",
+    "texto": "Entráis al aula y cerráis la puerta. Está llena de instrumentos. A través de la ventana, veis que la profesora que os gritó está bajando las escaleras buscándoos. Leo entra en pánico y tira una fila de panderetas que hacen un ruido tremendo.",
+    "opciones": [
+      { "texto": "Salir antes de que la profesora llegue al aula por el ruido", "siguiente": 11 },
+      { "texto": "Esconderos dentro de los armarios de los instrumentos", "siguiente": 25 }
+    ]
+  },
+  "23": {
+    "titulo": "Paso 23: La Alianza con el Conserje",
+    "texto": "Tu actuación convence al conserje. \"¿Esos de segundo otra vez?\", gruñe con rabia. \"Llevan toda la mañana tramando algo. Id al patio con los demás, yo vigilaré el pasillo del despacho del Director\". Os habéis librado, pero el peligro sigue ahí.",
+    "opciones": [
+      { "texto": "Ir al patio con Leo y camuflaros entre los alumnos", "siguiente": 12 },
+      { "texto": "Decirle a Leo que ya estás a salvo y separarte de él", "siguiente": 15 }
+    ]
+  },
+  "24": {
+    "titulo": "Paso 24: El Teléfono Requisado",
+    "texto": "Sacas el móvil rápidamente, pero justo cuando vas a disparar la foto, una mano firme te lo quita de arriba. ¡Es un profesor de guardia! \"Está prohibido usar móviles en el pasillo, y menos el primer día. Acompañame a Jefatura\". Los de segundo se ríen disimuladamente mientras te llevan.",
+    "opciones": [
+      { "texto": "Aprovechar que vas a Jefatura para contar toda la verdad", "siguiente": 14 },
+      { "texto": "Quedarte callado por miedo a que te llamen chivato", "siguiente": 26 }
+    ]
+  },
+  "25": {
+    "titulo": "Paso 25: Atrapados en el Armario",
+    "texto": "Os metéis en el armario de los disfraces y el teatro. La profesora entra al aula, mira alrededor, pero no ve a nadie y vuelve a salir refunfuñando. Habéis tenido suerte, pero os habéis perdido el inicio de la presentación del Director. Se oyen aplausos en el patio exterior.",
+    "opciones": [
+      { "texto": "Salir del armario e ir a Jefatura a explicar el lío", "siguiente": 11 },
+      { "texto": "Salir del armario e intentar colaros discretamente en el patio", "siguiente": 12 }
+    ]
+  },
+  "26": {
+    "titulo": "Paso 26: El Castigo Solitario",
+    "texto": "Te quedas en silencio en la sala de espera de Jefatura. Tu móvil se queda retenido. Al no decir nada, los de segundo entran al despacho del director sin oposición. Sabes que has tomado el camino cobarde, pero al menos nadie sabe que estabas allí.",
+    "opciones": [
+      { "texto": "Ver las consecuencias de tu silencio...", "siguiente": 20 }
+    ]
+  },
+  "27": {
+    "titulo": "Paso 27: El Contraataque de los Novatos",
+    "texto": "En el contenedor de reciclaje, Leo y tú encontráis cartones grandes. Tapáis los botes de pintura y os aseguráis de limpiaros las manos con unos pañuelos. Justo en ese momento, veis a los de segundo merodeando cerca con cara de frustración al no encontrar su mochila. Te miran fijamente.",
+    "opciones": [
+      { "texto": "Mantenerles la mirada con seguridad para que vean que no tenéis miedo", "siguiente": 17 },
+      { "texto": "Asustarte en el último segundo y entrar corriendo al patio", "siguiente": 18 }
+    ]
+  },
+  "28": {
+    "titulo": "Paso 28: Rumores en el Patio",
+    "texto": "Te alejas de Leo, pero mientras caminas entre los alumnos de primero, escuchas a un grupo hablar: \"Dicen que los de segundo van a meter en un lío enorme a un novato hoy\". Miras atrás y ves a Leo solo en una esquina, rodeado de sospechas y visiblemente nervioso.",
+    "opciones": [
+      { "texto": "Arrepentirte, dar la vuelta y volver para ayudar a Leo", "siguiente": 27 },
+      { "texto": "Ignorar la culpa, mirar al frente y escuchar el discurso del director", "siguiente": 18 }
     ]
   },
   "17": {
