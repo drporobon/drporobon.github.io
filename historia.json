@@ -1,18 +1,151 @@
 {
   "1": {
     "titulo": "Paso 1: El Inicio",
-    "texto": "Es tu primer día en el instituto. Buscas la clase de Matemáticas cuando pasas por el pasillo del sótano...",
+    "texto": "Es tu primer día en el instituto. Buscas la clase de Matemáticas cuando pasas por el pasillo del sótano. Escuchas un fuerte ¡CLANG! y un grito ahogado. Al dar la vuelta, ves la Taquilla 13 abierta de par en par. En el suelo hay una mochila abandonada con un brillo extraño dentro y un rastro de papeles que se mete hacia el cuarto de la limpieza.",
     "opciones": [
-      {"texto": "Investigar la mochila en el suelo", "siguiente": 2},
-      {"texto": "Seguir el rastro de papeles hacia el cuarto de la limpieza", "siguiente": 3}
+      { "texto": "Investigar la mochila en el suelo", "siguiente": 2 },
+      { "texto": "Seguir el rastro de papeles hacia el cuarto de la limpieza", "siguiente": 3 }
     ]
   },
   "2": {
     "titulo": "Paso 2: La Mochila Brillante",
-    "texto": "Te agachas y la abres. Dentro hay un bote de pintura luminiscente...",
+    "texto": "Te agachas y la abres. Dentro hay un bote de pintura luminiscente y un plano con una cruz en el despacho del Director. Alguien quiere gastar una novatada enorme. Escuchas pasos pesados bajando las escaleras del sótano. ¡Alguien viene!",
     "opciones": [
-      {"texto": "Esconderte rápidamente en el cuarto de la limpieza", "siguiente": 3},
-      {"texto": "Huir corriendo por el pasillo hacia las escaleras", "siguiente": 4}
+      { "texto": "Esconderte rápidamente en el cuarto de la limpieza", "siguiente": 3 },
+      { "texto": "Huir corriendo por el pasillo hacia las escaleras", "siguiente": 4 }
     ]
+  },
+  "3": {
+    "titulo": "Paso 3: El Cuarto de la Limpieza",
+    "texto": "Entras a oscuras. Al fondo, entre fregonas, ves a alguien escondido: es Leo, un chico de primero. Tiene las manos manchadas de pintura fluorescente. \"No digas nada\", te susurra asustado. \"Me han tendido una trampa. Los de segundo quieren pintar el despacho del director y culparme a mí. ¡Y acabo de oír que viene el conserje!\".",
+    "opciones": [
+      { "texto": "Bloquear la puerta con una escoba para que no entren", "siguiente": 5 },
+      { "texto": "Salir por la ventana del patio interior que hay al fondo", "siguiente": 6 }
+    ]
+  },
+  "4": {
+    "titulo": "Paso 4: La Huida por el Pasillo",
+    "texto": "Corres, pero al girar la esquina te chocas de frente con un alumno de segundo que lleva una sudadera con capucha. Te mira con cara de pocos amigos y ve tus manos (te has manchado un poco con la mochila). \"¿Qué haces aquí, novato? No deberías meter la nariz donde no te llaman\", te dice en tono amenazante.",
+    "opciones": [
+      { "texto": "Plantarle cara y preguntarle qué sabe de la Taquilla 13", "siguiente": 7 },
+      { "texto": "Pedir disculpas y seguir corriendo hacia el vestíbulo principal", "siguiente": 8 }
+    ]
+  },
+  "5": {
+    "titulo": "Paso 5: Puerta Bloqueada",
+    "texto": "Trabas el picaporte con el palo de una escoba. Alguien intenta abrir desde fuera con fuerza. \"¡¿Quién hay ahí?!\", grita la voz del conserje. Leo entra en pánico. \"Si nos pillan aquí dentro con la pintura, estamos expulsados antes de empezar\", susurra. Hay un conducto de ventilación grande en la pared.",
+    "opciones": [
+      { "texto": "Intentar abrir el conducto de ventilación para escapar", "siguiente": 9 },
+      { "texto": "Decidir que es mejor abrir la puerta y dar la cara", "siguiente": 10 }
+    ]
+  },
+  "6": {
+    "titulo": "Paso 6: La Ventana del Patio",
+    "texto": "Abrís la ventana y saltáis a un pequeño patio interior. Justo en ese momento, una profesora asoma la cabeza por una ventana del primer piso: \"¡Eh, vosotros! ¡Está prohibido estar en ese patio! Subid inmediatamente a Jefatura de Estudios\".",
+    "opciones": [
+      { "texto": "Obedecer e ir hacia la Jefatura", "siguiente": 11 },
+      { "texto": "Convencer a Leo para correr y camuflaros entre la multitud del patio", "siguiente": 12 }
+    ]
+  },
+  "7": {
+    "titulo": "Paso 7: El Enfrentamiento",
+    "texto": "El chico de segundo se ríe en tu cara. \"Vaya, el novato es valiente. Escucha, si hablas más de la cuenta, tu primer año va a ser un infierno\". Se da la vuelta y se marcha rápidamente hacia el despacho del director.",
+    "opciones": [
+      { "texto": "Seguirlo a escondidas para ver qué hace", "siguiente": 13 },
+      { "texto": "Decidir que no vale la pena buscarse enemigos e ir al patio", "siguiente": 8 }
+    ]
+  },
+  "8": {
+    "titulo": "Paso 8: El Vestíbulo Principal",
+    "texto": "Luegos al vestíbulo, pero tropiezas directamente con el Jefe de Estudios, que te mira con sospecha. \"A estas horas ya deberíais estar todos en el patio para la presentación\", dice, cruzándose de brazos. Nota el brillo fluorescente en tus dedos.",
+    "opciones": [
+      { "texto": "Contarle la verdad sobre el sótano y la taquilla", "siguiente": 14 },
+      { "texto": "Inventar que te habías perdido buscando el baño de primero", "siguiente": 15 }
+    ]
+  },
+  "9": {
+    "titulo": "Paso 9: El Conducto de Ventilación",
+    "texto": "Lográis quitar la rejilla y os metéis dentro a gatas. Es estrecho y polvoriento, pero avanzáis hasta que la rejilla de salida os deja caer... ¡justo dentro del cuarto de Jefatura de Estudios! Por suerte, está vacío en este momento, pero oís que alguien viene por el pasillo.",
+    "opciones": [
+      { "texto": "Salir rápido al pasillo antes de que os vean dentro", "siguiente": 11 },
+      { "texto": "Esconderos debajo de la mesa de Jefatura", "siguiente": 16 }
+    ]
+  },
+  "10": {
+    "titulo": "Paso 10: Cara a Cara con el Conserje",
+    "texto": "Quitas la escoba y abres la puerta. El conserje os mira furioso, pero antes de que pueda decir nada, Leo reacciona rápido: \"¡Señor! Menos mal que abre. Estábamos buscando la clase de música y unos chicos mayores nos han empujado aquí dentro\". El conserje duda, pero os dice: \"Iros al patio ahora mismo, la presentación va a empezar\".",
+    "opciones": [
+      { "texto": "Acompañar a Leo al patio para ayudarle con la pintura", "siguiente": 12 },
+      { "texto": "Aprovechar para separarte de Leo e irte por tu cuenta", "siguiente": 15 }
+    ]
+  },
+  "11": {
+    "titulo": "Paso 11: Camino a Jefatura",
+    "texto": "Llegas a la puerta de Jefatura de Estudios. Sabes que si entras, tendrás que contarlo todo. Mientras esperas en la puerta, ves pasar al chico de segundo de la capucha; te guiña un ojo de forma burlona.",
+    "opciones": [
+      { "texto": "Entrar y delatar el plan de los de segundo", "siguiente": 14 },
+      { "texto": "Darte la vuelta en el último segundo y correr al patio", "siguiente": 12 }
+    ]
+  },
+  "12": {
+    "titulo": "Paso 12: El Patio de Presentación",
+    "texto": "Lográis mezclaros con la multitud de alumnos de primero en el patio principal. El Director empieza a hablar por el micrófono. Leo te mira, todavía con el bote de pintura escondido en la sudadera. \"Si no hacemos algo, los de segundo entrarán al despacho mientras todos están aquí\", te susurra.",
+    "opciones": [
+      { "texto": "Ayudar a Leo a esconder la pintura en un contenedor y montar guardia", "siguiente": 17 },
+      { "texto": "Decidirle que estás harto de líos, dejarlo solo y alejarte", "siguiente": 18 }
+    ]
+  },
+  "13": {
+    "titulo": "Paso 13: Siguiendo al Sospechoso",
+    "texto": "Sigues al chico de la capucha. Lo ves reunirse con otros dos estudiantes de segundo cerca del despacho del director. Tienen botes de spray listos. Te graban con el móvil desde lejos para tener una \"prueba\" de que estabas merodeando por allí por si investigan. ¡Estás atrapado!",
+    "opciones": [
+      { "texto": "Correr a buscar a un profesor para pararlos", "siguiente": 14 },
+      { "texto": "Decidir huir al patio y rezar para que no te involucren", "siguiente": 15 }
+    ]
+  },
+  "14": {
+    "titulo": "Paso 14: La Confesión",
+    "texto": "Decides contarlo todo de primera mano. Los profesores te escuchan con atención mientras una alarma interna empieza a sonar en el instituto...",
+    "opciones": [
+      { "texto": "Ver qué pasa a continuación...", "siguiente": 19 }
+    ]
+  },
+  "15": {
+    "titulo": "Paso 15: La Excusa",
+    "texto": "Tu excusa funciona a medias. Te ordenan ir al patio de inmediato con voz firme. Decides no complicarte más la vida y te olvidas del asunto por completo.",
+    "opciones": [
+      { "texto": "Ver cómo termina tu primer día...", "siguiente": 20 }
+    ]
+  },
+  "16": {
+    "titulo": "Paso 16: Escondidos en Jefatura",
+    "texto": "Bajo la mesa de Jefatura, el Jefe de Estudios entra y se sienta. Empieza a revisar unos papeles. Estáis atrapados. Pasan los minutos y empieza el discurso en el patio. Leo accidentalmente pisa un bote de pintura que gotea. El Jefe de Estudios mira hacia abajo... ¡Cazados!",
+    "opciones": [
+      { "texto": "El Jefe de Estudios os lleva a rastras al patio...", "siguiente": 18 }
+    ]
+  },
+  "17": {
+    "titulo": "🏆 FINAL A: El Héroe del Primer Día",
+    "texto": "Ayudas a Leo a esconder las pruebas de forma segura en los contenedores de reciclaje y vigilas mientras él se limpia. Al terminar el día, los de segundo intentan acusar a Leo ante el Director, pero no tienen ni una sola prueba. Te has ganado un amigo leal para todo el instituto y habéis demostrado que con los de primero no se juega. ¡Un comienzo épico!",
+    "final": true,
+    "opciones": []
+  },
+  "18": {
+    "titulo": "❌ FINAL B: El Cómplice Involuntario",
+    "texto": "A mitad del discurso de bienvenida, suena la alarma. Alguien ha destrozado el despacho del Director con pintura brillante y han atrapado a Leo con las manos manchas. Él, dolido porque lo dejaste tirado, te señala directamente como el cerebro de la operación. Te ganas una expulsión temporal el primer día de clase. Mala suerte.",
+    "final": true,
+    "opciones": []
+  },
+  "19": {
+    "titulo": "⚠️ FINAL C: El Chivato del Año",
+    "texto": "Los profesores bajan al sótano a tiempo. Atrapan a los de segundo con las manos en la masa y salvan a Leo. Se evita la gran novatada, pero la voz corre rápido: todo el instituto se entera de que fuiste tú quien \"cantó\". Te ganas la etiqueta de chivato antes de que termine la primera mañana. Va a ser un año escolar muy largo.",
+    "final": true,
+    "opciones": []
+  },
+  "20": {
+    "titulo": "🌫️ FINAL D: El Misterio sin Resolver",
+    "texto": "Te mantienes al margen. Al día siguiente, el instituto amanece lleno de pintadas vandálicas y la dirección cancela la excursión de bienvenida de primero como castigo colectivo. Nunca volviste a hablar con Leo, y siempre te quedará la espina en el corazón de saber que pudiste haber cambiado las cosas.",
+    "final": true,
+    "opciones": []
   }
 }
