@@ -25,15 +25,23 @@
 
     // 2. Esta función dibuja el paso actual borrando por completo el anterior
     function mostrarPaso(numero) {
-        const paso = historia[numero];
-        
-        document.getElementById('titulo').innerText = paso.titulo;
-        document.getElementById('texto').innerText = paso.texto;
-        
-        const container = document.getElementById('opciones-container');
-        container.innerHTML = ''; // Borramos los botones anteriores
-        
-        // Creamos los nuevos botones dinámicamente
+    const paso = historia[numero];
+    
+    document.getElementById('titulo').innerText = paso.titulo;
+    document.getElementById('texto').innerText = paso.texto;
+    
+    const container = document.getElementById('opciones-container');
+    container.innerHTML = ''; // Limpiar contenedor
+    
+    if (paso.final) {
+        // Si es un nodo final, creamos el botón rojo de reiniciar
+        const btnReiniciar = document.createElement('button');
+        btnReiniciar.innerText = "🔄 Volver a jugar";
+        btnReiniciar.className = "restart"; // Para que aplique el CSS rojo
+        btnReiniciar.onclick = () => mostrarPaso(1);
+        container.appendChild(btnReiniciar);
+    } else {
+        // Si no es un final, dibuja las opciones normales de la historia
         paso.opciones.forEach(opcion => {
             const boton = document.createElement('button');
             boton.innerText = opcion.texto;
@@ -41,6 +49,8 @@
             container.appendChild(boton);
         });
     }
+    window.scrollTo(0, 0);
+}
 
     // Arrancar el juego
     cargarHistoria();
