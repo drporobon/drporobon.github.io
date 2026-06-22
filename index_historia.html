@@ -114,7 +114,15 @@
     
     const container = document.getElementById('opciones-container');
     container.innerHTML = ''; // Limpiar contenedor
-    
+
+const imgContainer = document.getElementById('imagen-paso');
+if (paso.imagen) {
+    imgContainer.src = paso.imagen;
+    imgContainer.style.display = 'block'; // La muestra
+} else {
+    imgContainer.style.display = 'none';  // La oculta si el paso no tiene foto
+}
+        
     if (paso.final) {
         // Si es un nodo final, creamos el botón rojo de reiniciar
         const btnReiniciar = document.createElement('button');
