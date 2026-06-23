@@ -1,345 +1,344 @@
 {
   "1": {
-    "titulo": "Paso 1: El Inicio",
-    "texto": "Es tu primer día en el instituto. Buscas la clase de Matemáticas cuando pasas por el pasillo del sótano. Escuchas un fuerte ¡CLANG! y un grito ahogado. Al dar la vuelta, ves la Taquilla 13 abierta de par en par. En el suelo hay una mochila abandonada con un brillo extraño dentro y un rastro de papeles que se mete hacia el cuarto de la limpieza.",
+    "titulo": "Decisión 1: El Descubrimiento en el Sótano",
+    "texto": "Primer día de instituto. Buscas la clase de Matemáticas en el sótano y escuchas un fuerte ¡CLANG!. La Taquilla 13 está abierta. En el suelo hay una mochila abandonada con un brillo verde neón y un rastro de papeles que va al cuarto de la limpieza. Alguien viene bajando las escaleras.",
     "opciones": [
-      { "texto": "Investigar la mochila en el suelo", "siguiente": 2 },
-      { "texto": "Seguir el rastro de papeles hacia el cuarto de la limpieza", "siguiente": 3 }
+      { "texto": "Revisar rápido la mochila del suelo", "siguiente": 2 },
+      { "texto": "Seguir el rastro hacia el cuarto de la limpieza", "siguiente": 3 }
     ]
   },
   "2": {
-    "titulo": "Paso 2: La Mochila Brillante",
-    "texto": "Te agachas y la abres. Dentro hay un bote de pintura luminiscente y un plano con una cruz en el despacho del Director. Alguien quiere gastar una novatada enorme. Escuchas pasos pesados bajando las escaleras del sótano. ¡Alguien viene!",
+    "titulo": "Decisión 2A: El Mapa de la Novatada",
+    "texto": "Abres la mochila: hay pintura luminiscente y un plano para vandalizar el despacho del Director y culpar a los novatos. Los pasos están al caer. ¿Qué haces?",
     "opciones": [
-      { "texto": "Esconderte rápidamente en el cuarto de la limpieza", "siguiente": 3 },
-      { "texto": "Huir corriendo por el pasillo hacia las escaleras", "siguiente": 4 }
+      { "texto": "Esconderte en el cuarto de la limpieza con la mochila", "siguiente": 3 },
+      { "texto": "Correr pasillo arriba hacia el vestíbulo", "siguiente": 4 }
     ]
   },
   "3": {
-    "titulo": "Paso 3: El Cuarto de la Limpieza",
-    "texto": "Entras a oscuras. Al fondo, entre fregonas, ves a alguien escondido: es Leo, un chico de primero. Tiene las manos manchadas de pintura fluorescente. \"No digas nada\", te susurra asustado. \"Me han tendido una trampa. Los de segundo quieren pintar el despacho del director y culparme a mí. ¡Y acabo de oír que viene el conserje!\".",
+    "titulo": "Decisión 2B: El Encuentro con Leo",
+    "texto": "Entras al cuarto a oscuras. Allí está Leo, un compañero de primero con las manos llenas de pintura neón: 'Me han tendido una trampa los de segundo para culparme', susurra. ¡El conserje está probando el pomo de la puerta desde fuera!",
     "opciones": [
-      { "texto": "Bloquear la puerta con una escoba para que no entren", "siguiente": 5 },
-      { "texto": "Salir por la ventana del patio interior que hay al fondo", "siguiente": 6 }
+      { "texto": "Trabar la puerta con el palo de una escoba", "siguiente": 5 },
+      { "texto": "Escapar juntos por la ventana que da al patio interior", "siguiente": 6 }
     ]
   },
   "4": {
-    "titulo": "Paso 4: La Huida por el Pasillo",
-    "texto": "Corres, pero al girar la esquina te chocas de frente con un alumno de segundo que lleva una sudadera con capucha. Te mira con cara de pocos amigos y ve tus manos (te has manchado un poco con la mochila). \"¿Qué haces aquí, novato? No deberías meter la nariz donde no te llaman\", te dice en tono amenazante.",
+    "titulo": "Decisión 2C: El Chonque en el Pasillo",
+    "texto": "Huyes, pero te chocas con un alumno de segundo con capucha. Ve tus manos manchadas de pintura de la mochila. 'No metas las narices donde no debes, novato', te amenaza. Se dirige hacia el despacho del director.",
     "opciones": [
-      { "texto": "Plantarle cara y preguntarle qué sabe de la Taquilla 13", "siguiente": 7 },
-      { "texto": "Pedir disculpas y seguir corriendo hacia el vestíbulo principal", "siguiente": 8 }
+      { "texto": "Seguirlo a escondidas para ver qué planea", "siguiente": 7 },
+      { "texto": "Ignorarlo y buscar el vestíbulo principal", "siguiente": 8 }
     ]
   },
   "5": {
-    "titulo": "Paso 5: Puerta Bloqueada",
-    "texto": "Trabas el picaporte con el palo de una escoba. Alguien intenta abrir desde fuera con fuerza. \"¡¿Quién hay ahí?!\", grita la voz del conserje. Leo entra en pánico. \"Si nos pillan aquí dentro con la pintura, estamos expulsados antes de empezar\", susurra. Hay un conducto de ventilación grande en la pared y una trampilla en el suelo.",
+    "titulo": "Decisión 3A: Atrapados por el Conserje",
+    "texto": "Bloqueas la puerta, pero el conserje golpea furioso: '¡Abrid o llamo al Jefe de Estudios!'. Leo señala un conducto de ventilación en la pared y una trampilla en el suelo.",
     "opciones": [
-      { "texto": "Intentar abrir el conducto de ventilación de la pared", "siguiente": 9 },
-      { "texto": "Levantar la trampilla del suelo para ver a dónde lleva", "siguiente": 21 }
+      { "texto": "Trepar por el conducto de ventilación", "siguiente": 9 },
+      { "texto": "Bajar por la trampilla del suelo", "siguiente": 10 }
     ]
   },
   "6": {
-    "titulo": "Paso 6: La Ventana del Patio",
-    "texto": "Abrís la ventana y saltáis a un pequeño patio interior. Justo en ese momento, una profesora asoma la cabeza por una ventana del primer piso: \"¡Eh, vosotros! ¡Está prohibido estar en ese patio! Subid inmediatamente a Jefatura de Estudios\".",
+    "titulo": "Decisión 3B: El Patio Interior",
+    "texto": "Saltáis al patio interior, pero una profesora os ve desde el primer piso: '¡Está prohibido estar ahí! ¡Subid a Jefatura!'. Leo entra en pánico.",
     "opciones": [
-      { "texto": "Obedecer e ir hacia la Jefatura", "siguiente": 11 },
-      { "texto": "Arriesgaros y correr hacia un aula vacía que se ve enfrente", "siguiente": 22 }
+      { "texto": "Ir hacia Jefatura de Estudios como os han ordenado", "siguiente": 11 },
+      { "texto": "Correr hacia el Aula de Música que tiene la puerta abierta", "siguiente": 12 }
     ]
   },
   "7": {
-    "titulo": "Paso 7: El Enfrentamiento",
-    "texto": "El chico de segundo se ríe en tu cara. \"Vaya, el novato es valiente. Escucha, si hablas más de la cuenta, tu primer año va a ser un infierno\". Se da la vuelta y se marcha rápidamente hacia el despacho del director.",
+    "titulo": "Decisión 3C: Espionaje en las Escaleras",
+    "texto": "Ves al encapuchado reunirse con dos cómplices. Tienen sprays listos. Te descubren mirando y te graban con el móvil: 'Si nos delatas, diremos que fuiste tú'. Te acorralan.",
     "opciones": [
-      { "texto": "Seguirlo a escondidas para ver qué hace", "siguiente": 13 },
-      { "texto": "Decidir que no vale la pena buscarse enemigos e ir al patio", "siguiente": 8 }
+      { "texto": "Gritar pidiendo ayuda a los profesores", "siguiente": 11 },
+      { "texto": "Ceder, pedir disculpas e irte hacia el vestíbulo", "siguiente": 8 }
     ]
   },
   "8": {
-    "titulo": "Paso 8: El Vestíbulo Principal",
-    "texto": "Llegas al vestíbulo, pero tropiezas directamente con el Jefe de Estudios, que te mira con sospecha. \"A estas horas ya deberíais estar todos en el patio para la presentación\", dice, cruzándose de brazos. Nota el brillo fluorescente en tus dedos.",
+    "titulo": "Decisión 3D: El Interrogatorio del Jefe",
+    "texto": "En el vestíbulo te frena el Jefe de Estudios. Nota tus dedos fluorescentes. '¿Qué hacías en el sótano? Deberías estar en el patio de presentación'.",
     "opciones": [
-      { "texto": "Contarle la verdad sobre el sótano y la taquilla", "siguiente": 14 },
-      { "texto": "Inventar que te habías perdido buscando el baño de primero", "siguiente": 15 }
+      { "texto": "Decirle la verdad sobre la Taquilla 13", "siguiente": 13 },
+      { "texto": "Mentir y decir que te perdiste buscando el baño", "siguiente": 14 }
     ]
   },
   "9": {
-    "titulo": "Paso 9: El Conducto de Ventilación",
-    "texto": "Lográis quitar la rejilla y os metéis dentro a gatas. Es estrecho y polvoriento, pero avanzáis hasta que la rejilla de salida os deja caer... ¡justo dentro del cuarto de Jefatura de Estudios! Por suerte, está vacío en este momento, pero oís que alguien viene por el pasillo.",
+    "titulo": "Decisión 4A: El Laberinto del Techo",
+    "texto": "Avanzáis a gatas por el conducto polvoriento. Llegáis a una bifurcación interna: una rejilla da al laboratorio de ciencias y otra cae directamente en el despacho de Jefatura.",
     "opciones": [
-      { "texto": "Salir rápido al pasillo antes de que os vean dentro", "siguiente": 11 },
-      { "texto": "Esconderos debajo de la mesa de Jefatura", "siguiente": 16 }
+      { "texto": "Bajar hacia el Laboratorio de Ciencias", "siguiente": 15 },
+      { "texto": "Dejarse caer en el despacho de Jefatura", "siguiente": 16 }
     ]
   },
   "10": {
-    "titulo": "Paso 10: Cara a Cara con el Conserje",
-    "texto": "El conserje os mira furioso tras descubriros, pero antes de que pueda decir nada, Leo reacciona rápido: \"¡Señor! Menos mal que llega. Unos chicos mayores nos han empujado aquí dentro y se han ido riendo\". El conserje arruga el entrecejo, dudando de la historia.",
+    "titulo": "Decisión 4B: Sala de Calderas",
+    "texto": "Bajáis a una sala llena de tuberías ruidosas. Encontráis una puerta metálica que da al patio exterior, pero escucháis la voz del conserje merodeando por fuera.",
     "opciones": [
-      { "texto": "Darle la razón a Leo y poner cara de asustado", "siguiente": 23 },
-      { "texto": "Aprovechar la distracción para salir corriendo hacia el patio", "siguiente": 15 }
+      { "texto": "Salir al patio exterior de golpe y camuflaros", "siguiente": 17 },
+      { "texto": "Volver arriba y arriesgaros por el conducto de ventilación", "siguiente": 9 }
     ]
   },
   "11": {
-    "titulo": "Paso 11: Camino a Jefatura",
-    "texto": "Llegas a la puerta de Jefatura de Estudios. Sabes que si entras, tendrás que contarlo todo. Mientras esperas en la puerta, ves pasar al chico de segundo de la capucha; te hace un gesto amenazante con la mano pasándosela por el cuello.",
+    "titulo": "Decisión 4C: El Pasillo de los Despachos",
+    "texto": "Subes las escaleras hacia Jefatura. Ves pasar al grupo de segundo con los sprays escondidos. Te guiñan un ojo de forma burlona. Estás en la puerta del despacho del Jefe de Estudios.",
     "opciones": [
-      { "texto": "Entrar sin miedo y delatar el plan de los de segundo", "siguiente": 14 },
-      { "texto": "Darte la vuelta en el último segundo y huir hacia el patio", "siguiente": 12 }
+      { "texto": "Entrar a delatarlos ahora mismo", "siguiente": 13 },
+      { "texto": "Dar la vuelta en el último segundo e ir al patio general", "siguiente": 17 }
     ]
   },
   "12": {
-    "titulo": "Paso 12: El Patio de Presentación",
-    "texto": "Lográis mezclaros con la multitud de alumnos de primero en el patio principal. El Director empieza a hablar por el micrófono. Leo te mira, todavía con el bote de pintura escondido en la sudadera. \"Si no hacemos algo, los de segundo entrarán al despacho mientras todos están aquí\", te susurra.",
+    "titulo": "Decisión 4D: El Aula de Música",
+    "texto": "Os encerráis en el aula de música. Leo tira sin querer unas panderetas haciendo un ruido tremendo. La profesora que os perseguía se acerca al pasillo del aula.",
     "opciones": [
-      { "texto": "Ayudar a Leo a esconder la pintura en un contenedor y montar guardia", "siguiente": 17 },
-      { "texto": "Decirle que estás harto de líos, dejarlo solo y alejarte", "siguiente": 18 }
+      { "texto": "Salir del aula y afrontar las consecuencias", "siguiente": 11 },
+      { "texto": "Esconderos en el armario grande de los instrumentos", "siguiente": 18 }
     ]
   },
   "13": {
-    "titulo": "Paso 13: Siguiendo al Sospechoso",
-    "texto": "Sigues al chico de la capucha. Lo ves reunirse con otros dos estudiantes de segundo cerca del despacho del director. Tienen botes de spray listos. Te graban con el móvil desde lejos para tener una \"prueba\" de que estabas merodeando por allí por si investigan. ¡Estás atrapado!",
+    "titulo": "Decisión 5A: Presión en Dirección",
+    "texto": "Le cuentas al Jefe de Estudios el plan. Él se levanta serio, pero antes de actuar te dice: 'Necesito que vengas conmigo a identificar a los culpables al patio frente a todos'.",
     "opciones": [
-      { "texto": "Correr a buscar a un profesor para pararlos", "siguiente": 14 },
-      { "texto": "Intentar sacar tu propio móvil para hacerles una foto como contraprueba", "siguiente": 24 }
+      { "texto": "Aceptar ir con él y señalar a los de segundo", "siguiente": 19 },
+      { "texto": "Negarte por miedo a las represalias de los repetidores", "siguiente": 20 }
     ]
   },
   "14": {
-    "titulo": "Paso 14: La Confesión",
-    "texto": "Decides contarlo todo de primera mano. Los profesores te escuchan con atención mientras una alarma interna empieza a sonar en el instituto...",
+    "titulo": "Decisión 5B: La Coartada del Baño",
+    "texto": "El Jefe de Estudios no se fía de tu excusa del baño, pero te ordena ir al patio de inmediato. Al girar el pasillo, te encuentras a Leo desesperado porque no puede limpiarse la pintura de las manos.",
     "opciones": [
-      { "texto": "Ver qué pasa a continuación...", "siguiente": 19 }
+      { "texto": "Llevar a Leo al Laboratorio de Ciencias a buscar algo para limpiarlo", "siguiente": 15 },
+      { "texto": "Decirle que se esconda en la Biblioteca mientras tú buscas ayuda", "siguiente": 21 }
     ]
   },
   "15": {
-    "titulo": "Paso 15: La Excusa",
-    "texto": "Tu excusa funciona a medias. Te ordenan ir al patio de inmediato con voz firme. Decides no complicarte más la vida y te olvidas del asunto por completo.",
+    "titulo": "Decisión 5C: El Laboratorio Químico",
+    "texto": "En el laboratorio encontráis un reactivo químico que elimina la pintura luminiscente al instante. De repente, entra el profesor de química con unos papeles.",
     "opciones": [
-      { "texto": "Ver cómo termina tu primer día...", "siguiente": 20 }
+      { "texto": "Esconder el bote químico e inventar que buscabais vuestra clase", "siguiente": 22 },
+      { "texto": "Confesarle al profesor el problema de la pintura de Leo", "siguiente": 13 }
     ]
   },
   "16": {
-    "titulo": "Paso 16: Escondidos en Jefatura",
-    "texto": "Bajo la mesa de Jefatura, el Jefe de Estudios entra y se sienta. Empieza a revisar unos papeles. Estáis atrapados. Pasan los minutos y empieza el discurso en el patio. Leo accidentalmente pisa un bote de pintura que gotea. El Jefe de Estudios mira hacia abajo... ¡Cazados!",
+    "titulo": "Decisión 5D: Atrapados bajo la Mesa",
+    "texto": "Caéis en Jefatura, que por suerte está vacía. Os escondéis bajo la mesa principal. En ese momento, el Jefe entra, se sienta y empieza a revisar expedientes. Estáis atrapados.",
     "opciones": [
-      { "texto": "El Jefe de Estudios os lleva a rastras al patio...", "siguiente": 18 }
-    ]
-  },
-  "21": {
-    "titulo": "Paso 21: El Sótano de Calderas",
-    "texto": "Bajáis por la trampilla y caéis en una sala llena de tuberías ruidosas. Está oscuro, pero al fondo se ve una puerta metálica que da al patio trasero. Sin embargo, escucháis pasos al otro lado de la puerta. Alguien está bloqueando la salida.",
-    "opciones": [
-      { "texto": "Empujar la puerta con fuerza para salir pase lo que pase", "siguiente": 10 },
-      { "texto": "Volver a subir y arriesgarse con el conducto de ventilación", "siguiente": 9 }
-    ]
-  },
-  "22": {
-    "titulo": "Paso 22: El Aula de Música Vacía",
-    "texto": "Entráis al aula y cerráis la puerta. Está llena de instrumentos. A través de la ventana, veis que la profesora que os gritó está bajando las escaleras buscándoos. Leo entra en pánico y tira una fila de panderetas que hacen un ruido tremendo.",
-    "opciones": [
-      { "texto": "Salir antes de que la profesora llegue al aula por el ruido", "siguiente": 11 },
-      { "texto": "Esconderos dentro de los armarios de los instrumentos", "siguiente": 25 }
-    ]
-  },
-  "23": {
-    "titulo": "Paso 23: La Alianza con el Conserje",
-    "texto": "Tu actuación convence al conserje. \"¿Esos de segundo otra vez?\", gruñe con rabia. \"Llevan toda la mañana tramando algo. Id al patio con los demás, yo vigilaré el pasillo del despacho del Director\". Os habéis librado, pero el peligro sigue ahí.",
-    "opciones": [
-      { "texto": "Ir al patio con Leo y camuflaros entre los alumnos", "siguiente": 12 },
-      { "texto": "Decirle a Leo que ya estás a salvo y separarte de él", "siguiente": 15 }
-    ]
-  },
-  "24": {
-    "titulo": "Paso 24: El Teléfono Requisado",
-    "texto": "Sacas el móvil rápidamente, pero justo cuando vas a disparar la foto, una mano firme te lo quita de arriba. ¡Es un profesor de guardia! \"Está prohibido usar móviles en el pasillo, y menos el primer día. Acompañame a Jefatura\". Los de segundo se ríen disimuladamente mientras te llevan.",
-    "opciones": [
-      { "texto": "Aprovechar que vas a Jefatura para contar toda la verdad", "siguiente": 14 },
-      { "texto": "Quedarte callado por miedo a que te llamen chivato", "siguiente": 26 }
-    ]
-  },
-  "25": {
-    "titulo": "Paso 25: Atrapados en el Armario",
-    "texto": "Os metéis en el armario de los disfraces y el teatro. La profesora entra al aula, mira alrededor, pero no ve a nadie y vuelve a salir refunfuñando. Habéis tenido suerte, pero os habéis perdido el inicio de la presentación del Director. Se oyen aplausos en el patio exterior.",
-    "opciones": [
-      { "texto": "Salir del armario e ir a Jefatura a explicar el lío", "siguiente": 11 },
-      { "texto": "Salir del armario e intentar colaros discretamente en el patio", "siguiente": 12 }
-    ]
-  },
-  "26": {
-    "titulo": "Paso 26: El Castigo Solitario",
-    "texto": "Te quedas en silencio en la sala de espera de Jefatura. Tu móvil se queda retenido. Al no decir nada, los de segundo entran al despacho del director sin oposición. Sabes que has tomado el camino cobarde, pero al menos nadie sabe que estabas allí.",
-    "opciones": [
-      { "texto": "Ver las consecuencias de tu silencio...", "siguiente": 20 }
-    ]
-  },
-  "27": {
-    "titulo": "Paso 27: El Contraataque de los Novatos",
-    "texto": "En el contenedor de reciclaje, Leo y tú encontráis cartones grandes. Tapáis los botes de pintura y os aseguráis de limpiaros las manos con unos pañuelos. Justo en ese momento, veis a los de segundo merodeando cerca con cara de frustración al no encontrar su mochila. Te miran fijamente.",
-    "opciones": [
-      { "texto": "Mantenerles la mirada con seguridad para que vean que no tenéis miedo", "siguiente": 17 },
-      { "texto": "Asustarte en el último segundo y entrar corriendo al patio", "siguiente": 18 }
-    ]
-  },
-  "28": {
-    "titulo": "Paso 28: Rumores en el Patio",
-    "texto": "Te alejas de Leo, pero mientras caminas entre los alumnos de primero, escuchas a un grupo hablar: \"Dicen que los de segundo van a meter en un lío enorme a un novato hoy\". Miras atrás y ves a Leo solo en una esquina, rodeado de sospechas y visiblemente nervioso.",
-    "opciones": [
-      { "texto": "Arrepentirte, dar la vuelta y volver para ayudar a Leo", "siguiente": 27 },
-      { "texto": "Ignorar la culpa, mirar al frente y escuchar el discurso del director", "siguiente": 18 }
-    ]
-  },
-  "29": {
-    "titulo": "Paso 29: La Trampa de la Biblioteca",
-    "texto": "Huyendo de los pasillos principales, Leo y tú os refugiáis en la antigua biblioteca del segundo piso. Está desierta. De repente, escucháis que cierran la puerta principal por fuera con llave y una risa burlona al otro lado. ¡Os han encerrado!",
-    "opciones": [
-      { "texto": "Buscar una salida alternativa entre las estanterías del fondo", "siguiente": 31 },
-      { "texto": "Gritar y golpear la puerta pidiendo ayuda", "siguiente": 32 }
-    ]
-  },
-  "30": {
-    "titulo": "Paso 30: El Laboratorio de Ciencias",
-    "texto": "Entras al laboratorio buscando dónde esconder el plano que le quitaste a la mochila. Sobre una mesa hay varios compuestos químicos para las clases del día siguiente y un bote de líquido reactivo que borra la pintura luminiscente al instante.",
-    "opciones": [
-      { "texto": "Usar el químico para destruir el plano y borrar las pruebas", "siguiente": 33 },
-      { "texto": "Llevarte el bote químico por si necesitas limpiar las manos de Leo", "siguiente": 34 }
-    ]
-  },
-  "31": {
-    "titulo": "Paso 31: El Pasadizo de los Libros",
-    "texto": "Detrás de la sección de Historia, descubres una pequeña puerta de mantenimiento que conecta con el hueco del ascensor de servicio. Está oscuro, pero puedes oír el eco del patio exterior desde aquí.",
-    "opciones": [
-      { "texto": "Bajar con cuidado por la escalera de servicio hacia el vestíbulo", "siguiente": 8 },
-      { "texto": "Subir hacia la última planta para salir al tejado del instituto", "siguiente": 35 }
-    ]
-  },
-  "32": {
-    "titulo": "Paso 32: El Rescate Inesperado",
-    "texto": "Tus gritos llaman la atención de la bibliotecaria, que volvía de recoger unos libros. Al abrir la puerta y veros allí con Leo manchado de pintura, os mira con desconfianza. \"Explicadme ahora mismo qué hacéis aquí arriba\".",
-    "opciones": [
-      { "texto": "Contarle toda la verdad sobre la jugarreta de los de segundo", "siguiente": 11 },
-      { "texto": "Decir que os habíais equivocado buscando el aula de dibujo", "siguiente": 36 }
-    ]
-  },
-  "33": {
-    "titulo": "Paso 33: Pruebas Destruidas",
-    "texto": "Viertes el químico sobre el plano. El papel se deshace por completo en segundos. Ya no hay pruebas físicas de la novatada, pero en ese momento entra el profesor de Ciencias al laboratorio. \"¿Qué haces tocando el material de clase, alumno?\".",
-    "opciones": [
-      { "texto": "Confesar que estabas asustado y contarle el problema", "siguiente": 14 },
-      { "texto": "Salir corriendo del laboratorio aprovechando que el profesor se distrae", "siguiente": 15 }
-    ]
-  },
-  "34": {
-    "titulo": "Paso 34: El Limpiador Químico",
-    "texto": "Escondes el bote en tu mochila y vuelves al pasillo. Te encuentras con Leo, que está al borde de las lágrimas porque la pintura no se va con agua del baño. Le aplicas el químico y sus manos quedan perfectamente limpias.",
-    "opciones": [
-      { "texto": "Ir juntos al patio principal totalmente limpios y salvados", "siguiente": 12 },
-      { "texto": "Ir a buscar a los de segundo para plantarles cara con confianza", "siguiente": 37 }
-    ]
-  },
-  "35": {
-    "titulo": "Paso 35: El Tejado del Instituto",
-    "texto": "Sales al tejado. Desde aquí arriba tienes una vista completa del patio donde todos los novatos escuchan al director, pero también ves algo alarmante: dos chicos de segundo están subiendo por la escalera de incendios del bloque de Dirección con botes de spray.",
-    "opciones": [
-      { "texto": "Gritar desde el tejado para llamar la atención de todo el patio", "siguiente": 38 },
-      { "texto": "Bajar corriendo por las escaleras internas para avisar al conserje", "siguiente": 23 }
-    ]
-  },
-  "36": {
-    "titulo": "Paso 36: El Reporte de la Bibliotecaria",
-    "texto": "La bibliotecaria no se cree tu mentira. Anota vuestros nombres en un parte de incidencias y os ordena bajar inmediatamente al patio bajo amenaza de llevaros directamente a Dirección.",
-    "opciones": [
-      { "texto": "Acatar las órdenes e ir al patio con la cabeza baja", "siguiente": 15 },
-      { "texto": "Intentar buscar a Leo para esconder el bote antes de que os registren", "siguiente": 28 }
-    ]
-  },
-  "37": {
-    "titulo": "Paso 37: Girando las Tornas",
-    "texto": "Encontráis a los líderes de segundo en el pasillo del gimnasio. Al ver que Leo ya no tiene las manos manchadas y que tenéis el bote químico, se dan cuenta de que su plan ha fracasado. El líder te dice: \"Vale, novato, eres listo. Olvidemos esto, ¿trato?\".",
-    "opciones": [
-      { "texto": "Aceptar el trato para tener un año tranquilo en paz", "siguiente": 39 },
-      { "texto": "Rechazar el trato, daros la vuelta e ir a delatarlos al patio", "siguiente": 12 }
-    ]
-  },
-  "38": {
-    "titulo": "Paso 38: La Alerta General",
-    "texto": "Gritas con todas tus fuerzas: \"¡Mirad al despacho del Director!\". Cientos de alumnos y profesores miran hacia arriba y pillan a los de segundo in fraganti trepando por la fachada con la pintura. Se monta un revuelo enorme.",
-    "opciones": [
-      { "texto": "Bajar rápido del tejado para unirte a la multitud del patio", "siguiente": 19 }
-    ]
-  },
-  "39": {
-    "titulo": "Paso 39: El Pacto de Silencio",
-    "texto": "Decidís estrecharles la mano. Los de segundo recogen sus botes de pintura y se marchan. Leo y tú os habéis librado del castigo y además os habéis ganado el respeto de los mayores, aunque sabes que habéis encubierto una gamberrada.",
-    "opciones": [
-      { "texto": "Ir al patio a disfrutar del resto de la presentación...", "siguiente": 45 }
-    ]
-  },
-  "40": {
-    "titulo": "Paso 40: Hackeando las Cámaras",
-    "texto": "Te cuelas en la cabina de control audiovisual del instituto. En las pantallas de seguridad ves perfectamente a los de segundo saboteando la taquilla 13. Tienes la prueba definitiva en vídeo en tus manos.",
-    "opciones": [
-      { "texto": "Guardar el vídeo en un pendrive e ir directo a Jefatura", "siguiente": 14 },
-      { "texto": "Proyectar el vídeo en la pantalla gigante del patio de presentación", "siguiente": 38 }
-    ]
-  },
-  "41": {
-    "titulo": "Paso 41: Atrapado en el Sótano",
-    "texto": "El conserje cierra la puerta del sótano con candado desde fuera sin saber que estáis dentro. Estás a oscuras con Leo y el tiempo corre, la presentación ya ha comenzado.",
-    "opciones": [
-      { "texto": "Usar la linterna del móvil para buscar otra salida", "siguiente": 21 },
-      { "texto": "Golpear las tuberías de metal con una llave inglesa para hacer ruido", "siguiente": 10 }
-    ]
-  },
-  "42": {
-    "titulo": "Paso 42: El Escondite del Gimnasio",
-    "texto": "Os escondéis detrás de las colchonetas del gimnasio. Desde la ventana interior veis pasar al Jefe de Estudios buscando a los alumnos que faltan. Leo tiembla y tira una valla de atletismo.",
-    "opciones": [
-      { "texto": "Salir y entregarte antes de que sea peor", "siguiente": 16 },
-      { "texto": "Salir corriendo por la puerta trasera del vestuario", "siguiente": 12 }
-    ]
-  },
-  "43": {
-    "titulo": "Paso 43: El Micrófono de Megafonía",
-    "texto": "Entras en la sala de radio vacía. El micrófono de la megafonía general está encendido. Si hablas, te escuchará todo el instituto, incluidos los profesores.",
-    "opciones": [
-      { "texto": "Denunciar la broma de la Taquilla 13 en directo por los altavoces", "siguiente": 38 },
-      { "texto": "Apagar el equipo por miedo a meterte en un lío mayor e irte al patio", "siguiente": 15 }
-    ]
-  },
-  "44": {
-    "titulo": "Paso 44: Intercepción en la Escalera",
-    "texto": "Los de segundo os acorralan en la escalera de caracol. \"Dadnos el plano y la mochila o vuestra vida aquí será un infierno\", amenaza el más alto.",
-    "opciones": [
-      { "texto": "Tirar la mochila por el hueco de la escalera y correr al laboratorio", "siguiente": 30 },
-      { "texto": "Gritar pidiendo auxilio para que os oigan desde los despachos", "siguiente": 11 }
+      { "texto": "Salir de debajo de la mesa y confesar el accidente", "siguiente": 13 },
+      { "texto": "Esperar en silencio a que se vaya para el discurso del patio", "siguiente": 23 }
     ]
   },
   "17": {
-    "titulo": "🏆 FINAL A: El Héroe del Primer Día",
-    "texto": "Ayudas a Leo a esconder las pruebas de forma segura en los contenedores de reciclaje y vigilas mientras él se limpia. Al terminar el día, los de segundo intentan acusar a Leo ante el Director, pero no tienen ni una sola prueba. Te has ganado un amigo leal para todo el instituto y habéis demostrado que con los de primero no se juega. ¡Un comienzo épico!",
-    "final": true,
-    "opciones": []
+    "titulo": "Decisión 5E: La Multitud del Patio",
+    "texto": "Llegas al patio principal. Cientos de alumnos de primero escuchan el discurso del Director. Leo te encuentra entre la multitud; todavía lleva el bote de pintura de la mochila en su sudadera.",
+    "opciones": [
+      { "texto": "Ir a esconder el bote en los contenedores de reciclaje tras el gimnasio", "siguiente": 24 },
+      { "texto": "Buscar a los de segundo para exigirles que aborten el plan", "siguiente": 25 }
+    ]
   },
   "18": {
-    "titulo": "❌ FINAL B: El Cómplice Involuntario",
-    "texto": "A mitad del discurso de bienvenida, suena la alarma. Alguien ha destrozado el despacho del Director con pintura brillante y han atrapado a Leo con las manos manchas. Él, dolido porque lo dejaste tirado, te señala directamente como el cerebro de la operación. Te ganas una expulsión temporal el primer día de clase. Mala suerte.",
-    "final": true,
-    "opciones": []
+    "titulo": "Decisión 5F: El Armario de Disfraces",
+    "texto": "Os metéis al armario. La profesora entra al aula, mira de reojo y se va. Estáis a salvo, pero atrapados mientras en el patio exterior se oyen los aplausos del inicio del acto.",
+    "opciones": [
+      { "texto": "Salir ya hacia el patio antes de que termine el discurso", "siguiente": 17 },
+      { "texto": "Investigar el fondo del armario (hay una puerta trasera de servicio)", "siguiente": 21 }
+    ]
   },
   "19": {
-    "titulo": "⚠️ FINAL C: El Chivato del Año",
-    "texto": "Los profesores bajan al sótano a tiempo. Atrapan a los de segundo con las manos en la masa y salvan a Leo. Se evita la gran novatada, pero la voz corre rápido: todo el instituto se entera de que fuiste tú quien \"cantó\". Te ganas la etiqueta de chivato antes de que termine la primera mañana. Va a ser un año escolar muy largo.",
-    "final": true,
-    "opciones": []
+    "titulo": "Decisión 6A: El Paseo del Destino",
+    "texto": "Caminas junto al Jefe de Estudios hacia el patio. Los alumnos de segundo se dan cuenta y empiezan a dispersarse nerviosos. Uno de ellos te muestra la pantalla de su móvil de lejos: está a punto de enviar un rumor falso sobre ti a las redes del instituto.",
+    "opciones": [
+      { "texto": "Seguir adelante y señalarlo ante el Jefe de Estudios", "siguiente": 26 },
+      { "texto": "Frenar en seco, inventar una excusa y huir hacia el Gimnasio", "siguiente": 27 }
+    ]
   },
   "20": {
-    "titulo": "🌫️ FINAL D: El Misterio sin Resolver",
-    "texto": "Te mantienes al margen. Al día siguiente, el instituto amanece lleno de pintadas vandálicas y la dirección cancela la excursión de bienvenida de primero como castigo colectivo. Nunca volviste a hablar con Leo, y siempre te quedará la espina en el corazón de saber que pudiste haber cambiado las cosas.",
+    "titulo": "Decisión 6B: Testigo Silencioso",
+    "texto": "Te niegas. El Jefe de Estudios suspira y va solo a investigar. Te quedas en el pasillo y ves que los de segundo aprovechan que el Jefe se ha ido para avanzar hacia el despacho del Director.",
+    "opciones": [
+      { "texto": "Correr a la sala de megafonía para alertar a todo el instituto", "siguiente": 28 },
+      { "texto": "Refugiarte en la Biblioteca para no ver lo que pasa", "siguiente": 21 }
+    ]
+  },
+  "21": {
+    "titulo": "Decisión 6C: El Laberinto de la Biblioteca",
+    "texto": "En la biblioteca, Leo y tú os escondéis entre las estanterías de Historia. Escucháis un clic por fuera: ¡alguien os ha cerrado la puerta principal con llave desde el pasillo!",
+    "opciones": [
+      { "texto": "Buscar una ventana que conecte con las escaleras de incendios", "siguiente": 29 },
+      { "texto": "Usar los ordenadores de la biblioteca para acceder al sistema de cámaras", "siguiente": 30 }
+    ]
+  },
+  "22": {
+    "titulo": "Decisión 6D: La Sospecha del Científico",
+    "texto": "El profesor de química frunce el ceño pero os indica el camino al patio. Al salir, Leo nota que el bote químico que guardaste reacciona con la luz del sol emitiendo un vapor extraño.",
+    "opciones": [
+      { "texto": "Tirar el bote inmediatamente en el baño de profesores", "siguiente": 8 },
+      { "texto": "Llevártelo corriendo hacia la zona del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "23": {
+    "titulo": "Decisión 6E: El Despacho Vacío",
+    "texto": "El Jefe de Estudios por fin sale de Jefatura hacia el patio. Leo y tú salís de debajo de la mesa. En su prisa, el Jefe ha dejado las llaves maestras del instituto sobre la mesa.",
+    "opciones": [
+      { "texto": "Robar las llaves maestras para tener el control total de los accesos", "siguiente": 29 },
+      { "texto": "Dejar las llaves e ir directamente al patio por los pasillos internos", "siguiente": 17 }
+    ]
+  },
+  "24": {
+    "titulo": "Decisión 6F: Los Contenedores de Reciclaje",
+    "texto": "Llegáis a los contenedores detrás del gimnasio. Mientras Leo esconde la pintura, dos chicos de segundo os acorralan: 'Vaya, vaya, devolvednos nuestra mochila si no queréis empezar el año con problemas'.",
+    "opciones": [
+      { "texto": "Plantarles cara usando el plano de la novatada como chantaje", "siguiente": 25 },
+      { "texto": "Entregarles la mochila y correr hacia el interior del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "25": {
+    "titulo": "Decisión 7A: El Chantaje de los Novatos",
+    "texto": "Les dices que si os tocan, el plano irá directo al Director. El líder de segundo duda, pero te propone un trato: 'Danos el plano y os dejaremos en paz todo el año. Si no, os haremos la vida imposible'.",
+    "opciones": [
+      { "texto": "Aceptar el pacto y entregarles el plano", "siguiente": 31 },
+      { "texto": "Rechazar el pacto y correr hacia el tejado del edificio", "siguiente": 32 }
+    ]
+  },
+  "26": {
+    "titulo": "Decisión 7B: Justicia Inmediata",
+    "texto": "Señalas al culpable. El Jefe de Estudios lo intercepta antes de que mande el rumor. Sin embargo, el cómplice del encapuchado corre hacia el despacho del director para activar la broma antes de ser atrapado.",
+    "opciones": [
+      { "texto": "Perseguirlo tú mismo por el pasillo central", "siguiente": 33 },
+      { "texto": "Ir a la sala de megafonía para pedir refuerzos a los profesores", "siguiente": 28 }
+    ]
+  },
+  "27": {
+    "titulo": "Decisión 7C: El Callejón del Gimnasio",
+    "texto": "Entras al gimnasio vacío. Al fondo ves la sala de control audiovisual del centro, donde se manejan las pantallas gigantes del patio exterior.",
+    "opciones": [
+      { "texto": "Entrar a la sala audiovisual para ver si puedes emitir algo", "siguiente": 30 },
+      { "texto": "Esconderte en los vestuarios a esperar que pase el peligro", "siguiente": 34 }
+    ]
+  },
+  "28": {
+    "titulo": "Decisión 7D: El Micrófono Abierto",
+    "texto": "Llegas a la cabina de megafonía. El micrófono general está encendido. Todo lo que digas sonará en los altavoces de las aulas, pasillos y el patio de presentación.",
+    "opciones": [
+      { "texto": "Exponer públicamente la novatada de la Taquilla 13 en directo", "siguiente": 35 },
+      { "texto": "Usarlo para dar una falsa alarma de evacuación e interrumpir el día", "siguiente": 36 }
+    ]
+  },
+  "29": {
+    "titulo": "Decisión 7E: La Escalera de Incendios",
+    "texto": "Sales por la ventana o usas las llaves maestras para llegar a la escalera exterior de incendios. Desde aquí ves que los saboteadores están trepando hacia la azotea del bloque de Dirección.",
+    "opciones": [
+      { "texto": "Subir al tejado para cortarles el paso", "siguiente": 32 },
+      { "texto": "Bajar al patio exterior y gritar para avisar a la multitud", "siguiente": 35 }
+    ]
+  },
+  "30": {
+    "titulo": "Decisión 7F: El Hackeo de las Cámaras",
+    "texto": "Accedes al sistema informático del centro. Tienes en pantalla el vídeo en tiempo real de los de segundo preparando las pintadas en el despacho del Director. Puedes grabarlo o transmitirlo.",
+    "opciones": [
+      { "texto": "Guardar la grabación en un pendrive como prueba legal", "siguiente": 37 },
+      { "texto": "Enviar la señal de vídeo directamente a la pantalla gigante del patio", "siguiente": 38 }
+    ]
+  },
+  "31": {
+    "titulo": "Decisión 8A: El Pacto Secreto",
+    "texto": "Les das el plano. El líder de segundo sonríe: 'Buena elección'. Te dicen que para demostrar tu lealtad, debes vigilar el pasillo mientras ellos terminan la faena en Dirección.",
+    "opciones": [
+      { "texto": "Aceptar y hacer de vigía para los de segundo", "siguiente": 39 },
+      { "texto": "Traicionarlos en el último momento y correr a avisar al Director", "siguiente": 33 }
+    ]
+  },
+  "32": {
+    "titulo": "Decisión 8B: La Batalla del Tejado",
+    "texto": "Llegas a la azotea. Los de segundo están allí con los botes de spray listos. Al verte, se asustan pensando que vas con profesores, pero ven que estás solo. Te acorralan junto al borde del tejado.",
+    "opciones": [
+      { "texto": "Arrojar sus botes de spray al vacío por el borde del tejado", "siguiente": 40 },
+      { "texto": "Negociar un alto el fuego definitivo antes de que alguien caiga", "siguiente": 39 }
+    ]
+  },
+  "33": {
+    "titulo": "Decisión 8C: Carrera hacia Dirección",
+    "texto": "Corres con todas tus fuerzas. Llegas a la puerta del despacho del Director justo cuando el saboteador va a empezar a pintar las paredes con el spray neón.",
+    "opciones": [
+      { "texto": "Abalanzarte sobre él para quitarle el spray de las manos", "siguiente": 40 },
+      { "texto": "Cerrar la puerta desde fuera y dejarlo encerrado en el despacho", "siguiente": 37 }
+    ]
+  },
+  "34": {
+    "titulo": "Decisión 8D: Refugio Inseguro",
+    "texto": "Te quedas en los vestuarios. Escuchas pasos pesados entrar. Es el conserje haciendo su ronda de limpieza. Si te ve allí escondido durante el acto oficial, sospechará.",
+    "opciones": [
+      { "texto": "Salir del escondite y contarle todo de inmediato", "siguiente": 37 },
+      { "texto": "Mantenerte oculto entre las taquillas del vestuario", "siguiente": 36 }
+    ]
+  },
+  "35": {
+    "titulo": "Decisión 9A: El Clímax en el Patio",
+    "texto": "Tu aviso por megafonía o tus gritos en el patio hacen que toda la escuela, incluido el Director, mire hacia el lugar del crimen. Los saboteadores son detectados al instante. El director pide por el micrófono que el alumno responsable suba al escenario.",
+    "opciones": [
+      { "texto": "Subir al escenario con orgullo a recibir el agradecimiento", "siguiente": 41 },
+      { "texto": "Esconderte entre los alumnos para mantener el anonimato", "siguiente": 43 }
+    ]
+  },
+  "36": {
+    "titulo": "Decisión 9B: El Caos Organizado",
+    "texto": "Tu falsa alarma o tu aislamiento generan una confusión total en el instituto. El acto de bienvenida se cancela de golpe mientras los profesores intentan averiguar qué ocurre. Los de segundo aprovechan el descontrol.",
+    "opciones": [
+      { "texto": "Aprovechar el caos para regresar a tu casa y olvidarte del día", "siguiente": 44 },
+      { "texto": "Buscar a Leo para comprobar si está a salvo del lío", "siguiente": 42 }
+    ]
+  },
+  "37": {
+    "titulo": "Decisión 9C: La Prueba Definitiva",
+    "texto": "Tienes al culpable encerrado o tienes el pendrive con los vídeos de seguridad. Te diriges firmemente al despacho principal donde los profesores están reunidos.",
+    "opciones": [
+      { "texto": "Entregar formalmente las pruebas al equipo directivo", "siguiente": 43 },
+      { "texto": "Usar las pruebas para amenazar a los de segundo mañana", "siguiente": 41 }
+    ]
+  },
+  "38": {
+    "titulo": "Decisión 9D: Transmisión Pública",
+    "texto": "El vídeo de los de segundo cometiendo la gamberrada se proyecta en la pantalla gigante del patio en mitad del discurso del Director. Todo el instituto estalla en murmullos y risas. El plan de los repetidores ha sido destruido públicamente.",
+    "opciones": [
+      { "texto": "Celebrarlo en secreto con Leo desde la ventana", "siguiente": 41 },
+      { "texto": "Presentarte ante el Director como el autor del hackeo justo", "siguiente": 43 }
+    ]
+  },
+  "39": {
+    "titulo": "Decisión 10A: El Destino del Cómplice",
+    "texto": "Has pactado o colaborado con los de segundo. El despacho amanece vandalizado, pero Leo y tú estáis completamente a salvo de sospechas. Has cruzado una línea ética el primer día.",
+    "opciones": [
+      { "texto": "Ver las consecuencias de tu alianza...", "siguiente": 42 }
+    ]
+  },
+  "40": {
+    "titulo": "Decisión 10B: Confrontación Física",
+    "texto": "Tras forcejear en el tejado o en el despacho, logras arruinar los sprays de pintura de los agresores. La novatada se ha evitado por completo gracias a tus reflejos y valentía extrema.",
+    "opciones": [
+      { "texto": "Ver el resultado de tu heroica defensa...", "siguiente": 41 }
+    ]
+  },
+
+  "41": {
+    "titulo": "🏆 FINAL A: El Héroe del Instituto",
+    "texto": "Lograste desactivar la gran novatada de forma espectacular. Los culpables de segundo han sido suspendidos y el Director te ha felicitado públicamente. Te has ganado el respeto instantáneo de todos los alumnos de primero y Leo se convierte en tu mejor amigo. ¡Un comienzo de año legendario e imbatible!",
     "final": true,
     "opciones": []
   },
-  "45": {
-    "titulo": "🤝 FINAL E: El Pacto de Respeto",
-    "texto": "Gracias a tu astucia en el laboratorio y tu sangre fría, lograste frenar a los repetidores de segundo sin necesidad de acusar a nadie con los profesores. Te has ganado el respeto de los alumnos mayores, que prometen dejar tranquilos a los de primero este año, y Leo te ve como el estratega del grupo. ¡Empiezas el instituto con contactos importantes!",
+  "42": {
+    "titulo": "❌ FINAL B: El Cómplice Oscuro",
+    "texto": "Decidiste aliarte con los repetidores o guardar un silencio cobarde para protegerte. La oficina del director quedó destrozada. Aunque no te han descubierto y los de segundo ahora te respetan, Leo ha sido expulsado injustamente al no tener defensa. Empiezas el instituto con seguridad social, pero con la conciencia rota.",
+    "final": true,
+    "opciones": []
+  },
+  "43": {
+    "titulo": "⚠️ FINAL C: El Chivato Oficial",
+    "texto": "Hiciste lo correcto entregando las pruebas a los profesores de forma metódica. El misterio se resolvió y Leo fue salvado de la trampa. Sin embargo, los alumnos mayores se han enterado de que fuiste tú quien fue con el cuento a Jefatura. Te has ganado fama de chivato y tu primer año va a ser una prueba de resistencia social.",
+    "final": true,
+    "opciones": []
+  },
+  "44": {
+    "titulo": "🌫️ FINAL D: El Caos y el Anonimato",
+    "texto": "Provocaste una falsa alarma o huiste en mitad del desorden general. El instituto amanece lleno de pintadas al día siguiente y la dirección cancela la excursión de bienvenida de primero como castigo colectivo. Nadie sabe que estuviste involucrado en el sótano, pero tú sabes que tu inacción arruinó la semana de todo el curso.",
     "final": true,
     "opciones": []
   }
