@@ -187,6 +187,132 @@
       { "texto": "Ignorar la culpa, mirar al frente y escuchar el discurso del director", "siguiente": 18 }
     ]
   },
+  "29": {
+    "titulo": "Paso 29: La Trampa de la Biblioteca",
+    "texto": "Huyendo de los pasillos principales, Leo y tú os refugiáis en la antigua biblioteca del segundo piso. Está desierta. De repente, escucháis que cierran la puerta principal por fuera con llave y una risa burlona al otro lado. ¡Os han encerrado!",
+    "opciones": [
+      { "texto": "Buscar una salida alternativa entre las estanterías del fondo", "siguiente": 31 },
+      { "texto": "Gritar y golpear la puerta pidiendo ayuda", "siguiente": 32 }
+    ]
+  },
+  "30": {
+    "titulo": "Paso 30: El Laboratorio de Ciencias",
+    "texto": "Entras al laboratorio buscando dónde esconder el plano que le quitaste a la mochila. Sobre una mesa hay varios compuestos químicos para las clases del día siguiente y un bote de líquido reactivo que borra la pintura luminiscente al instante.",
+    "opciones": [
+      { "texto": "Usar el químico para destruir el plano y borrar las pruebas", "siguiente": 33 },
+      { "texto": "Llevarte el bote químico por si necesitas limpiar las manos de Leo", "siguiente": 34 }
+    ]
+  },
+  "31": {
+    "titulo": "Paso 31: El Pasadizo de los Libros",
+    "texto": "Detrás de la sección de Historia, descubres una pequeña puerta de mantenimiento que conecta con el hueco del ascensor de servicio. Está oscuro, pero puedes oír el eco del patio exterior desde aquí.",
+    "opciones": [
+      { "texto": "Bajar con cuidado por la escalera de servicio hacia el vestíbulo", "siguiente": 8 },
+      { "texto": "Subir hacia la última planta para salir al tejado del instituto", "siguiente": 35 }
+    ]
+  },
+  "32": {
+    "titulo": "Paso 32: El Rescate Inesperado",
+    "texto": "Tus gritos llaman la atención de la bibliotecaria, que volvía de recoger unos libros. Al abrir la puerta y veros allí con Leo manchado de pintura, os mira con desconfianza. \"Explicadme ahora mismo qué hacéis aquí arriba\".",
+    "opciones": [
+      { "texto": "Contarle toda la verdad sobre la jugarreta de los de segundo", "siguiente": 11 },
+      { "texto": "Decir que os habíais equivocado buscando el aula de dibujo", "siguiente": 36 }
+    ]
+  },
+  "33": {
+    "titulo": "Paso 33: Pruebas Destruidas",
+    "texto": "Viertes el químico sobre el plano. El papel se deshace por completo en segundos. Ya no hay pruebas físicas de la novatada, pero en ese momento entra el profesor de Ciencias al laboratorio. \"¿Qué haces tocando el material de clase, alumno?\".",
+    "opciones": [
+      { "texto": "Confesar que estabas asustado y contarle el problema", "siguiente": 14 },
+      { "texto": "Salir corriendo del laboratorio aprovechando que el profesor se distrae", "siguiente": 15 }
+    ]
+  },
+  "34": {
+    "titulo": "Paso 34: El Limpiador Químico",
+    "texto": "Escondes el bote en tu mochila y vuelves al pasillo. Te encuentras con Leo, que está al borde de las lágrimas porque la pintura no se va con agua del baño. Le aplicas el químico y sus manos quedan perfectamente limpias.",
+    "opciones": [
+      { "texto": "Ir juntos al patio principal totalmente limpios y salvados", "siguiente": 12 },
+      { "texto": "Ir a buscar a los de segundo para plantarles cara con confianza", "siguiente": 37 }
+    ]
+  },
+  "35": {
+    "titulo": "Paso 35: El Tejado del Instituto",
+    "texto": "Sales al tejado. Desde aquí arriba tienes una vista completa del patio donde todos los novatos escuchan al director, pero también ves algo alarmante: dos chicos de segundo están subiendo por la escalera de incendios del bloque de Dirección con botes de spray.",
+    "opciones": [
+      { "texto": "Gritar desde el tejado para llamar la atención de todo el patio", "siguiente": 38 },
+      { "texto": "Bajar corriendo por las escaleras internas para avisar al conserje", "siguiente": 23 }
+    ]
+  },
+  "36": {
+    "titulo": "Paso 36: El Reporte de la Bibliotecaria",
+    "texto": "La bibliotecaria no se cree tu mentira. Anota vuestros nombres en un parte de incidencias y os ordena bajar inmediatamente al patio bajo amenaza de llevaros directamente a Dirección.",
+    "opciones": [
+      { "texto": "Acatar las órdenes e ir al patio con la cabeza baja", "siguiente": 15 },
+      { "texto": "Intentar buscar a Leo para esconder el bote antes de que os registren", "siguiente": 28 }
+    ]
+  },
+  "37": {
+    "titulo": "Paso 37: Girando las Tornas",
+    "texto": "Encontráis a los líderes de segundo en el pasillo del gimnasio. Al ver que Leo ya no tiene las manos manchadas y que tenéis el bote químico, se dan cuenta de que su plan ha fracasado. El líder te dice: \"Vale, novato, eres listo. Olvidemos esto, ¿trato?\".",
+    "opciones": [
+      { "texto": "Aceptar el trato para tener un año tranquilo en paz", "siguiente": 39 (Conduce al FINAL E) },
+      { "texto": "Rechazar el trato, daros la vuelta e ir a delatarlos al patio", "siguiente": 12 }
+    ]
+  },
+  "38": {
+    "titulo": "Paso 38: La Alerta General",
+    "texto": "Gritas con todas tus fuerzas: \"¡Mirad al despacho del Director!\". Cientos de alumnos y profesores miran hacia arriba y pillan a los de segundo in fraganti trepando por la fachada con la pintura. Se monta un revuelo enorme.",
+    "opciones": [
+      { "texto": "Bajar rápido del tejado para unirte a la multitud del patio", "siguiente": 19 }
+    ]
+  },
+  "39": {
+    "titulo": "Paso 39: El Pacto de Silencio",
+    "texto": "Decidís estrecharles la mano. Los de segundo recogen sus botes de pintura y se marchan. Leo y tú os habéis librado del castigo y además os habéis ganado el respeto de los mayores, aunque sabes que habéis encubierto una gamberrada.",
+    "opciones": [
+      { "texto": "Ir al patio a disfrutar del resto de la presentación...", "siguiente": 45 }
+    ]
+  },
+  "40": {
+    "titulo": "Paso 40: Hackeando las Cámaras",
+    "texto": "Te cuelas en la cabina de control audiovisual del instituto. En las pantallas de seguridad ves perfectamente a los de segundo saboteando la taquilla 13. Tienes la prueba definitiva en vídeo en tus manos.",
+    "opciones": [
+      { "texto": "Guardar el vídeo en un pendrive e ir directo a Jefatura", "siguiente": 14 },
+      { "texto": "Proyectar el vídeo en la pantalla gigante del patio de presentación", "siguiente": 38 }
+    ]
+  },
+  "41": {
+    "titulo": "Paso 41: Atrapado en el Sótano",
+    "texto": "El conserje cierra la puerta del sótano con candado desde fuera sin saber que estáis dentro. Estás a oscuras con Leo y el tiempo corre, la presentación ya ha comenzado.",
+    "opciones": [
+      { "texto": "Usar la linterna del móvil para buscar otra salida", "siguiente": 21 },
+      { "texto": "Golpear las tuberías de metal con una llave inglesa para hacer ruido", "siguiente": 10 }
+    ]
+  },
+  "42": {
+    "titulo": "Paso 42: El Escondite del Gimnasio",
+    "texto": "Os escondéis detrás de las colchonetas del gimnasio. Desde la ventana interior veis pasar al Jefe de Estudios buscando a los alumnos que faltan. Leo tiembla y tira una valla de atletismo.",
+    "opciones": [
+      { "texto": "Salir y entregarte antes de que sea peor", "siguiente": 16 },
+      { "texto": "Salir corriendo por la puerta trasera del vestuario", "siguiente": 12 }
+    ]
+  },
+  "43": {
+    "titulo": "Paso 43: El Micrófono de Megafonía",
+    "texto": "Entras en la sala de radio vacía. El micrófono de la megafonía general está encendido. Si hablas, te escuchará todo el instituto, incluidos los profesores.",
+    "opciones": [
+      { "texto": "Denunciar la broma de la Taquilla 13 en directo por los altavoces", "siguiente": 38 },
+      { "texto": "Apagar el equipo por miedo a meterte en un lío mayor e irte al patio", "siguiente": 15 }
+    ]
+  },
+  "44": {
+    "titulo": "Paso 44: Intercepción en la Escalera",
+    "texto": "Los de segundo os acorralan en la escalera de caracol. \"Dadnos el plano y la mochila o vuestra vida aquí será un infierno\", amenaza el más alto.",
+    "opciones": [
+      { "texto": "Tirar la mochila por el hueco de la escalera y correr al laboratorio", "siguiente": 30 },
+      { "texto": "Gritar pidiendo auxilio para que os oigan desde los despachos", "siguiente": 11 }
+    ]
+  },
   "17": {
     "titulo": "🏆 FINAL A: El Héroe del Primer Día",
     "texto": "Ayudas a Leo a esconder las pruebas de forma segura en los contenedores de reciclaje y vigilas mientras él se limpia. Al terminar el día, los de segundo intentan acusar a Leo ante el Director, pero no tienen ni una sola prueba. Te has ganado un amigo leal para todo el instituto y habéis demostrado que con los de primero no se juega. ¡Un comienzo épico!",
@@ -208,6 +334,12 @@
   "20": {
     "titulo": "🌫️ FINAL D: El Misterio sin Resolver",
     "texto": "Te mantienes al margen. Al día siguiente, el instituto amanece lleno de pintadas vandálicas y la dirección cancela la excursión de bienvenida de primero como castigo colectivo. Nunca volviste a hablar con Leo, y siempre te quedará la espina en el corazón de saber que pudiste haber cambiado las cosas.",
+    "final": true,
+    "opciones": []
+  },
+  "45": {
+    "titulo": "🤝 FINAL E: El Pacto de Respeto",
+    "texto": "Gracias a tu astucia en el laboratorio y tu sangre fría, lograste frenar a los repetidores de segundo sin necesidad de acusar a nadie con los profesores. Te has ganado el respeto de los alumnos mayores, que prometen dejar tranquilos a los de primero este año, y Leo te ve como el estratega del grupo. ¡Empiezas el instituto con contactos importantes!",
     "final": true,
     "opciones": []
   }
