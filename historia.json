@@ -255,7 +255,7 @@
     "titulo": "Paso 37: Girando las Tornas",
     "texto": "Encontráis a los líderes de segundo en el pasillo del gimnasio. Al ver que Leo ya no tiene las manos manchadas y que tenéis el bote químico, se dan cuenta de que su plan ha fracasado. El líder te dice: \"Vale, novato, eres listo. Olvidemos esto, ¿trato?\".",
     "opciones": [
-      { "texto": "Aceptar el trato para tener un año tranquilo en paz", "siguiente": 39 (Conduce al FINAL E) },
+      { "texto": "Aceptar el trato para tener un año tranquilo en paz", "siguiente": 39 },
       { "texto": "Rechazar el trato, daros la vuelta e ir a delatarlos al patio", "siguiente": 12 }
     ]
   },
