@@ -99,11 +99,48 @@
     let historia = {};
 
     // 1. Cargamos el archivo JSON de forma oculta al abrir la página
-    async function cargarHistoria() {
+    /*async function cargarHistoria() {
         const respuesta = await fetch('historia.json');
         historia = await respuesta.json();
         mostrarPaso(1); // Empezamos en el paso 1
     }
+    let historia = {};*/
+
+// Al abrir la página, cargamos el JSON y comprobamos si hay partida guardada
+async function cargarHistoria() {
+    const respuesta = await fetch('historia.json');
+    historia = await respuesta.json();
+    
+    // 🔍 BUSCAMOS SI YA JUGÓ ANTES:
+    // LocalStorage guarda todo como texto, por eso usamos parseInt para pasarlo a número
+    const pasoGuardado = localStorage.getItem('progreso_taquilla13');
+    
+    if (pasoGuardado) {
+        mostrarPaso(parseInt(pasoGuardado));
+    } else {
+        mostrarPaso(1); // Si es su primera vez, empieza en el paso 1
+    }
+}
+
+function mostrarPaso(numero) {
+    const paso = historia[numero];
+    
+    // 💾 GUARDAMOS EL AVANCE:
+    // Guardamos el número de paso actual en la memoria del navegador
+    localStorage.setItem('progreso_taquilla13', numero);
+
+    // ... (Toda tu lógica actual para pintar el título, texto y botones) ...
+    
+    document.getElementById('titulo').innerText = paso.titulo;
+    document.getElementById('texto').innerText = paso.texto;
+    // ... etc.
+}
+
+// Modificamos también la función de reiniciar para que borre la memoria
+function reiniciar() {
+    localStorage.removeItem('progreso_taquilla13'); // Borra la partida guardada
+    mostrarPaso(1); // Vuelve al inicio
+}
 
     // 2. Esta función dibuja el paso actual borrando por completo el anterior
     function mostrarPaso(numero) {
