@@ -1,0 +1,345 @@
+{
+  "1": {
+    "titulo": "Decisión 1: La Alarma Silenciosa",
+    "texto": "Es tu segundo día en el instituto. Pasas junto al Laboratorio de Ciencias Avanzadas cuando una luz roja empieza a parpadear en el techo y un pitido intermitente suena desde dentro. Al mirar por la ventana de la puerta, ves una densa nube de gas morado extendiéndose y una probeta rota en el suelo. La puerta de emergencia está entreabierta.",
+    "opciones": [
+      { "texto": "Entrar al laboratorio para ver si hay alguien atrapado", "siguiente": 2 },
+      { "texto": "Correr por el pasillo a buscar al profesor de guardia", "siguiente": 3 }
+    ]
+  },
+  "2": {
+    "titulo": "Decisión 2A: El Compuesto Desconocido",
+    "texto": "Entras agachándote para evitar el gas. Sobre la mesa principal hay un cuaderno de notas abierto que dice: 'Proyecto H-102: Altamente volátil. El gas anula los sistemas electrónicos si llega a los pasillos'. Escuchas un gemido detrás de los armarios de material.",
+    "opciones": [
+      { "texto": "Ir hacia los armarios a investigar el gemido", "siguiente": 3 },
+      { "texto": "Tratar de cerrar las ventanas del laboratorio para que el gas no escape al patio", "siguiente": 4 }
+    ]
+  },
+  "3": {
+    "titulo": "Decisión 2B: El Rescate de Sara",
+    "texto": "Detrás de los armarios encuentras a Sara, una alumna de segundo. Tiene los ojos rojos por el humo y sostiene un bote sellado. 'Ha sido un accidente', tose. 'Los de segundo queríamos hacer una broma con humo de colores, pero reaccionó mal. ¡Las cerraduras electrónicas de la puerta principal se están bloqueando!'.",
+    "opciones": [
+      { "texto": "Bloquear la rejilla del aire para que el gas no suba a los pisos superiores", "siguiente": 5 },
+      { "texto": "Buscar una salida hacia el almacén de reactivos del fondo", "siguiente": 6 }
+    ]
+  },
+  "4": {
+    "titulo": "Decisión 2C: El Bloqueo del Pasillo",
+    "texto": "Intentas cerrar las ventanas, pero el gas empieza a filtrarse por debajo de la puerta del pasillo. Te topas de frente con un estudiante repetidor que lleva guantes de látex. '¿Qué has tocado, novato? Sal de aquí si no quieres que te culpen del desastre', te dice empujándote hacia las escaleras.",
+    "opciones": [
+      { "texto": "Enfrentarte a él y exigirle la llave de paso del extractor de aire", "siguiente": 7 },
+      { "texto": "Darle la espalda y correr hacia el vestíbulo principal", "siguiente": 8 }
+    ]
+  },
+  "5": {
+    "titulo": "Decisión 3A: Atrapados por el Sistema",
+    "texto": "Tapas la rejilla con tu chaqueta, pero el sistema de seguridad central del instituto detecta el fallo y sella la puerta metálica por completo. '¡Estamos encerrados!', grita Sara. El gas morado sigue subiendo. Hay un conducto de desagüe grande y una trampilla de mantenimiento en el techo.",
+    "opciones": [
+      { "texto": "Trepar hacia la trampilla del techo usando las estanterías", "siguiente": 9 },
+      { "texto": "Intentar abrir el desagüe del suelo para drenar el líquido reactivo", "siguiente": 10 }
+    ]
+  },
+  "6": {
+    "titulo": "Decisión 3B: El Almacén de Reactivos",
+    "texto": "Entráis al almacén. Desde la pequeña ventana veis el patio interior. Una profesora os ve agitando las manos entre el humo: '¡Eh! ¡Salid de ahí inmediatamente y subid a Jefatura de Estudios!'.",
+    "opciones": [
+      { "texto": "Salir por la puerta del patio y subir a Jefatura", "siguiente": 11 },
+      { "texto": "Ignorarla y ocultaros en el Aula de Informática contigua", "siguiente": 12 }
+    ]
+  },
+  "7": {
+    "titulo": "Decisión 3C: Chantaje Químico",
+    "texto": "El chico de los guantes se ríe de ti: '¿La llave de paso? Olvídalo. Si esto explota, los novatos seréis los únicos sancionados'. Te graba con su móvil para tener una prueba de que estabas allí dentro solo.",
+    "opciones": [
+      { "texto": "Gritar con todas tus fuerzas para llamar la atención del conserje", "siguiente": 11 },
+      { "texto": "Ceder a la presión y huir hacia el vestíbulo principal", "siguiente": 8 }
+    ]
+  },
+  "8": {
+    "titulo": "Decisión 3D: El Alto en el Vestíbulo",
+    "texto": "Llegas al vestíbulo mareado, pero te intercepta el Jefe de Estudios. Nota tus manos manchadas de un polvillo amarillo fosfórico. '¿Por qué no estás en la biblioteca? ¿Qué es ese olor a azufre?'.",
+    "opciones": [
+      { "texto": "Contarle toda la verdad sobre la fuga del laboratorio", "siguiente": 13 },
+      { "texto": "Mentir y decir que se te cayó un bote de tiza en el aula", "siguiente": 14 }
+    ]
+  },
+  "9": {
+    "titulo": "Decisión 4A: El Falso Techo",
+    "texto": "Subís al falso techo. Avanzáis entre cables y tuberías. Llegáis a un cruce ciego: una rejilla hacia el norte da a la sala de servidores de internet y otra hacia el sur da al despacho de Jefatura.",
+    "opciones": [
+      { "texto": "Ir hacia la Sala de Servidores", "siguiente": 15 },
+      { "texto": "Bajar sigilosamente hacia el despacho de Jefatura", "siguiente": 16 }
+    ]
+  },
+  "10": {
+    "titulo": "Decisión 4B: La Fosa de Neutralización",
+    "texto": "Abrís el desagüe. El líquido químico fluye hacia abajo, pero un fuerte siseo indica que está reaccionando con las tuberías de plomo. Oís los pasos del conserje corriendo por el pasillo exterior con un extintor.",
+    "opciones": [
+      { "texto": "Salir al pasillo de golpe para pedirle ayuda", "siguiente": 17 },
+      { "texto": "Subir deprisa hacia el falso techo antes de que la tubería colapse", "siguiente": 9 }
+    ]
+  },
+  "11": {
+    "titulo": "Decisión 4C: El Pasillo de Dirección",
+    "texto": "Subes hacia Jefatura. Ves pasar al grupo de segundo con bolsas de plástico llenas de pruebas del laboratorio. Te miran con frialdad. Estás a un paso de la oficina del Jefe de Estudios.",
+    "opciones": [
+      { "texto": "Entrar de inmediato a denunciar el sabotaje", "siguiente": 13 },
+      { "texto": "Esquivar la puerta y correr hacia el patio general para camuflarte", "siguiente": 17 }
+    ]
+  },
+  "12": {
+    "titulo": "Decisión 4D: El Aula de Informática",
+    "texto": "Os encerráis en Informática. Al sentarse, Sara golpea un teclado y activa los altavoces locales del aula por error. El ruido del acople resuena en todo el pasillo. Alguien se acerca.",
+    "opciones": [
+      { "texto": "Salir al pasillo y afrontar la culpa", "siguiente": 11 },
+      { "texto": "Esconderos en el rack gigante de los servidores de red", "siguiente": 18 }
+    ]
+  },
+  "13": {
+    "titulo": "Decisión 5A: Inspección de Emergencia",
+    "texto": "Le confiesas el peligro al Jefe de Estudios. Se pone pálido y activa la sirena interna. Te pide un último favor: 'Debes venir conmigo ahora mismo para señalar el aula exacta y a los implicados'.",
+    "opciones": [
+      { "texto": "Acompañarlo al laboratorio y señalar a los culpables", "siguiente": 19 },
+      { "texto": "Negarte por miedo a que los de segundo te saboteen el resto del año", "siguiente": 20 }
+    ]
+  },
+  "14": {
+    "titulo": "Decisión 5B: Manchas Delatoras",
+    "texto": "El Jefe no te cree del todo pero te manda al patio. Allí te encuentras a Sara, que está histérica porque el polvillo químico de sus manos ha empezado a cambiar de color a azul brillante.",
+    "opciones": [
+      { "texto": "Llevarla a la cocina del comedor para buscar vinagre (neutraliza la base)", "siguiente": 15 },
+      { "texto": "Decirle que se oculte en la Biblioteca mientras buscas una solución", "siguiente": 21 }
+    ]
+  },
+  "15": {
+    "titulo": "Decisión 5C: La Cocina del Centro",
+    "texto": "En la cocina encontráis botes de ácido acético (vinagre de limpieza). Al verterlo en las manos de Sara, el componente se neutraliza. De repente, entra el cocinero principal enfadado.",
+    "opciones": [
+      { "texto": "Ocultar el bote de vinagre e inventar que teníais sed", "siguiente": 22 },
+      { "texto": "Decirle la verdad sobre la emergencia química de laboratorio", "siguiente": 13 }
+    ]
+  },
+  "16": {
+    "titulo": "Decisión 5D: Techo Abierto",
+    "texto": "Caéis sobre el sofá de Jefatura. Está vacía. Os metéis debajo de la mesa de reuniones. En ese instante, entra el Jefe de Estudios hablando por teléfono sobre suspender las clases por la nube de gas.",
+    "opciones": [
+      { "texto": "Salir de tu escondite y entregarle el cuaderno de notas del laboratorio", "siguiente": 13 },
+      { "texto": "Esperar inmóvil a que salga al pasillo a dar las órdenes", "siguiente": 23 }
+    ]
+  },
+  "17": {
+    "titulo": "Decisión 5E: El Patio de Alumnos",
+    "texto": "Llegas al patio. Todos comentan que hay un olor raro saliendo de las alcantarillas. Sara te localiza entre la multitud; lleva consigo la probeta con el compuesto original concentrado.",
+    "opciones": [
+      { "texto": "Ir a vaciar la probeta de forma segura en la fosa séptica del gimnasio", "siguiente": 24 },
+      { "texto": "Buscar a los líderes de segundo para exigirles que den la cara", "siguiente": 25 }
+    ]
+  },
+  "18": {
+    "titulo": "Decisión 5F: El Armario de Redes",
+    "texto": "Os metéis al armario de servidores. El profesor de guardia entra al aula, mira los ordenadores encendidos, apaga las luces y vuelve a cerrar. Estáis atrapados a oscuras con los ventiladores zumbando.",
+    "opciones": [
+      { "texto": "Forzar la rejilla trasera que da al pasillo del patio", "siguiente": 17 },
+      { "texto": "Revisar los cables; hay un teléfono de línea interna del instituto", "siguiente": 21 }
+    ]
+  },
+  "19": {
+    "titulo": "Decisión 6A: El Pasillo del Juicio",
+    "texto": "Caminas con las autoridades. Los de segundo os ven venir y entran en pánico. Uno de ellos saca su móvil y te enseña un mensaje: está listo para publicar un montaje tuyo robando material si hablas.",
+    "opciones": [
+      { "texto": "Ignorar su amenaza y delatarlo directamente ante el Jefe", "siguiente": 26 },
+      { "texto": "Frenar, fingir un dolor de estómago y desviarte al Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "20": {
+    "titulo": "Decisión 6B: El Silencio del Testigo",
+    "texto": "Te apartas. El Jefe de Estudios entra solo al laboratorio infectado. Los de segundo ven la oportunidad perfecta para cerrar la válvula de ventilación externa y dejar atrapado al Jefe de Estudios.",
+    "opciones": [
+      { "texto": "Correr a la sala de megafonía para alertar a todo el instituto", "siguiente": 28 },
+      { "texto": "Huir hacia la Biblioteca para desentenderte del problema", "siguiente": 21 }
+    ]
+  },
+  "21": {
+    "titulo": "Decisión 6C: Bloqueados en la Biblioteca",
+    "texto": "Os ocultáis en los pasillos de enciclopedias. De repente, escucháis el sonido del cerrojo electrónico exterior. ¡El sistema automático antiincendios os ha encerrado en la sala por el gas del pasillo!",
+    "opciones": [
+      { "texto": "Buscar los planos de escape en las ventanas de emergencias", "siguiente": 29 },
+      { "texto": "Usar la terminal de ordenador para intentar hackear el sistema de aire", "siguiente": 30 }
+    ]
+  },
+  "22": {
+    "titulo": "Decisión 6D: El Olor del Reactivo",
+    "texto": "El cocinero os echa de la cocina de malas maneras. Al salir al patio, el bote químico empieza a reaccionar con el calor del sol, soltando chispas de color azul brillante.",
+    "opciones": [
+      { "texto": "Lanzar el bote al contenedor de arena de seguridad del patio", "siguiente": 8 },
+      { "texto": "Correr a esconderlo en los fosos del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "23": {
+    "titulo": "Decisión 6E: Las Llaves del Panel",
+    "texto": "El Jefe sale corriendo hacia el patio. Al salir de debajo de la mesa, ves que se ha dejado su tarjeta magnética de acceso maestro sobre el escritorio.",
+    "opciones": [
+      { "texto": "Coger la tarjeta magnética para poder abrir cualquier puerta sellada", "siguiente": 29 },
+      { "texto": "Dejar la tarjeta y salir de forma convencional hacia el patio", "siguiente": 17 }
+    ]
+  },
+  "24": {
+    "titulo": "Decisión 6F: Detrás del Gimnasio",
+    "texto": "Llegáis a los tanques de agua tras el gimnasio. Al ir a neutralizar la probeta, dos alumnos repetidores os cierran el paso: 'Entregad ese compuesto. Si los profesores lo analizan, sabrán qué reactivos usamos'.",
+    "opciones": [
+      { "texto": "Amenazarlos con romper la probeta allí mismo y liberar el gas si se acercan", "siguiente": 25 },
+      { "texto": "Darles el bote químico y correr a refugiaros dentro del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "25": {
+    "titulo": "Decisión 7A: El Pacto del Almacén",
+    "texto": "Tu amenaza funciona. El líder de segundo levanta las manos: 'Tranquilo, novato. Si nos das la probeta para destruirla, te garantizamos inmunidad y protección todo el año. ¿Trato?'.",
+    "opciones": [
+      { "texto": "Aceptar el trato y entregarles la probeta de compuesto", "siguiente": 31 },
+      { "texto": "Rechazar el trato y subir por las escaleras hacia el tejado del centro", "siguiente": 32 }
+    ]
+  },
+  "26": {
+    "titulo": "Decisión 7B: Intercepción Crítica",
+    "texto": "Delatas al culpable. El Jefe le requisa el móvil antes del chantaje. Sin embargo, el cómplice del saboteador corre hacia el extractor central para invertir el aire y llenar el instituto de gas.",
+    "opciones": [
+      { "texto": "Perseguirlo por el pasillo técnico de mantenimiento", "siguiente": 33 },
+      { "texto": "Correr a la sala de megafonía para ordenar la evacuación total", "siguiente": 28 }
+    ]
+  },
+  "27": {
+    "titulo": "Decisión 7C: La Consola del Gimnasio",
+    "texto": "Entras al gimnasio desierto. En la esquina superior está la cabina de control del sistema de ventilación forzada y pantallas de eventos.",
+    "opciones": [
+      { "texto": "Entrar a la cabina para activar los extractores del gimnasio", "siguiente": 30 },
+      { "texto": "Ocultarte en la sala de calderas de los vestuarios", "siguiente": 34 }
+    ]
+  },
+  "28": {
+    "titulo": "Decisión 7D: El Altavoz General",
+    "texto": "Entras a la cabina de radio y megafonía. Los controles generales están activos. Tienes el micrófono en tus manos.",
+    "opciones": [
+      { "texto": "Explicar la verdad de la fuga del laboratorio para que todos salgan ordenadamente", "siguiente": 35 },
+      { "texto": "Hacer sonar la alarma de incendios manual para evacuar a lo bruto", "siguiente": 36 }
+    ]
+  },
+  "29": {
+    "titulo": "Decisión 7E: La Pasarela Técnica",
+    "texto": "Usas la tarjeta maestra para salir a las pasarelas exteriores. Desde ahí arriba ves que la nube de gas morado ya está saliendo por los extractores del tejado del bloque principal.",
+    "opciones": [
+      { "texto": "Subir al tejado central para cerrar manualmente las rejillas de salida", "siguiente": 32 },
+      { "texto": "Bajar al patio exterior a avisar a los alumnos que están abajo", "siguiente": 35 }
+    ]
+  },
+  "30": {
+    "titulo": "Decisión 7F: Control de Flujo",
+    "texto": "Accedes al ordenador del sistema de ventilación. Ves en los esquemas que el gas está concentrado en el sector A. Puedes purgarlo hacia el patio o contenerlo en las aulas vacías.",
+    "opciones": [
+      { "texto": "Purgar el gas hacia el patio exterior desierto", "siguiente": 38 },
+      { "texto": "Guardar los registros del sistema en un USB para demostrar el sabotaje", "siguiente": 37 }
+    ]
+  },
+  "31": {
+    "titulo": "Decisión 8A: Cómplice de Guardia",
+    "texto": "Les das el compuesto. Los de segundo se ríen: 'Bien pensado'. Te ordenan que te quedes en la puerta del laboratorio diciendo que está cerrado por limpieza para que nadie entre mientras ellos borran las huellas.",
+    "opciones": [
+      { "texto": "Aceptar y actuar como cómplice haciendo guardia", "siguiente": 39 },
+      { "texto": "Traicionarlos e ir corriendo a buscar al Director al despacho principal", "siguiente": 33 }
+    ]
+  },
+  "32": {
+    "titulo": "Decisión 8B: Encrucijada en el Tejado",
+    "texto": "Llegas al tejado. Los saboteadores están intentando tirar los químicos restantes por la chimenea de ventilación. Al verte solo, te acorralan contra la barandilla de seguridad.",
+    "opciones": [
+      { "texto": "Quitarles la bolsa de reactivos y lanzarla lejos, hacia el suelo del patio vacío", "siguiente": 40 },
+      { "texto": "Ofrecerles destruir las pruebas juntos si prometen no culpar a los de primero", "siguiente": 39 }
+    ]
+  },
+  "33": {
+    "titulo": "Decisión 8C: El Extractor Central",
+    "texto": "Llegas a la sala del extractor justo cuando el cómplice va a pulsar el botón de inversión de flujo de aire para esparcir el gas tóxico.",
+    "opciones": [
+      { "texto": "Abalanzarte sobre los controles para cortar la corriente eléctrica general", "siguiente": 40 },
+      { "texto": "Cerrar la puerta blindada de la sala técnica y dejarlo encerrado dentro", "siguiente": 37 }
+    ]
+  },
+  "34": {
+    "titulo": "Decisión 8D: Vapor y Sombras",
+    "texto": "Te ocultas en los vestuarios. Los pasos del conserje resuenan cerca. Si te encuentra escondido con la ropa oliendo a químicos mientras suena la prealarma, estarás en problemas.",
+    "opciones": [
+      { "texto": "Salir y confesarle la ubicación de la fuga del laboratorio", "siguiente": 37 },
+      { "texto": "Mantenerte completamente quieto detrás de los bancos", "siguiente": 36 }
+    ]
+  },
+  "35": {
+    "titulo": "Decisión 9A: Alerta en el Patio",
+    "texto": "Tu aviso masivo provoca que los profesores evacuen el edificio de inmediato. Los saboteadores son capturados con las manos en la masa en el tejado por los bomberos. El Director pide que el alumno que dio la voz de alarma de forma tan eficiente dé la cara.",
+    "opciones": [
+      { "texto": "Dar un paso al frente ante todo el instituto y asumir el mérito", "siguiente": 41 },
+      { "texto": "Mezclarte con la multitud para que nadie descubra que fuiste tú", "siguiente": 43 }
+    ]
+  },
+  "36": {
+    "titulo": "Decisión 9B: El Descontrol del Gas",
+    "texto": "La alarma forzada genera un pánico caótico. El instituto es evacuado a las carreras mientras una densa capa morada tiñe los pasillos. En el descontrol general, los culpables escapan sin ser vistos.",
+    "opciones": [
+      { "texto": "Aprovechar la confusión para marcharte a casa y desentenderte", "siguiente": 44 },
+      { "texto": "Volver a buscar a Sara para asegurarte de que logró salir sana", "siguiente": 42 }
+    ]
+  },
+  "37": {
+    "titulo": "Decisión 9C: La Evidencia Digital",
+    "texto": "Tienes al culpable bloqueado en la sala técnica o el USB con las pruebas de los sensores digitales del laboratorio. Te diriges a la sala de profesores.",
+    "opciones": [
+      { "texto": "Entregar todas las pruebas directamente al Director del centro", "siguiente": 43 },
+      { "texto": "Ocultar las pruebas para usarlas como seguro contra los de segundo mañana", "siguiente": 41 }
+    ]
+  },
+  "38": {
+    "titulo": "Decisión 9D: Purgado Público",
+    "texto": "El gas morado es expulsado de golpe por los extractores del patio, tiñendo el cielo de color neón en mitad del discurso. La prueba visual es innegable y apunta al fallo informático que provocaron los de segundo. El plan de sabotaje ha quedado expuesto.",
+    "opciones": [
+      { "texto": "Sonreír en secreto desde la distancia junto a Sara", "siguiente": 41 },
+      { "texto": "Acudir al despacho del director a explicar cómo controlaste la crisis informática", "siguiente": 43 }
+    ]
+  },
+  "39": {
+    "titulo": "Decisión 10A: La Marca del Encubridor",
+    "texto": "Has decidido colaborar o encubrir el desastre químico de los de segundo para no buscarte enemigos. El laboratorio queda clausurado, pero tú estás a salvo de sospechas. Has tomado una decisión difícil.",
+    "opciones": [
+      { "texto": "Ver el desenlace de tu pacto de silencio...", "siguiente": 42 }
+    ]
+  },
+  "40": {
+    "titulo": "Decisión 10B: Contención Manual",
+    "texto": "Tras un forcejeo físico en el extractor o en el tejado, logras cortar el flujo químico y salvar la calidad del aire del centro. Has evitado una catástrofe ambiental en el instituto gracias a tus reflejos.",
+    "opciones": [
+      { "texto": "Ver las consecuencias de tu intervención heroica...", "siguiente": 41 }
+    ]
+  },
+
+  "41": {
+    "titulo": "🏆 FINAL A: El Protector del Laboratorio",
+    "texto": "Lograste contener la fuga química de forma impecable y heroica. Los saboteadores de segundo han sido expulsados de inmediato y el instituto ha premiado tu valentía. Ahora eres el alumno de primero más respetado del centro, el departamento de ciencias te adora y Sara es tu aliada incondicional. ¡Un inicio de curso brillante!",
+    "final": true,
+    "opciones": []
+  },
+  "42": {
+    "titulo": "❌ FINAL B: El Pacto Tóxico",
+    "texto": "Elegiste proteger tu estatus aliándote con los repetidores gamberros. El laboratorio ha quedado destrozado por los ácidos y los costes de reparación cancelan los eventos del trimestre. Aunque los de segundo te respetan y te protegen, Sara ha cargado con toda la culpa injustamente al ser la única identificada. Comienzas a salvo, pero con remordimientos.",
+    "final": true,
+    "opciones": []
+  },
+  "43": {
+    "titulo": "⚠️ FINAL C: El Analista de Datos",
+    "texto": "Hiciste lo correcto entregando las pruebas técnicas e informáticas al Director. Se evitó la catástrofe y el laboratorio se salvará. Sin embargo, la voz se ha corrido por las redes sociales: todos saben que fuiste tú quien destapó el pastel informático de los mayores. Te has ganado la etiqueta de chivato técnico y te espera un año de aislamiento de los de segundo.",
+    "final": true,
+    "opciones": []
+  },
+  "44": {
+    "titulo": "🌫️ FINAL D: El Desastre Evacuado",
+    "texto": "Provocaste el pánico o huiste en mitad de la alarma masiva. El instituto ha tenido que suspender las clases durante tres días debido a la toxicidad residual del gas morado en los pasillos, arruinando la semana de bienvenida. Nadie sabe que estuviste en el laboratorio, pero cargas con el peso de saber que pudiste haber cerrado la válvula a tiempo.",
+    "final": true,
+    "opciones": []
+  }
+}
