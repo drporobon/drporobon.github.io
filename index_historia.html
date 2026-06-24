@@ -127,20 +127,6 @@ async function cargarHistoria() {
     }
 }
 
-function mostrarPaso(numero) {
-    const paso = historia[numero];
-    
-    // 💾 GUARDAMOS EL AVANCE:
-    // Guardamos el número de paso actual en la memoria del navegador
-    localStorage.setItem('progreso_taquilla13', numero);
-
-    // ... (Toda tu lógica actual para pintar el título, texto y botones) ...
-    
-    document.getElementById('titulo').innerText = paso.titulo;
-    document.getElementById('texto').innerText = paso.texto;
-    // ... etc.
-}
-
 // Modificamos también la función de reiniciar para que borre la memoria
 function reiniciar() {
     localStorage.removeItem('progreso_taquilla13'); // Borra la partida guardada
@@ -150,6 +136,10 @@ function reiniciar() {
     // 2. Esta función dibuja el paso actual borrando por completo el anterior
     function mostrarPaso(numero) {
     const paso = historia[numero];
+    
+    // 💾 GUARDAMOS EL AVANCE:
+    // Guardamos el número de paso actual en la memoria del navegador
+    localStorage.setItem('progreso_taquilla13', numero);
     
     document.getElementById('titulo').innerText = paso.titulo;
     document.getElementById('texto').innerText = paso.texto;
