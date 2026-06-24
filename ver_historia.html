@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Disfrutando la Historia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-top: 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        p {
+            line-height: 1.8;
+            font-size: 1.3rem;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            text-align: left;
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        button.restart {
+            background-color: #e74c3c;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        button.restart:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="titulo">Cargando aventura...</h1>
+    <p id="texto"></p>
+    <div id="opciones-container" class="btn-container"></div>
+    <br/><br/><br/>
+    
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <button onclick="reiniciar()" style="background: #95a5a6; font-size: 0.8rem; padding: 6px 12px; text-align: center; width: auto; display: inline-block;">
+            ↩️ Empezar esta historia desde el principio
+        </button>
+    </div>
+</div>
+
+<script>
+    let historia = {};
+    let idHistoria = ""; // Aquí guardaremos el id (ej: "101")
+    let claveGuardado = ""; // Clave única de LocalStorage (ej: "progreso_101")
+
+    // 1. Capturamos el ID desde la URL y cargamos el JSON dinámico
+    async function cargarHistoria() {
+        // Leemos los parámetros del navegador (?id=101)
+        const parametrosURL = new URLSearchParams(window.location.search);
+        idHistoria = parametrosURL.get('id');
+
+        // Si alguien entra sin ID, lo mandamos de vuelta al índice
+        if (!idHistoria) {
+            window.location.href = "index.html";
+            return;
+        }
+
+        // Definimos una clave de guardado única para este juego concreto
+        claveGuardado = `progreso_${idHistoria}`;
+
+        try {
+            // Buscamos dinámicamente el archivo (ej: "101.json")
+            const respuesta = await fetch(`${idHistoria}.json`);
+            historia = await respuesta.json();
+            
+            // Comprobamos si hay progreso previo de esta historia específica
+            const pasoGuardado = localStorage.getItem(claveGuardado);
+            
+            if (pasoGuardado) {
+                mostrarPaso(parseInt(pasoGuardado));
+            } else {
+                mostrarPaso(1);
+            }
+        } catch (error) {
+            console.error("Error cargando el archivo de historia:", error);
+            document.getElementById('titulo').innerText = "Error 404";
+            document.getElementById('texto').innerText = "No se ha encontrado el archivo de datos para esta historia.";
+        }
+    }
+
+    // 2. Muestra el paso en pantalla
+    function mostrarPaso(numero) {
+        const paso = historia[numero];
+        
+        // Guardamos el progreso usando la clave exclusiva de esta historia
+        localStorage.setItem(claveGuardado, numero);
+        
+        document.getElementById('titulo').innerText = paso.titulo;
+        document.getElementById('texto').innerText = paso.texto;
+        
+        const container = document.getElementById('opciones-container');
+        container.innerHTML = ''; 
+            
+        if (paso.final) {
+            const btnReiniciar = document.createElement('button');
+            btnReiniciar.innerText = "🔄 Volver a jugar";
+            btnReiniciar.className = "restart";
+            btnReiniciar.onclick = () => reiniciar();
+            container.appendChild(btnReiniciar);
+        } else {
+            paso.options = paso.opciones || []; // Salvaguarda
+            paso.opciones.forEach(opcion => {
+                const boton = document.createElement('button');
+                boton.innerText = opcion.texto;
+                boton.onclick = () => mostrarPaso(opcion.siguiente);
+                container.appendChild(boton);
+            });
+        }
+        window.scrollTo(0, 0);
+    }
+
+    // 3. Resetea la historia actual sin afectar a las otras
+    function reiniciar() {
+        localStorage.removeItem(claveGuardado);
+        mostrarPaso(1);
+    }
+
+    // Arrancamos el motor del juego
+    cargarHistoria();
+</script>
+</body>
+</html>
