@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de Historias Interactivas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        /* Contenedor principal que simula el camino/timeline */
+        .indice-container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+
+        /* Fila contenedora de cada historia */
+        .historia-row {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start; /* Por defecto a la izquierda */
+        }
+
+        /* Truco CSS: Si la fila es par (2, 4, 6...), la empuja a la derecha */
+        .historia-row:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        /* Tarjeta / Botón de la historia */
+        .historia-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 45%; /* Ocupa un poco menos de la mitad para dar efecto alterno */
+            box-sizing: border-box;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border-left: 5px solid #3498db;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Cambiamos el color del borde para los de la derecha de forma automática */
+        .historia-row:nth-child(even) .historia-card {
+            border-left: none;
+            border-right: 5px solid #e74c3c;
+        }
+
+        .historia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .historia-card h2 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+
+        .historia-card p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Adaptación para pantallas móviles */
+        @media (max-width: 600px) {
+            .historia-card {
+                width: 100%; /* En móviles es mejor que ocupen todo el ancho */
+                border-right: none !important;
+                border-left: 5px solid #3498db !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Elige tu propia aventura</h1>
+
+    <div id="indice" class="indice-container">
+        <p style="text-align: center;">Cargando catálogo...</p>
+    </div>
+
+<script>
+    async function cargarIndice() {
+        try {
+            const respuesta = await fetch('historias.json');
+            const historias = await respuesta.json();
+            
+            const contenedor = document.getElementById('indice');
+            contenedor.innerHTML = ''; // Limpiamos el texto de carga
+
+            historias.forEach(historia => {
+                // 1. Creamos la fila contenedora (la que se alinea izq/der)
+                const fila = document.createElement('div');
+                fila.className = 'historia-row';
+
+                // 2. Creamos la tarjeta que funciona como un enlace <a>
+                const tarjeta = document.createElement('a');
+                tarjeta.className = 'historia-card';
+                tarjeta.href = historia.url; // Te redirige a la página de esa historia
+
+                // 3. Metemos el título y la descripción
+                tarjeta.innerHTML = `
+                    <h2>${historia.titulo}</h2>
+                    <p>${historia.descripcion}</p>
+                `;
+
+                // 4. Armamos la estructura
+                fila.appendChild(tarjeta);
+                contenedor.appendChild(fila);
+            });
+
+        } catch (error) {
+            console.error("Error al cargar el índice:", error);
+            document.getElementById('indice').innerHTML = 
+                '<p style="color:red; text-align:center;">No se pudo cargar el catálogo de historias.</p>';
+        }
+    }
+
+    // Ejecutar al cargar la página
+    cargarIndice();
+</script>
+</body>
+</html>
