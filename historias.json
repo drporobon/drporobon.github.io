@@ -1,20 +1,20 @@
 [
   {
-    "id": "taquilla13",
+    "id": "101",
     "titulo": "El Misterio de la Taquilla 13",
     "descripcion": "Algo brilla en el sótano el primer día de clase. ¿Te atreves a investigar?",
-    "url": "taquilla13.html"
+    "url": "ver_historia.html?id=101"
   },
   {
-    "id": "laboratorio",
+    "id": "102",
     "titulo": "Fuga en el Laboratorio",
     "descripcion": "Un experimento de química ha salido terriblemente mal. El tiempo corre.",
-    "url": "laboratorio.html"
+    "url": "ver_historia.html?id=102"
   },
   {
-    "id": "biblioteca",
+    "id": "103",
     "titulo": "La Biblioteca Nocturna",
     "descripcion": "Te has quedado encerrado tras el toque de queda. No estás solo.",
-    "url": "biblioteca.html"
+    "url": "ver_historia.html?id=103"
   }
 ]
