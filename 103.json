@@ -1,0 +1,345 @@
+{
+  "1": {
+    "titulo": "Decisión 1: El Toque de Queda",
+    "texto": "Es tu tercer día en el instituto. Te has quedado hasta tarde en la antigua Biblioteca del piso superior buscando un libro de texto. De repente, las luces principales se apagan con un fuerte ¡CLAC! y escuchas el sonido electrónico del cierre centralizado de la puerta principal. Alguien ha echado la llave desde fuera. Estás encerrado en la penumbra.",
+    "opciones": [
+      { "texto": "Encender la linterna del móvil e ir hacia las mesas de lectura", "siguiente": 2 },
+      { "texto": "Avanzar a oscuras hacia los mostradores del fondo", "siguiente": 3 }
+    ]
+  },
+  "2": {
+    "titulo": "Decisión 2A: El Diario del Fundador",
+    "texto": "La linterna ilumina una mesa. Hay un diario antiguo abierto con una nota reciente: 'El mecanismo de los pasadizos de ventilación se desactiva desde el sótano'. Escuchas unas pisadas lentas y arrastradas que provienen de la sección de Archivos Prohibidos.",
+    "opciones": [
+      { "texto": "Ir hacia la sección de Archivos a investigar las pisadas", "siguiente": 3 },
+      { "texto": "Buscar una ventana que dé a las cornisas exteriores del edificio", "siguiente": 4 }
+    ]
+  },
+  "3": {
+    "titulo": "Decisión 2B: El Aliado entre las Sombras",
+    "texto": "Te ocultas tras un estante y chocas con Hugo, un chico de primero que lleva una mochila con herramientas. 'Me retaron los de segundo a pasar la noche aquí', susurra temblando. 'Han hackeado el cierre magnético para encerrarnos dentro y colgar un cartel falso culpándonos de destrozar los libros'. ¡Un haz de luz de linterna externa barre la estancia!",
+    "opciones": [
+      { "texto": "Bloquear el pasillo tirando un estante de enciclopedias viejo", "siguiente": 5 },
+      { "texto": "Buscar una trampilla de servicio oculta detrás del mostrador", "siguiente": 6 }
+    ]
+  },
+  "4": {
+    "titulo": "Decisión 2C: La Cornisa Estrecha",
+    "texto": "Abres la ventana y sales a la cornisa. El viento es frío. Al avanzar, ves a través de otra ventana a un estudiante repetidor manipulando el cuadro eléctrico del pasillo. Te descubre y te apunta con su láser: 'Bájate de ahí, novato, o llamo al vigilante para que te expulsen'.",
+    "opciones": [
+      { "texto": "Entrar por la fuerza rompiendo el cristal del pasillo técnico", "siguiente": 7 },
+      { "texto": "Pedir disculpas y retroceder gateando hacia el interior de la biblioteca", "siguiente": 8 }
+    ]
+  },
+  "5": {
+    "titulo": "Decisión 3A: Atrapados en la Sección de Historia",
+    "texto": "El estante cae con estrépito. El guardia nocturno grita desde el pasillo: '¡Sé que hay alguien ahí dentro! ¡Voy a llamar a la policía!'. Hugo entra en pánico. Las puertas automáticas antiincendios bajan debido al estruendo. Hay un hueco de montacargas viejo y una trampilla de ventilación en el suelo.",
+    "opciones": [
+      { "texto": "Colaros por el estrecho hueco del montacargas de libros", "siguiente": 9 },
+      { "texto": "Levantar la trampilla de ventilación del suelo", "siguiente": 10 }
+    ]
+  },
+  "6": {
+    "titulo": "Decisión 3B: El Archivo Histórico",
+    "texto": "Bajáis por la trampilla del mostrador a un sótano de documentos viejos. Desde un tragaluz veis el patio del instituto. Una profesora de guardia que revisaba los coches os ve: '¡Vosotros! ¡Salid de ese almacén de inmediato y subid al despacho de Jefatura!'.",
+    "opciones": [
+      { "texto": "Hacer caso a la profesora y encaminaros hacia Jefatura", "siguiente": 11 },
+      { "texto": "Ignorar los gritos y avanzar hacia el Aula de Informática contigua", "siguiente": 12 }
+    ]
+  },
+  "7": {
+    "titulo": "Decisión 3C: Enfrentamiento Láser",
+    "texto": "Rompes el cristal y entras al pasillo técnico. El chico del láser se ríe de ti: 'Vaya, el novato tiene agallas. Pero acabo de bloquear el ascensor. Estás atrapado'. Te saca una foto con flash para tener pruebas incriminatorias de los destrozos.",
+    "opciones": [
+      { "texto": "Gritar llamando al conserje para desenmascararlo", "siguiente": 11 },
+      { "texto": "Dar media vuelta y correr por el pasillo hacia el vestíbulo", "siguiente": 8 }
+    ]
+  },
+  "8": {
+    "titulo": "Decisión 3D: El Interrogatorio del Vigilante",
+    "texto": "Llegas al vestíbulo jadeando, pero te frena el vigilante de seguridad nocturna. Nota polvo de libros antiguos en tus hombros. '¿Qué haces aquí arriba a estas horas? El ala este está cerrada'.",
+    "opciones": [
+      { "texto": "Contarle toda la conspiración de los de segundo año", "siguiente": 13 },
+      { "texto": "Mentir diciendo que te quedaste dormido estudiando para el examen", "siguiente": 14 }
+    ]
+  },
+  "9": {
+    "titulo": "Decisión 4A: El Eje del Montacargas",
+    "texto": "Bajáis a gatas por las poleas del montacargas. El cable chirría. Llegáis a un nivel intermedio: una compuerta lleva a la sala de servidores centrales y otra da directamente a la parte trasera de Jefatura.",
+    "opciones": [
+      { "texto": "Abrir la compuerta de la Sala de Servidores", "siguiente": 15 },
+      { "texto": "Dejaros caer con sigilo en el despacho de Jefatura", "siguiente": 16 }
+    ]
+  },
+  "10": {
+    "titulo": "Decisión 4B: Los Sótanos Olvidados",
+    "texto": "Bajáis por la ventilación a un pasadizo subterráneo que conecta con la antigua caldera. Hay una puerta de metal que da al patio, pero escuchas los ladridos del perro guardián del conserje justo afuera.",
+    "opciones": [
+      { "texto": "Salir al patio exterior corriendo a pesar del perro", "siguiente": 17 },
+      { "texto": "Volver a subir y arriesgaros por el cable del montacargas", "siguiente": 9 }
+    ]
+  },
+  "11": {
+    "titulo": "Decisión 4C: El Corredor del Castigo",
+    "texto": "Subes las escaleras hacia Jefatura. Ves pasar a dos repetidores riéndose con carpetas llenas de páginas arrancadas de libros valiosos. Te miran desafiantes. Estás frente al despacho del Jefe de Estudios.",
+    "opciones": [
+      { "texto": "Entrar de golpe y denunciar el expolio de la biblioteca", "siguiente": 13 },
+      { "texto": "Dar un rodeo e ir directamente hacia el patio central para camuflarte", "siguiente": 17 }
+    ]
+  },
+  "12": {
+    "titulo": "Decisión 4D: La Sala de Terminales",
+    "texto": "Os metéis al Aula de Informática. Hugo toca un interruptor por error y enciende el proyector principal, proyectando una luz gigante blanca hacia la ventana que da al pasillo. Alguien se dirige hacia allí rápidamente.",
+    "opciones": [
+      { "texto": "Salir al pasillo de inmediato y asumir la culpa", "siguiente": 11 },
+      { "texto": "Ocultaros dentro del armario técnico del rack de red", "siguiente": 18 }
+    ]
+  },
+  "13": {
+    "titulo": "Decisión 5A: Declaración Nocturna",
+    "texto": "Le cuentas todo al Jefe de Estudios. Se ajusta las gafas enfadado y coge su walkie-talkie. Te mira fijamente: 'Necesito que me acompañes ahora mismo al patio principal para identificar a los saboteadores antes de que se marchen'.",
+    "opciones": [
+      { "texto": "Aceptar e ir con él a señalar a los alumnos de segundo", "siguiente": 19 },
+      { "texto": "Negarte por miedo a las agresiones y pintadas en tu taquilla mañana", "siguiente": 20 }
+    ]
+  },
+  "14": {
+    "titulo": "Decisión 5B: Huellas de Tinta",
+    "texto": "El Jefe sospecha pero te ordena bajar al patio. Allí te encuentras a Hugo, horrorizado porque se ha manchado los dedos con una tinta azul permanente de los sellos de la biblioteca que no se quita.",
+    "opciones": [
+      { "texto": "Llevarlo al Laboratorio de Ciencias a buscar alcohol isopropílico para limpiarlo", "siguiente": 15 },
+      { "texto": "Decirle que se esconda en el Gimnasio mientras buscas una solución alternativa", "siguiente": 21 }
+    ]
+  },
+  "15": {
+    "titulo": "Decisión 5C: El Laboratorio de Emergencia",
+    "texto": "Entráis al laboratorio a oscuras. Encuentras un bote de disolvente orgánico que elimina la tinta al instante. Al aplicarlo, las luces del laboratorio se encienden: es el profesor de guardia.",
+    "opciones": [
+      { "texto": "Esconder el bote y mentir diciendo que buscabais un botiquín", "siguiente": 22 },
+      { "texto": "Confesarle la encerrona que os han hecho en la biblioteca", "siguiente": 13 }
+    ]
+  },
+  "16": {
+    "titulo": "Decisión 5D: Bajo el Escritorio de Dirección",
+    "texto": "Caéis en Jefatura. Os deslizáis bajo la mesa principal. Justo en ese momento entra el Jefe de Estudios refunfuñando y enciende la luz. Empieza a rellenar los partes de expulsión de la jornada.",
+    "opciones": [
+      { "texto": "Salir de debajo de la mesa y contar el complot de los libros", "siguiente": 13 },
+      { "texto": "Esperar en total silencio a que salga a hacer su ronda por los pasillos", "siguiente": 23 }
+    ]
+  },
+  "17": {
+    "titulo": "Decisión 5E: La Asamblea del Patio",
+    "texto": "Llegas al patio trasero donde se reúnen los alumnos rezagados. Hugo te intercepta: lleva en la mochila las páginas originales robadas que los de segundo le obligaron a esconder bajo amenaza.",
+    "opciones": [
+      { "texto": "Ir a ocultar los documentos robados en los casilleros del Gimnasio", "siguiente": 24 },
+      { "texto": "Buscar directamente a los líderes de segundo para plantarles cara", "siguiente": 25 }
+    ]
+  },
+  "18": {
+    "titulo": "Decisión 5F: El Armario del Rack",
+    "texto": "Os encerráis con los servidores. El vigilante entra al aula, inspecciona el proyector encendido, apaga el interruptor general y cierra la puerta con llave. Estáis atrapados en una jaula metálica con luces parpadeantes.",
+    "opciones": [
+      { "texto": "Forzar la trampilla del cableado que comunica con el patio de luces", "siguiente": 17 },
+      { "texto": "Usar la consola del servidor central (hay acceso al intercomunicador interno del centro)", "siguiente": 21 }
+    ]
+  },
+  "19": {
+    "titulo": "Decisión 6A: El Desfile de los Culpables",
+    "texto": "Avanzas al patio con el Jefe. Los repetidores se dan cuenta y empiezan a esconder sus mochilas. Uno de ellos te muestra discretamente la pantalla de su móvil de lejos: tiene un vídeo editado incriminándote de robar exámenes.",
+    "opciones": [
+      { "texto": "Ignorar el chantaje y señalarlo ante el Jefe de Estudios", "siguiente": 26 },
+      { "texto": "Asustarte, fingir un mareo y escapar hacia la zona del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "20": {
+    "titulo": "Decisión 6B: Pasividad Peligrosa",
+    "texto": "Te callas. El Jefe de Estudios se marcha solo a investigar. Los de segundo ven el camino despejado y avanzan hacia el archivo histórico de la biblioteca para quemar las pruebas del sabotaje.",
+    "opciones": [
+      { "texto": "Correr a la cabina de megafonía para alertar a todo el instituto", "siguiente": 28 },
+      { "texto": "Huir y ocultarte en el sótano de la Biblioteca para no meterte en problemas", "siguiente": 21 }
+    ]
+  },
+  "21": {
+    "titulo": "Decisión 6C: El Cierre de Seguridad de la Biblioteca",
+    "texto": "Regresáis al sector de lectura. De repente, un pitido electrónico avisa de que el sistema de seguridad ha bloqueado todas las persianas metálicas por la noche. Estáis atrapados de verdad en el laberinto de estanterías.",
+    "opciones": [
+      { "texto": "Buscar una salida trepando hacia los conductos del tejado", "siguiente": 29 },
+      { "texto": "Usar el ordenador central de la biblioteca para intentar tumbar el cortafuegos", "siguiente": 30 }
+    ]
+  },
+  "22": {
+    "titulo": "Decisión 6D: El Rastro Químico",
+    "texto": "El profesor os saca del laboratorio con una advertencia. Al salir al patio, el bote de disolvente que te guardaste empieza a gotear por la mochila, emitiendo un humo blanco muy visible bajo las farolas.",
+    "opciones": [
+      { "texto": "Tirar la mochila al contenedor de reciclaje de Jefatura", "siguiente": 8 },
+      { "texto": "Correr a esconder el líquido reactivo en los vestuarios del Gimnasio", "siguiente": 27 }
+    ]
+  },
+  "23": {
+    "titulo": "Decisión 6E: La Llave Maestra",
+    "texto": "El Jefe sale a toda prisa al oír un ruido. Al salir de debajo de la mesa, descubres que se ha dejado el llavero maestro metálico del instituto encima de la mesa de firmas.",
+    "opciones": [
+      { "texto": "Coger el llavero maestro para abrir cualquier puerta bloqueada de la biblioteca", "siguiente": 29 },
+      { "texto": "Dejar el llavero y escabullirte hacia el patio por las escaleras de servicio", "siguiente": 17 }
+    ]
+  },
+  "24": {
+    "titulo": "Decisión 6F: Detrás de las Espalderas",
+    "texto": "Llegáis al almacén del gimnasio. Mientras Hugo esconde las hojas de los libros, dos repetidores os acorralan: 'Devolved los manuscritos, novatos. Si la dirección no los encuentra en vuestras mochilas, el plan falla'.",
+    "opciones": [
+      { "texto": "Usar los documentos robados como moneda de cambio para que os dejen en paz", "siguiente": 25 },
+      { "texto": "Negaros en redondo y escapar por la puerta de incendios hacia el tejado", "siguiente": 32 }
+    ]
+  },
+  "25": {
+    "titulo": "Decisión 7A: El Pacto de los Manuscritos",
+    "texto": "Les entregas los documentos. El líder de segundo sonríe con malicia: 'Inteligente. Ahora, para aseguraros de que no os vais de la lengua, vais a ayudarnos a colocar un cartel difamatorio en el tablón de anuncios'.",
+    "opciones": [
+      { "texto": "Aceptar el chantaje para evitar que os hagan la vida imposible", "siguiente": 31 },
+      { "texto": "Traicionarlos, arrebatarles las hojas y correr hacia la azotea", "siguiente": 32 }
+    ]
+  },
+  "26": {
+    "titulo": "Decisión 7B: Captura In Extremis",
+    "texto": "Delatas al chantajista. El Jefe de Estudios confisca su teléfono y sus pertenencias. Sin embargo, el cómplice del saboteador corre hacia el archivo de la biblioteca con un encendedor para quemar los libros y borrar huellas.",
+    "opciones": [
+      { "texto": "Perseguirlo tú mismo por el pasillo de los archivos históricos", "siguiente": 33 },
+      { "texto": "Correr a la sala de megafonía para activar los aspersores antiincendios", "siguiente": 28 }
+    ]
+  },
+  "27": {
+    "titulo": "Decisión 7C: La Consola Audiovisual",
+    "texto": "Entras al Gimnasio oscuro. Al fondo divisas las escaleras que suben a la cabina técnica desde donde se controlan los proyectores del patio central.",
+    "opciones": [
+      { "texto": "Entrar a la cabina técnica para hackear las pantallas", "siguiente": 30 },
+      { "texto": "Ocultarte en los vestuarios oscuros y esperar a que amanezca", "siguiente": 34 }
+    ]
+  },
+  "28": {
+    "titulo": "Decisión 7D: Megafonía Abierta",
+    "texto": "Llegas a la sala de megafonía central del centro. Los interruptores están en modo manual y el micrófono general está encendido. Todo lo que digas resonará con fuerza en todo el recinto.",
+    "opciones": [
+      { "texto": "Retransmitir en directo la confesión de los de segundo sobre el sabotaje de los libros", "siguiente": 35 },
+      { "texto": "Hacer saltar la alarma técnica general para forzar la entrada de las patrullas de seguridad", "siguiente": 36 }
+    ]
+  },
+  "29": {
+    "titulo": "Decisión 7E: La Cornisa del Bloque B",
+    "texto": "Usas las llaves maestras o la ventana para salir a la cornisa superior. Desde aquí arriba ves que los saboteadores están forzando los tragaluces superiores de la biblioteca para arrojar pintura líquida dentro.",
+    "opciones": [
+      { "texto": "Subir a la azotea para encarar a los saboteadores directamente", "siguiente": 32 },
+      { "texto": "Bajar al patio exterior a toda prisa para dar la voz de alarma a los profesores", "siguiente": 35 }
+    ]
+  },
+  "30": {
+    "titulo": "Decisión 7F: El Sistema de Gestión Informática",
+    "texto": "Accedes al ordenador maestro. Tienes el control de las cámaras de seguridad de la biblioteca y ves nítidamente a los repetidores destrozando el mobiliario y arrancando las páginas.",
+    "opciones": [
+      { "texto": "Guardar el vídeo de seguridad en un pendrive como prueba irrefutable", "siguiente": 37 },
+      { "texto": "Transmitir la señal de vídeo directamente a las pantallas gigantes del patio exterior", "siguiente": 38 }
+    ]
+  },
+  "31": {
+    "titulo": "Decisión 8A: El Cómplice Forzado",
+    "texto": "Ayudas a pegar el cartel. El líder de segundo te da una palmadita en la espalda: 'Bienvenido al equipo'. Te ordena vigilar la entrada de la biblioteca mientras ellos terminan de camuflar el destrozo en los libros valiosos.",
+    "opciones": [
+      { "texto": "Aceptar el rol de vigía nocturno de los de segundo", "siguiente": 39 },
+      { "texto": "Aprovechar que se han distraído para correr al despacho del Director a denunciarlos", "siguiente": 33 }
+    ]
+  },
+  "32": {
+    "titulo": "Decisión 8B: Enfrentamiento en la Azotea",
+    "texto": "Llegas al tejado de la biblioteca. Los saboteadores están allí con mochilas llenas de material robado. Al verte solo, te acorralan contra la claraboya de cristal del techo. Amenazan con empujarte.",
+    "opciones": [
+      { "texto": "Quitarles la bolsa de documentos robados y lanzarla hacia el patio inferior para salvarla", "siguiente": 40 },
+      { "texto": "Negociar la destrucción mutua de las pruebas para que nadie salga perjudicado", "siguiente": 39 }
+    ]
+  },
+  "33": {
+    "titulo": "Decisión 8C: El Incendio del Archivo",
+    "texto": "Entras al archivo justo cuando el cómplice enciende una cerilla junto a los manuscritos antiguos de la biblioteca para borrar las huellas del delito.",
+    "opciones": [
+      { "texto": "Abalanzarte sobre él para quitarle el encendedor y sofocar la llama", "siguiente": 40 },
+      { "texto": "Bloquear la puerta exterior del archivo histórico dejándolo atrapado dentro con el humo", "siguiente": 37 }
+    ]
+  },
+  "34": {
+    "titulo": "Decisión 8D: Atrapado entre las Duchas",
+    "texto": "Te ocultas en las duchas del gimnasio. Los pasos del vigilante resuenan en las baldosas. Si te encuentra allí metido de noche con las hojas de los libros robados, la expulsión directa está asegurada.",
+    "opciones": [
+      { "texto": "Salir del escondite y confesarle el boicot de la biblioteca", "siguiente": 37 },
+      { "texto": "Mantenerte totalmente inmóvil en las sombras rezando para que no mire ahí", "siguiente": 36 }
+    ]
+  },
+  "35": {
+    "titulo": "Decisión 9A: Luz Pública",
+    "texto": "Tu intervención por megafonía o tus gritos alertan a todo el personal nocturno del instituto. Los saboteadores son rodeados y capturados en el tejado con los manuscritos robados en sus mochilas. El Director exige saber quién es el alumno que destapó el caso.",
+    "opciones": [
+      { "texto": "Dar un paso al frente ante los profesores y asumir la autoría de la alerta", "siguiente": 41 },
+      { "texto": "Camuflarte entre la masa de estudiantes evacuados para permanecer anónimo", "siguiente": 43 }
+    ]
+  },
+  "36": {
+    "titulo": "Decisión 9B: El Caos de la Alarma",
+    "texto": "La falsa alarma provoca una movilización total. El instituto se evacua en mitad de la noche bajo un descontrol caótico. Los de segundo aprovechan la confusión de los guardias para huir saltando la valla trasera sin ser identificados.",
+    "opciones": [
+      { "texto": "Aprovechar la confusión para irte a tu casa y olvidarte del asunto", "siguiente": 44 },
+      { "texto": "Buscar a Hugo para comprobar si consiguió escapar de la biblioteca ileso", "siguiente": 42 }
+    ]
+  },
+  "37": {
+    "titulo": "Decisión 9C: La Evidencia Física",
+    "texto": "Tienes al saboteador encerrado o posees el pendrive con las grabaciones nítidas del sistema de videovigilancia de la biblioteca. Te encaminas a la oficina de Dirección.",
+    "opciones": [
+      { "texto": "Entregar todas las pruebas del boicot de forma oficial al Director", "siguiente": 43 },
+      { "texto": "Ocultar las pruebas bajo tu cama para chantajear a los de segundo mañana", "siguiente": 41 }
+    ]
+  },
+  "38": {
+    "titulo": "Decisión 9D: Emisión en Directo",
+    "texto": "La señal de las cámaras de la biblioteca destrozada se proyecta en las pantallas gigantes del patio del instituto. Los rostros de los repetidores cometiendo el vandalismo quedan expuestos ante todos. El complot ha sido destruido de forma pública e inapelable.",
+    "opciones": [
+      { "texto": "Celebrar el éxito en secreto junto a Hugo desde los pasillos", "siguiente": 41 },
+      { "texto": "Acudir al despacho principal a explicar cómo lograste redirigir la señal de vídeo", "siguiente": 43 }
+    ]
+  },
+  "39": {
+    "titulo": "Decisión 10A: La Alianza de las Sombras",
+    "texto": "Has accedido a encubrir el vandalismo de la biblioteca para evitar represalias de los alumnos mayores. El ala histórica amanece destrozada, pero tú estás fuera de toda sospecha oficial. Has tomado un camino éticamente dudoso.",
+    "opciones": [
+      { "texto": "Ver el desenlace de tu pacto de silencio...", "siguiente": 42 }
+    ]
+  },
+  "40": {
+    "titulo": "Decisión 10B: Salvación Física",
+    "texto": "Tras un tenso forcejeo físico en el archivo o en la azotea, logras recuperar los manuscritos valiosos y frustrar el sabotaje. Has salvado el patrimonio histórico de la biblioteca gracias a tus reflejos y determinación.",
+    "opciones": [
+      { "texto": "Ver el resultado final de tu heroica defensa...", "siguiente": 41 }
+    ]
+  },
+
+  "41": {
+    "titulo": "🏆 FINAL A: El Guardián de la Biblioteca",
+    "texto": "Lograste salvar la biblioteca y recuperar los manuscritos antiguos de forma heroica. Los saboteadores de segundo han sido expulsados permanentemente del instituto. Ahora eres considerado el alumno más astuto de primero, la bibliotecaria te ha concedido pase libre vitalicio y Hugo es tu mejor amigo. ¡Un comienzo de curso legendario!",
+    "final": true,
+    "opciones": []
+  },
+  "42": {
+    "titulo": "❌ FINAL B: El Encubridor Silencioso",
+    "texto": "Decidiste aliarte con los repetidores gamberros por miedo o beneficio personal. La biblioteca sufrió daños irreparables y el centro ha clausurado el club de lectura como castigo colectivo. Aunque los de segundo te respetan y te protegen, Hugo ha sido expulsado injustamente al ser incriminado por las pruebas falsas. Tu curso empieza seguro, pero con la conciencia rota.",
+    "final": true,
+    "opciones": []
+  },
+  "43": {
+    "titulo": "⚠️ FINAL C: El Archivero Digital",
+    "texto": "Hiciste lo correcto entregando los vídeos e informes técnicos al equipo directivo. El misterio se resolvió, los libros se salvaron y Hugo quedó libre de toda sospecha. Sin embargo, los alumnos mayores han descubierto que tú filtraste las grabaciones de seguridad. Te has ganado reputación de chivato informático y te espera un año difícil en los pasillos.",
+    "final": true,
+    "opciones": []
+  },
+  "44": {
+    "titulo": "🌫️ FINAL D: La Biblioteca Clausurada",
+    "texto": "Provocaste el caos o huiste a casa desentendiéndote de la biblioteca. Al día siguiente, la biblioteca amanece destrozada y la dirección suspende el acceso al piso superior durante todo el año escolar como medida punitiva colectiva. Nadie sabe que estuviste allí dentro esa noche, pero cargas con la culpa de saber que pudiste salvar los libros.",
+    "final": true,
+    "opciones": []
+  }
+}
