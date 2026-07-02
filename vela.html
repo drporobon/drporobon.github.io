@@ -21,15 +21,14 @@
             overflow: hidden;
         }
 
-        /* El botón en la esquina inferior derecha (20% de la pantalla) */
+        /* --- CORREGIDO PARA MÓVIL Y PC --- */
         .boton-vela {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 20vw; 
-            height: 20vw; 
-            min-width: 90px;
-            max-width: 180px;
+            position: fixed;        /* Fijo en la pantalla del navegador siempre */
+            bottom: 20px;           /* Distancia desde abajo */
+            right: 20px;            /* Distancia desde la derecha */
+            width: 75px;            /* Tamaño fijo ideal para interacción táctil en móvil */
+            height: 75px;           /* Proporciones idénticas */
+            z-index: 99999;         /* Asegura quedar siempre por encima de todo */
             border: 2px solid #000000;
             border-radius: 12px;
             background-color: #ffffff;
@@ -38,8 +37,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Sombra un poco más visible en móviles */
         }
 
         .boton-vela:hover:not(:disabled) {
@@ -78,26 +77,26 @@
         /* Inicialmente (Fase 3 líneas): El tamaño base es alto */
         .cuerpo-vela { transform: scaleY(1); transform-origin: bottom; }
 
-        /* Fase 2: Tras 3 segundos (Tamaño anterior del archivo) */
+        /* Fase 2: Tras 3 segundos */
         .boton-vela.fase-2 .cuerpo-vela { transform: scaleY(0.82); }
         .boton-vela.fase-2 .mecha,
         .boton-vela.fase-2 .llama,
         .boton-vela.fase-2 .detalles-lineas { transform: translateY(6px); }
-        .boton-vela.fase-2 .linea-3 { display: none; } /* Desaparece la de arriba */
+        .boton-vela.fase-2 .linea-3 { display: none; }
 
-        /* Fase 1: Tras 6 segundos (Más pequeña) */
+        /* Fase 1: Tras 6 segundos */
         .boton-vela.fase-1 .cuerpo-vela { transform: scaleY(0.64); }
         .boton-vela.fase-1 .mecha,
         .boton-vela.fase-1 .llama,
         .boton-vela.fase-1 .detalles-lineas { transform: translateY(12px); }
         .boton-vela.fase-1 .linea-2, .boton-vela.fase-1 .linea-3 { display: none; }
 
-        /* Fase 0: Tras 8 segundos (Mínimo tamaño, sin rayas) */
+        /* Fase 0: Tras 8 segundos */
         .boton-vela.fase-0 .cuerpo-vela { transform: scaleY(0.46); }
         .boton-vela.fase-0 .mecha,
         .boton-vela.fase-0 .llama,
         .boton-vela.fase-0 .detalles-lineas { transform: translateY(18px); }
-        .boton-vela.fase-0 .detalles-lineas line { display: none; } /* Ninguna línea visible */
+        .boton-vela.fase-0 .detalles-lineas line { display: none; }
 
 
         /* --- ESTADO ENCENDIDO --- */
@@ -106,7 +105,6 @@
             fill: #ffcc00; 
             stroke: #ff9900; 
             stroke-width: 2;
-            /* La animación hereda el desplazamiento dinámico de la fase activa */
             animation: parpadeoLlama 0.15s infinite alternate ease-in-out;
         }
 
@@ -131,7 +129,7 @@
             }
         }
 
-        /* Definición del desfase Y en la llama por cada fase para la animación */
+        /* Definición del desfase Y en la llama por cada fase */
         .boton-vela.encendida { --movimiento-fase: translateY(0px); }
         .boton-vela.fase-2.encendida { --movimiento-fase: translateY(6px); }
         .boton-vela.fase-1.encendida { --movimiento-fase: translateY(12px); }
@@ -174,31 +172,26 @@
         const boton = document.getElementById('btnVela');
 
         boton.addEventListener('click', () => {
-            // Inicialización del botón al pulsarse
             boton.classList.add('encendida');
             boton.disabled = true;
 
-            // FASE 2: A los 3 segundos pasa a tener 2 rayas (reducción intermedia)
             setTimeout(() => {
                 boton.classList.add('fase-2');
             }, 3000);
 
-            // FASE 1: A los 6 segundos (3s + 3s) pasa a tener 1 raya
             setTimeout(() => {
                 boton.classList.remove('fase-2');
                 boton.classList.add('fase-1');
             }, 6000);
 
-            // FASE 0: A los 8 segundos (6s + 2s) se queda sin rayas y muy pequeña
             setTimeout(() => {
                 boton.classList.remove('fase-1');
                 boton.classList.add('fase-0');
             }, 8000);
 
-            // FIN DEL TEMPORIZADOR: A los 10 segundos totales se apaga la llama
             setTimeout(() => {
                 boton.classList.remove('encendida', 'fase-0');
-                boton.disabled = false; // Se vuelve a activar en su tamaño grande inicial
+                boton.disabled = false; 
             }, 10000); 
         });
     </script>
