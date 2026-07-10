@@ -23,10 +23,9 @@
   
 <script type="text/xml" id="mapas">
   <mapas>
-    <mapa id="1" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
-    <mapa id="2" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
-    <mapa id="3" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Nidos de cigüeña" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
-    <mapa id="10" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
+    <mapa id="1" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
+    <mapa id="2" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
+    <mapa id="3" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
   </mapas>
 </script>
 
@@ -660,7 +659,7 @@
     const parser = new DOMParser();
 	let xmlDoc = parser.parseFromString(xmlData1, "application/xml");
 	
-	if(idURL==10)
+	if(idURL==2)
 		xmlDoc = parser.parseFromString(xmlData2, "application/xml");
 
     // Obtener los nodos <punto>
