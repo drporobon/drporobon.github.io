@@ -113,44 +113,6 @@
     </markers>
   </script>
 
-    const xmlData3 = `
-      <puntos>
-        <punto>
-          <id>1</id>
-		  <idTipo>1</idTipo>
-		  <tipo>Gastronomía</tipo>
-          <texto>Haimas Árabes</texto>
-        </punto>
-        <punto>
-          <id>2</id>
-		  <idTipo>1</idTipo>
-		  <tipo>Alimentación Especializada</tipo>
-          <texto>Pulperías y Queserías</texto>
-        </punto>
-        <punto>
-          <id>3</id>
-		  <idTipo>1</idTipo>
-		  <tipo>Alimentación Especializada</tipo>
-          <texto>Dulces y Garrapiñadas</texto>
-        </punto>
-        <punto>
-          <id>4</id>
-		  <idTipo>2</idTipo>
-		  <tipo>Artesanía</tipo>
-          <texto>Marroquinería y Cuero</texto>
-        </punto>
-        <punto>
-          <id>5</id>
-		  <idTipo>3</idTipo>
-		  <tipo>Alimentación para Llevar</tipo>
-          <texto>Miel y Jalea Real</texto>
-        </punto>
-        <punto>
-          <id>6</id>
-		  <idTipo>4</idTipo>
-		  <tipo>Talleres de Oficios Antiguos</tipo>
-          <texto>El Herrero / Forja</texto>
-        </punto>
 		<!--
 Gastronomía
 	Grandes Tabernas y Mesones: 
@@ -173,8 +135,6 @@ Talleres de Oficios Antiguos
 	Sopladores de Vidrio o Alfareros: 
 	Escribanos y Cetrería:
 		-->
-      </puntos>
-    `;
 
 	
   
@@ -267,14 +227,14 @@ Talleres de Oficios Antiguos
       const items = xmlDoc.getElementsByTagName('marker');
 
       for (let i = 0; i < items.length; i++) {
-        const lat = parseFloat(items[i].getAttribute('lat'));
-        const lng = parseFloat(items[i].getAttribute('lng'));
-        const type = items[i].getAttribute('type');
-		const idMarker = items[i].getAttribute('id');
-		const idTipo = items[i].getAttribute('idTipo');
-        const infoTipo = items[i].getAttribute('infoTipo');
-        const name = items[i].getAttribute('name');
-        const texto = items[i].getAttribute('texto');
+        let lat = parseFloat(items[i].getAttribute('lat'));
+        let lng = parseFloat(items[i].getAttribute('lng'));
+        let type = items[i].getAttribute('type');
+		let idMarker = items[i].getAttribute('id');
+		let idTipo = items[i].getAttribute('idTipo');
+        let infoTipo = items[i].getAttribute('infoTipo');
+        let name = items[i].getAttribute('name');
+        let texto = items[i].getAttribute('texto');
 
         //const marker = L.marker([lat, lng], { icon: icons[tipo] }).addTo(markersLayer);
         //marker.bindPopup(`<b>${nombre}</b><br/>${info}`);
@@ -326,8 +286,11 @@ Talleres de Oficios Antiguos
       }
     }
 	
-	
+	alert();
+	if(idMapURL==1)
 	loadXML('p1');
+	if(idMapURL==50)
+	loadXML('p50');
 	
 
 
