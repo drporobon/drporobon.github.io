@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- JS de Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+    </style>
+</head>
+<body>
+
+  <div id="resultado">
+	<ul id="lista-tipos"></ul>
+  </div>
+  
+  
+<script type="text/xml" id="mapas">
+  <mapas>
+    <mapa id="1" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
+    <mapa id="2" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
+    <mapa id="3" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
+  </mapas>
+</script>
+
+<script>
+	  
+    const xmlData1 = `
+      <puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Plaza</tipo>
+          <texto>Plaza Cervantes</texto>
+          <sub-texto>Este es el texto descriptivo de la plaza Cervantes</sub-texto>
+        </punto>
+		<punto>
+          <id>2</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Plaza</tipo>
+          <texto>Plaza de los Santos Niños</texto>
+          <sub-texto>Este es el texto descriptivo de la Plaza de los Santos Niños</sub-texto>
+        </punto>
+		<punto>
+          <id>3</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Iglesia</tipo>
+          <texto>Catedral Magistral</texto>
+          <sub-texto>Este es el texto descriptivo de la Catedral Magistral</sub-texto>
+        </punto>
+		<punto>
+          <id>4</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Edificio</tipo>
+          <texto>Fachada Universidad</texto>
+          <sub-texto>Este es el texto descriptivo de la Fachada de la Universidad</sub-texto>
+        </punto>
+		<punto>
+          <id>5</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Calle/Paseo/Boulevar</tipo>
+          <texto>Calle Mayor</texto>
+          <sub-texto>Este es el texto descriptivo de la Calle Mayor</sub-texto>
+        </punto>
+      </puntos>
+    `;
+	
+    const xmlData2 = `
+      <puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación</tipo>
+          <texto>Mercadona</texto>
+        </punto>
+        <punto>
+          <id>2</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Belros</texto>
+        </punto>
+        <punto>
+          <id>3</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Herbs&amp;Co. Ecotienda</texto>
+        </punto>
+        <punto>
+          <id>4</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Normal</texto>
+        </punto>
+        <punto>
+          <id>5</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Botticelli</texto>
+        </punto>
+        <punto>
+          <id>6</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Décimas</texto>
+        </punto>
+        <punto>
+          <id>7</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Deichman</texto>
+        </punto>
+        <punto>
+          <id>8</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>JD Sports</texto>
+        </punto>
+        <punto>
+          <id>9</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Marypaz</texto>
+        </punto>
+        <punto>
+          <id>10</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Sprinter</texto>
+        </punto>
+        <punto>
+          <id>11</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Calzado</tipo>
+          <texto>Sprinter</texto>
+        </punto>
+        <punto>
+          <id>12</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Claire's</texto>
+        </punto>
+        <punto>
+          <id>13</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Deichman</texto>
+        </punto>
+        <punto>
+          <id>14</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>La casa de las carcasas</texto>
+        </punto>
+        <punto>
+          <id>15</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Lefties</texto>
+        </punto>
+        <punto>
+          <id>16</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Misako</texto>
+        </punto>
+        <punto>
+          <id>17</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Multiópticas</texto>
+        </punto>
+        <punto>
+          <id>18</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Parfois</texto>
+        </punto>
+        <punto>
+          <id>19</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Complementos</tipo>
+          <texto>Roselin</texto>
+        </punto>
+        <punto>
+          <id>20</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Casa Móvil</texto>
+        </punto>
+        <punto>
+          <id>21</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Cex</texto>
+        </punto>
+        <punto>
+          <id>22</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>La casa de las carcasas</texto>
+        </punto>
+        <punto>
+          <id>23</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Movistar</texto>
+        </punto>
+        <punto>
+          <id>24</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Orange</texto>
+        </punto>
+        <punto>
+          <id>25</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Vodafone</texto>
+        </punto>
+        <punto>
+          <id>26</id>
+		  <idTipo>5</idTipo>
+		  <tipo>Electrónica / Móvil</tipo>
+          <texto>Yoigo</texto>
+        </punto>
+        <punto>
+          <id>27</id>
+		  <idTipo>6</idTipo>
+		  <tipo>Hipermercado</tipo>
+          <texto>Mercadona</texto>
+        </punto>
+        <punto>
+          <id>28</id>
+		  <idTipo>7</idTipo>
+		  <tipo>Hogar / Regalos</tipo>
+          <texto>Jysk</texto>
+        </punto>
+        <punto>
+          <id>29</id>
+		  <idTipo>7</idTipo>
+		  <tipo>Hogar / Regalos</tipo>
+          <texto>Normal</texto>
+        </punto>
+        <punto>
+          <id>30</id>
+		  <idTipo>7</idTipo>
+		  <tipo>Hogar / Regalos</tipo>
+          <texto>Primark</texto>
+        </punto>
+        <punto>
+          <id>31</id>
+		  <idTipo>7</idTipo>
+		  <tipo>Hogar / Regalos</tipo>
+          <texto>Tramas+</texto>
+        </punto>		
+        <punto>
+          <id>32</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>United Colors of Benetton</texto>
+        </punto>
+        <punto>
+          <id>33</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Bershka</texto>
+        </punto>
+        <punto>
+          <id>34</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Calzedonia</texto>
+        </punto>
+        <punto>
+          <id>35</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Décimas</texto>
+        </punto>
+        <punto>
+          <id>36</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Hug&amp;Clau</texto>
+        </punto>
+        <punto>
+          <id>37</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>JD Sports</texto>
+        </punto>
+        <punto>
+          <id>38</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Koröshi</texto>
+        </punto>
+        <punto>
+          <id>39</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Lefties</texto>
+        </punto>
+        <punto>
+          <id>40</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Mango</texto>
+        </punto>
+        <punto>
+          <id>41</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Mango Teen</texto>
+        </punto>
+        <punto>
+          <id>42</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Mayoral</texto>
+        </punto>
+        <punto>
+          <id>43</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Oldei</texto>
+        </punto>
+        <punto>
+          <id>44</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Primark</texto>
+        </punto>
+        <punto>
+          <id>45</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Pull&amp;Bear</texto>
+        </punto>
+        <punto>
+          <id>46</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Punt Roma</texto>
+        </punto>
+        <punto>
+          <id>47</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Sfera</texto>
+        </punto>
+        <punto>
+          <id>48</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Springfield</texto>
+        </punto>
+        <punto>
+          <id>49</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Sprinter</texto>
+        </punto>
+        <punto>
+          <id>50</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Stradivarius</texto>
+        </punto>
+        <punto>
+          <id>51</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Women's Secret</texto>
+        </punto>
+        <punto>
+          <id>52</id>
+		  <idTipo>8</idTipo>
+		  <tipo>Moda</tipo>
+          <texto>Zara</texto>
+        </punto>		
+        <punto>
+          <id>53</id>
+		  <idTipo>9</idTipo>
+		  <tipo>Ocio</tipo>
+          <texto>Casa del libro</texto>
+        </punto>
+        <punto>
+          <id>54</id>
+		  <idTipo>9</idTipo>
+		  <tipo>Ocio</tipo>
+          <texto>Décimas</texto>
+        </punto>
+        <punto>
+          <id>55</id>
+		  <idTipo>9</idTipo>
+		  <tipo>Ocio</tipo>
+          <texto>Game</texto>
+        </punto>
+        <punto>
+          <id>56</id>
+		  <idTipo>9</idTipo>
+		  <tipo>Ocio</tipo>
+          <texto>Juguettos</texto>
+        </punto>		
+        <punto>
+          <id>57</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>100 Montaditos</texto>
+        </punto>
+        <punto>
+          <id>103</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Bombón Boss</texto>
+        </punto>
+        <punto>
+          <id>58</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Canel Rolls</texto>
+        </punto>
+        <punto>
+          <id>101</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Goconut</texto>
+        </punto>
+        <punto>
+          <id>59</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Kebab</texto>
+        </punto>
+        <punto>
+          <id>100</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Kfc</texto>
+        </punto>
+        <punto>
+          <id>60</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Llao llao</texto>
+        </punto>
+        <punto>
+          <id>61</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Loops&amp;Coffe</texto>
+        </punto>
+        <punto>
+          <id>62</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Pappiza</texto>
+        </punto>
+        <punto>
+          <id>63</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Pomodoro</texto>
+        </punto>
+        <punto>
+          <id>64</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Pure&amp;Bowl</texto>
+        </punto>
+        <punto>
+          <id>65</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Ribs</texto>
+        </punto>
+        <punto>
+          <id>102</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Starbucks</texto>
+        </punto>
+        <punto>
+          <id>66</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Tgb</texto>
+        </punto>
+        <punto>
+          <id>67</id>
+		  <idTipo>10</idTipo>
+		  <tipo>Restauración</tipo>
+          <texto>Vips</texto>
+        </punto>		
+        <punto>
+          <id>68</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Beaty Boutique</texto>
+        </punto>
+        <punto>
+          <id>69</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Claire's</texto>
+        </punto>
+        <punto>
+          <id>70</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Dola Nails</texto>
+        </punto>
+        <punto>
+          <id>71</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Druni</texto>
+        </punto>
+        <punto>
+          <id>72</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Farmacia</texto>
+        </punto>
+        <punto>
+          <id>73</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Jean Louis David</texto>
+        </punto>
+        <punto>
+          <id>74</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Kiko Milano</texto>
+        </punto>
+        <punto>
+          <id>75</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Macho Barbershops</texto>
+        </punto>
+        <punto>
+          <id>76</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Mazuelas</texto>
+        </punto>
+        <punto>
+          <id>77</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Mercadona</texto>
+        </punto>
+        <punto>
+          <id>78</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Multiópticas</texto>
+        </punto>
+        <punto>
+          <id>79</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Normal</texto>
+        </punto>
+        <punto>
+          <id>80</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Old School Nutrition</texto>
+        </punto>
+        <punto>
+          <id>81</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Primor</texto>
+        </punto>
+        <punto>
+          <id>82</id>
+		  <idTipo>11</idTipo>
+		  <tipo>Salud / Belleza</tipo>
+          <texto>Único Life</texto>
+        </punto>		
+        <punto>
+          <id>83</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>4Dreams</texto>
+        </punto>
+        <punto>
+          <id>84</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Washcar</texto>
+        </punto>
+        <punto>
+          <id>85</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Casa Móvil</texto>
+        </punto>
+        <punto>
+          <id>86</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Cex</texto>
+        </punto>
+        <punto>
+          <id>87</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>DetailCar</texto>
+        </punto>
+        <punto>
+          <id>88</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Farmacia</texto>
+        </punto>
+        <punto>
+          <id>89</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Forus</texto>
+        </punto>
+        <punto>
+          <id>90</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Jean Louis David</texto>
+        </punto>
+        <punto>
+          <id>91</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Loterias y Apuestas del Estado</texto>
+        </punto>
+        <punto>
+          <id>92</id>
+		  <idTipo>12</idTipo>
+		  <tipo>Servicios</tipo>
+          <texto>Motrio</texto>
+        </punto>
+      </puntos>
+    `;
+
+	const params = new URLSearchParams(window.location.search);	
+	let idURL = params.get('id');
+	
+    // Parsear el string XML
+    const parser = new DOMParser();
+	let xmlDoc = parser.parseFromString(xmlData1, "application/xml");
+	
+	if(idURL==2)
+		xmlDoc = parser.parseFromString(xmlData2, "application/xml");
+
+    // Obtener los nodos <punto>
+    const puntos = xmlDoc.getElementsByTagName('punto');
+    const contenedor = document.getElementById('resultado');
+
+    
+	const idTipoElements = xmlDoc.getElementsByTagName("idTipo");
+	const tipoElements = xmlDoc.getElementsByTagName("tipo");
+	// Crear un Set para guardar solo los valores únicos
+	const mapaTipos = new Map();
+	for (let i = 0; i < idTipoElements.length; i++) {
+		const idTipo = idTipoElements[i].textContent.trim();
+		const tipo = tipoElements[i].textContent.trim();
+		// Guardamos la relación en el Map (si ya existe, se sobrescribe, pero como es el mismo valor no hay problema)
+		if (!mapaTipos.has(idTipo)) {
+			mapaTipos.set(idTipo, tipo);
+		}
+	}
+	
+	
+	
+    const xmlString2 = document.getElementById('mapas').textContent.trim();
+    const xmlDoc2 = new DOMParser().parseFromString(xmlString2, 'text/xml');
+    const items2 = xmlDoc2.getElementsByTagName('mapa');
+	let idMap = 0;
+	let redireccion = '';
+	  
+	for (let i = 0; i < items2.length; i++) {
+		const mapaId = items2[i].getAttribute('id');
+		const tipoMapa = items2[i].getAttribute('tipoMapa');
+		if(mapaId===idURL){
+			idMap = mapaId;
+			redireccion = tipoMapa;		
+		}
+	}
+	
+	
+	// Ahora recorremos el Map y creamos la lista
+	const ul = document.getElementById("lista-tipos");
+	mapaTipos.forEach((tipo, idTipo) => {
+		const li = document.createElement("li");
+		//li.textContent = `<a href="paginaMapa4.html?id=${idTipo}">${tipo}</a>`;
+		li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
+		ul.appendChild(li);
+	});
+/*	
+	// Convertir el Set a array si lo necesitás
+	const listadoTipos = Array.from(idTiposUnicos);	
+	//alert(listadoTipos);
+	const ul = document.getElementById("lista-tipos");
+	listadoTipos.forEach(tipo => {
+		const li = document.createElement("li");
+		li.textContent = tipo;
+		ul.appendChild(li);
+	});
+*/	
+
+    for (let i = 0; i < puntos.length; i++) {
+      const id = puntos[i].getElementsByTagName('id')[0].textContent;
+      const idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
+      const tipo = puntos[i].getElementsByTagName('tipo')[0].textContent;
+      const texto = puntos[i].getElementsByTagName('texto')[0].textContent;
+
+      const p = document.createElement('p');
+      //p.textContent = `ID: ${id} - Texto: ${texto}`;
+      //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa.html?id=${id}">Mapa</a>`;+
+	  //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa4.html?id=${id}">Mapa4</a>`;
+	  p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
+      contenedor.appendChild(p);
+    }
+	
+</script>
+</body>
+</html>
