@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- JS de Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+    </style>
+</head>
+<body>
+
+  <div id="resultado">
+	<ul id="lista-tipos"></ul>
+  </div>
+  
+<script type="text/xml" id="mapas">
+  <mapas>
+    <mapa id="1" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés"/>
+    <mapa id="2" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito"/>
+    <mapa id="3" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Nidos de cigüeña"/>
+    <mapa id="10" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna"/>
+  </mapas>
+</script>
+
+<div id="resultado"></div>
+
+<script>
+const contenedor = document.getElementById('resultado');
+
+// Cargar XML desde el HTML
+function loadXML(scriptId) {
+	const xmlString = document.getElementById(scriptId).textContent.trim();
+	const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+	const items = xmlDoc.getElementsByTagName('mapa');
+
+	let n1 = '';
+	let n2 = '';
+	let n3 = '';
+	let n4 = '';
+	let texto = '';
+	let cambio = false;
+
+	for (let i = 0; i < items.length; i++) {
+		const mapaId = items[i].getAttribute('id');
+		const tipoMapa = items[i].getAttribute('tipoMapa');
+		const nivel1 = items[i].getAttribute('nivel1');
+		const nivel2 = items[i].getAttribute('nivel2');
+		const nivel3 = items[i].getAttribute('nivel3');
+		const nivel4 = items[i].getAttribute('nivel4');
+
+		const p = document.createElement('p');
+
+		if (texto === '') {
+			texto = `${nivel1} <br/> >>> ${nivel2} <br/> >>> >>> ${nivel3}`;
+			cambio = true;
+		}else{
+			if (n1 !== nivel1) {
+				texto = `${nivel1}`;
+				cambio = true;
+			}
+			if (n2 !== nivel2) {
+				texto = `${texto} <br/> >>> ${nivel2}`;
+				cambio = true;
+			}
+			if (n3 !== nivel3) {
+				texto = `${texto} <br/> >>> >>> ${nivel3}`;
+				cambio = true;
+			}
+		}
+
+		//p.innerHTML = `ID: ${mapaId} - Texto: ${texto} <br/> >>> >>> >>> ${nivel4} <a href="${tipoMapa}.html?id=${mapaId}">Mapa</a>`;
+		if(cambio)
+			//p.innerHTML = `${texto} <br/> >>> >>> >>> ${nivel4} <a href="${tipoMapa}.html?id=${mapaId}">Mapa</a>`;
+			p.innerHTML = `${texto} <br/> >>> >>> >>> ${nivel4} <a href="preMap.html?id=${mapaId}">Mapa</a>`;
+		else
+			//p.innerHTML = `>>> >>> >>> ${nivel4} <a href="${tipoMapa}.html?id=${mapaId}">Mapa</a>`;
+			p.innerHTML = `>>> >>> >>> ${nivel4} <a href="preMap.html?id=${mapaId}">Mapa</a>`;
+		contenedor.appendChild(p);
+
+		n1 = nivel1;
+		n2 = nivel2;
+		n3 = nivel3;
+		n4 = nivel4;
+		cambio = false;
+	}
+}
+
+setTimeout(() => {
+	loadXML('mapas');
+}, 300);
+</script>
+
+</body>
+</html>
