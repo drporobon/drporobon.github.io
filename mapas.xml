@@ -1,0 +1,6 @@
+  <mapas>
+    <mapa id="1" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés"/>
+    <mapa id="2" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito"/>
+    <mapa id="3" tipoMapa="paginaMapa" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Nidos de cigüeña"/>
+    <mapa id="10" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna"/>
+  </mapas>
