@@ -27,6 +27,7 @@
     <mapa id="2" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
     <mapa id="3" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Nidos de Cigüeñas" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
     <mapa id="10" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
+    <mapa id="50" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Mercado Cervantino" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
   </mapas>
 </script>
 
@@ -652,6 +653,69 @@
         </punto>
       </puntos>
     `;
+	
+    const xmlData3 = `
+      <puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Gastronomía</tipo>
+          <texto>Haimas Árabes</texto>
+        </punto>
+        <punto>
+          <id>2</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <textoPulperías y Queserías</texto>
+        </punto>
+        <punto>
+          <id>3</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Dulces y Garrapiñadas</texto>
+        </punto>
+        <punto>
+          <id>4</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Artesanía</tipo>
+          <texto>Marroquinería y Cuero</texto>
+        </punto>
+        <punto>
+          <id>5</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Alimentación para Llevar</tipo>
+          <texto>Miel y Jalea Real</texto>
+        </punto>
+        <punto>
+          <id>6</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Talleres de Oficios Antiguos</tipo>
+          <texto>El Herrero / Forja</texto>
+        </punto>
+		<!--
+Gastronomía
+	Grandes Tabernas y Mesones: 
+	Haimas Árabes: 
+	Pulperías y Queserías: 
+	Dulces y Garrapiñadas:
+Artesanía
+	Marroquinería y Cuero: 
+	Joyas y Bisutería: 
+	Juguetes de Madera:
+	Cosmética e Higiene Natural:
+Alimentación para Llevar
+	Herbolarios y Especias:
+	Miel y Jalea Real: 
+	Conservas y Encurtidos:
+	Licores Tradicionales:
+Talleres de Oficios Antiguos
+	El Herrero / Forja: 
+	El Cantero: 
+	Sopladores de Vidrio o Alfareros: 
+	Escribanos y Cetrería:
+		-->
+      </puntos>
+    `;
 
 	const params = new URLSearchParams(window.location.search);	
 	let idURL = params.get('id');
@@ -662,6 +726,9 @@
 	
 	if(idURL==10)
 		xmlDoc = parser.parseFromString(xmlData2, "application/xml");
+	
+	if(idURL==50)
+		xmlDoc = parser.parseFromString(xmlData3, "application/xml");
 
     // Obtener los nodos <punto>
     const puntos = xmlDoc.getElementsByTagName('punto');
