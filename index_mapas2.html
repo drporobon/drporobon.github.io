@@ -34,17 +34,18 @@
 <script>
 const contenedor = document.getElementById('resultado');
 
-// Cargar XML desde el HTML
-function loadXML(scriptId) {
-        const respuesta = await fetch(url);
-        
-        if (!respuesta.ok) throw new Error(`Error al cargar el XML: ${respuesta.status}`);
-        
-        const xmlString = await respuesta.text();
+function loadXML(url) {
+fetch(url)
+	.then(respuesta => {
+		if (!respuesta.ok) throw new Error("Error al cargar el archivo");
+		return respuesta.text(); // Pasamos el contenido a texto
+	})
+	.then(xmlString => {
+		// Parseamos el XML exactamente como lo hacías antes
+		const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+		const items = xmlDoc.getElementsByTagName('mapa');
 
-        const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
-        const items = xmlDoc.getElementsByTagName('mapa');
-
+	
 	let n1 = '';
 	let n2 = '';
 	let n3 = '';
@@ -94,7 +95,12 @@ function loadXML(scriptId) {
 		n3 = nivel3;
 		n4 = nivel4;
 		cambio = false;
-	}
+	}	console.log("Mapas cargados:", items.length);
+		
+	})
+	.catch(error => {
+		console.error("Hubo un problema al leer el XML externo:", error);
+	});
 }
 
 setTimeout(() => {
