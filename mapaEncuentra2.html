@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda del Tesoro - Exploración Activa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+</head>
+<body>
+
+    <h2>Explora el mapa para encontrar las pistas</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // 1. Inicializar el mapa
+        const map = L.map('map').setView([40.4167, -3.7037], 6); // Centrado en España
+		
+const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+
+        // 2. Definir las coordenadas del marcador y crear el objeto (sin añadirlo al mapa todavía)
+        const posicionMarcador = [40.4167, -3.7037]; // Madrid
+        const miMarcador = L.marker(posicionMarcador).bindPopup("¡Hola! Solo aparezco con zoom alto aquí.");
+
+        // Icono personalizado común para las pistas
+        const iconoPista = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/128/10109/10109952.png',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        });
+
+        // XML de 5 puntos enlazados
+        const xmlData = `
+            <puntos>
+                <punto id="madrid">
+                    <latitud>40.4167</latitud>
+                    <longitud>-3.7037</longitud>
+                    <nombre>Pista 1: El Origen (Madrid)</nombre>
+                    <pista>Busca en la costa de Cataluña, donde el arte de Gaudí cobra vida... (Necesitas Zoom alto en Barcelona para verla)</pista>
+                    <siguiente>barcelona</siguiente>
+                </punto>
+                <punto id="barcelona">
+                    <latitud>41.3851</latitud>
+                    <longitud>2.1734</longitud>
+                    <nombre>Pista 2: La Ciudad Condal</nombre>
+                    <pista>Pon rumbo al sur, a la tierra de las Fallas y la paella... (Busca en Valencia con zoom alto)</pista>
+                    <siguiente>valencia</siguiente>
+                </punto>
+                <punto id="valencia">
+                    <latitud>39.4699</latitud>
+                    <longitud>-0.3763</longitud>
+                    <nombre>Pista 3: La Capital del Turia</nombre>
+                    <pista>Cruza la península hacia el suroeste, donde está la Giralda... (Busca en Sevilla con zoom alto)</pista>
+                    <siguiente>sevilla</siguiente>
+                </punto>
+                <punto id="sevilla">
+                    <latitud>37.3891</latitud>
+                    <longitud>-5.9845</longitud>
+                    <nombre>Pista 4: El Corazón de Andalucía</nombre>
+                    <pista>Sube todo recto hacia el norte, donde brilla el Guggenheim... (Busca en Bilbao con zoom alto)</pista>
+                    <siguiente>bilbao</siguiente>
+                </punto>
+                <punto id="bilbao">
+                    <latitud>43.2630</latitud>
+                    <longitud>-2.9350</longitud>
+                    <nombre>Pista 5: El Fin del Camino</nombre>
+                    <pista>¡Enhorabuena! Has descubierto todas las pistas escondidas.</pista>
+                    <siguiente>fin</siguiente>
+                </punto>
+            </puntos>
+        `;
+
+        // Parsear el XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlData, "application/xml");
+        const puntosXML = xmlDoc.getElementsByTagName("punto");
+
+        // Guardamos los puntos en un diccionario e instanciamos sus marcadores en memoria
+        const mapaPuntos = {};
+        for (let i = 0; i < puntosXML.length; i++) {
+            let p = puntosXML[i];
+            let id = p.getAttribute("id");
+            let lat = parseFloat(p.getElementsByTagName("latitud")[0].textContent);
+            let lon = parseFloat(p.getElementsByTagName("longitud")[0].textContent);
+            let nombre = p.getElementsByTagName("nombre")[0].textContent;
+            let pista = p.getElementsByTagName("pista")[0].textContent;
+            let siguiente = p.getElementsByTagName("siguiente")[0].textContent;
+
+            let textoPopup = `<b>${nombre}</b><br><br>${pista}`;
+            if (siguiente !== "fin") {
+                textoPopup += `<br><br><button onclick="desbloquearSiguiente('${siguiente}')">Habilitar siguiente pista</button>`;
+            }
+
+            // Creamos el marcador (pero NO lo añadimos al mapa)
+            let marcador = L.marker([lat, lon], { icon: iconoPista }).bindPopup(textoPopup);
+
+            mapaPuntos[id] = {
+                id: id,
+                coordenadas: [lat, lon],
+                siguiente: siguiente,
+                marcador: marcador
+            };
+        }
+
+        // --- LÓGICA DE JUEGO Y EXPLORACIÓN ---
+        const ZOOM_MINIMO = 10; // Zoom requerido para que aparezcan los marcadores en su zona
+
+        // Lista de IDs de puntos que el usuario ya ha "habilitado" para buscar.
+        // Empezamos únicamente con Madrid habilitado.
+        let puntosHabilitados = ["madrid"];
+
+        // Función que se ejecuta desde el botón del popup
+        window.desbloquearSiguiente = function(idSiguiente) {
+            if (idSiguiente && idSiguiente !== "fin" && mapaPuntos[idSiguiente]) {
+                // Si no estaba ya habilitado, lo añadimos a la lista de búsqueda activa
+                if (!puntosHabilitados.includes(idSiguiente)) {
+                    puntosHabilitados.push(idSiguiente);
+                    alert("¡Nueva zona habilitada! Ahora debes moverte por el mapa y buscar la siguiente pista con zoom alto.");
+                }
+                map.closePopup(); // Cerramos el popup actual para que sigan explorando
+                
+                // Ejecutamos la comprobación inmediatamente por si ya estuvieran situados en el lugar
+                actualizarVisibilidad();
+            }
+        };
+
+        // Función que evalúa la pantalla y el zoom de forma activa
+        function actualizarVisibilidad() {
+            const zoomActual = map.getZoom();
+            const limitesVisibles = map.getBounds();
+            const tieneBuenZoom = zoomActual >= ZOOM_MINIMO;
+
+            // Recorremos SOLO los puntos que el usuario ya ha desbloqueado
+            puntosHabilitados.forEach(id => {
+                const punto = mapaPuntos[id];
+                const estaEnZona = limitesVisibles.contains(punto.coordenadas);
+
+                // Si está desbloqueado, tiene el zoom correcto y está dentro de la pantalla, se muestra
+                if (tieneBuenZoom && estaEnZona) {
+                    if (!map.hasLayer(punto.marcador)) {
+                        punto.marcador.addTo(map);
+                    }
+                } else {
+                    // Si se aleja o cambia de zona, se oculta para mantener el misterio
+                    if (map.hasLayer(punto.marcador)) {
+                        map.removeLayer(punto.marcador);
+                    }
+                }
+            });
+        }
+
+        // Escuchar el movimiento del usuario por el mapa
+        map.on('moveend', actualizarVisibilidad);
+        
+        // Comprobación inicial
+        actualizarVisibilidad();
+
+    </script>
+</body>
+</html>

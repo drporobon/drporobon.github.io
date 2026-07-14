@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda del Tesoro - Exploración Activa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+</head>
+<body>
+
+    <h2>Explora el mapa para encontrar las pistas</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // 1. Inicializar el mapa
+        const map = L.map('map').setView([40.4167, -3.7037], 6); // Centrado en España
+		
+const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+
+        // 2. Definir las coordenadas del marcador y crear el objeto (sin añadirlo al mapa todavía)
+        const posicionMarcador = [40.4167, -3.7037]; // Madrid
+        const miMarcador = L.marker(posicionMarcador).bindPopup("¡Hola! Solo aparezco con zoom alto aquí.");
+
+        // Icono personalizado común para las pistas
+        const iconoPista = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/128/10109/10109952.png',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        });
+
+        // =======================================================
+        // XML ESTRUCTURADO CON RAMIFICACIONES (Árbol de decisiones)
+        // =======================================================
+        const xmlData = `
+            <puntos>
+                <punto id="madrid">
+                    <latitud>40.4167</latitud>
+                    <longitud>-3.7037</longitud>
+                    <nombre>Punto de partida (Madrid)</nombre>
+                    <pista>Tu viaje comienza aquí. ¿Prefieres buscar el frescor del norte o el calor del sur?</pista>
+                    <opciones>
+                        <opcion destino="barcelona">Ir hacia el Norte (Cataluña)</opcion>
+                        <opcion destino="sevilla">Ir hacia el Sur (Andalucía)</opcion>
+                    </opciones>
+                </punto>
+
+                <punto id="barcelona">
+                    <latitud>41.3851</latitud>
+                    <longitud>2.1734</longitud>
+                    <nombre>Camino Norte: Barcelona</nombre>
+                    <pista>Has llegado a la costa mediterránea. ¿Quieres continuar hacia las montañas del norte o seguir explorando el este?</pista>
+                    <opciones>
+                        <opcion destino="bilbao">Explorar el Norte verde (País Vasco)</opcion>
+                        <opcion destino="valencia">Bajar por la costa (Valencia)</opcion>
+                    </opciones>
+                </punto>
+
+                <punto id="sevilla">
+                    <latitud>37.3891</latitud>
+                    <longitud>-5.9845</longitud>
+                    <nombre>Camino Sur: Sevilla</nombre>
+                    <pista>El azahar te recibe en Sevilla. ¿Prefieres dirigirte hacia las playas del Atlántico o subir hacia el Levante?</pista>
+                    <opciones>
+                        <opcion destino="huelva">Playas atlánticas (Huelva)</opcion>
+                        <opcion destino="valencia">Rumbo al Levante (Valencia)</opcion>
+                    </opciones>
+                </punto>
+
+                <punto id="bilbao">
+                    <latitud>43.2630</latitud>
+                    <longitud>-2.9350</longitud>
+                    <nombre>Final Norte: Bilbao</nombre>
+                    <pista>¡Enhorabuena! Has coronado el norte industrial y gastronómico. Fin de tu viaje.</pista>
+                    <opciones></opciones>
+                </punto>
+
+                <punto id="valencia">
+                    <latitud>39.4699</latitud>
+                    <longitud>-0.3763</longitud>
+                    <nombre>Final Este: Valencia</nombre>
+                    <pista>¡Felicidades! Has llegado a las soleadas playas de Valencia, un punto de encuentro perfecto. Fin de tu viaje.</pista>
+                    <opciones></opciones>
+                </punto>
+
+                <punto id="huelva">
+                    <latitud>37.2614</latitud>
+                    <longitud>-6.9447</longitud>
+                    <nombre>Final Suroeste: Huelva</nombre>
+                    <pista>¡Increíble! Has terminado tu viaje contemplando el atardecer en las costas de Huelva. Fin de tu viaje.</pista>
+                    <opciones></opciones>
+                </punto>
+            </puntos>
+        `;
+
+        // Parsear XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlData, "application/xml");
+        const puntosXML = xmlDoc.getElementsByTagName("punto");
+
+        const mapaPuntos = {};
+
+        // Procesar puntos y construir marcadores dinámicos
+        for (let i = 0; i < puntosXML.length; i++) {
+            let p = puntosXML[i];
+            let id = p.getAttribute("id");
+            let lat = parseFloat(p.getElementsByTagName("latitud")[0].textContent);
+            let lon = parseFloat(p.getElementsByTagName("longitud")[0].textContent);
+            let nombre = p.getElementsByTagName("nombre")[0].textContent;
+            let pista = p.getElementsByTagName("pista")[0].textContent;
+
+            // Extraemos todas las opciones disponibles para este nodo
+            let opcionesXML = p.getElementsByTagName("opcion");
+            let opcionesArray = [];
+            
+            // Creamos la estructura HTML de los botones de decisión para el popup
+            let htmlBotones = "";
+            for (let j = 0; j < opcionesXML.length; j++) {
+                let destino = opcionesXML[j].getAttribute("destino");
+                let textoBoton = opcionesXML[j].textContent;
+                
+                htmlBotones += `<button class="btn-decision" onclick="habilitarDestino('${destino}')">${textoBoton}</button>`;
+            }
+
+            let textoPopup = `<b>${nombre}</b><br><br>${pista}`;
+            if (htmlBotones !== "") {
+                textoPopup += `<br><br><b>¿Qué decides hacer?</b><br>${htmlBotones}`;
+            }
+
+            // Crear el marcador físico en memoria
+            let marcador = L.marker([lat, lon], { icon: iconoPista }).bindPopup(textoPopup);
+
+            mapaPuntos[id] = {
+                id: id,
+                coordenadas: [lat, lon],
+                marcador: marcador
+            };
+        }
+
+        // --- LÓGICA DE JUEGO MULTI-CAMINO ---
+        const ZOOM_MINIMO = 10; 
+
+        // Registramos los IDs que el jugador tiene actualmente desbloqueados
+        // Se inicializa únicamente con "madrid"
+        let puntosDesbloqueados = ["madrid"];
+
+        // Función global para desbloquear un destino específico
+        window.habilitarDestino = function(idDestino) {
+            if (idDestino && mapaPuntos[idDestino]) {
+                if (!puntosDesbloqueados.includes(idDestino)) {
+                    puntosDesbloqueados.push(idDestino);
+                    alert("¡Se ha habilitado un nuevo destino en tu mapa! Desplázate y búscalo con zoom alto.");
+                }
+                map.closePopup();
+                actualizarVisibilidad();
+            }
+        };
+
+        // Función para evaluar si los puntos habilitados deben aparecer en pantalla
+        function actualizarVisibilidad() {
+            const zoomActual = map.getZoom();
+            const limitesVisibles = map.getBounds();
+            const tieneBuenZoom = zoomActual >= ZOOM_MINIMO;
+
+            puntosDesbloqueados.forEach(id => {
+                const punto = mapaPuntos[id];
+                const estaEnZona = limitesVisibles.contains(punto.coordenadas);
+
+                if (tieneBuenZoom && estaEnZona) {
+                    if (!map.hasLayer(punto.marcador)) {
+                        punto.marcador.addTo(map);
+                    }
+                } else {
+                    if (map.hasLayer(punto.marcador)) {
+                        map.removeLayer(punto.marcador);
+                    }
+                }
+            });
+        }
+
+        // Escuchas del mapa
+        map.on('moveend', actualizarVisibilidad);
+        
+        // Carga inicial
+        actualizarVisibilidad();
+
+    </script>
+</body>
+</html>
