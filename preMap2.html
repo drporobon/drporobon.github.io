@@ -40,6 +40,12 @@
 
 const contenedor = document.getElementById('resultado');
 
+
+
+
+
+
+	
 function loadXML(url) {
 fetch(url)
 	.then(respuesta => {
@@ -68,20 +74,7 @@ fetch(url)
 		}
 	}
 		
-    const xmlDoc2 = new DOMParser().parseFromString('mapas.xml', 'text/xml');
-    const items2 = xmlDoc2.getElementsByTagName('mapa');
-	  alert(items2.length);
-	let idMap = 0;
-	let redireccion = '';
-	for (let i = 0; i < items2.length; i++) {
-		const mapaId = items2[i].getAttribute('id');
-		const tipoMapa = items2[i].getAttribute('tipoMapa');
-		alert(mapaId+"--"+tipoMapa);
-		if(mapaId===idURL){
-			idMap = mapaId;
-			redireccion = tipoMapa;		
-		}
-	}
+    loadXML2('mapas.xml');
 
 	// Ahora recorremos el Map y creamos la lista
 	const ul = document.getElementById("lista-tipos");
@@ -105,6 +98,37 @@ fetch(url)
 	  p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
       contenedor.appendChild(p);
     }
+				
+	})
+	.catch(error => {
+		console.error("Hubo un problema al leer el XML externo:", error);
+	});
+}
+
+
+	
+function loadXML2(url) {
+fetch(url)
+	.then(respuesta => {
+		if (!respuesta.ok) throw new Error("Error al cargar el archivo");
+		return respuesta.text(); // Pasamos el contenido a texto
+	})
+	.then(xmlString => {
+		
+    const xmlDoc2 = new DOMParser().parseFromString(xmlString, 'text/xml');
+    const items2 = xmlDoc2.getElementsByTagName('mapa');
+	  alert(items2.length);
+	let idMap = 0;
+	let redireccion = '';
+	for (let i = 0; i < items2.length; i++) {
+		const mapaId = items2[i].getAttribute('id');
+		const tipoMapa = items2[i].getAttribute('tipoMapa');
+		alert(mapaId+"--"+tipoMapa);
+		if(mapaId===idURL){
+			idMap = mapaId;
+			redireccion = tipoMapa;		
+		}
+	}
 				
 	})
 	.catch(error => {
