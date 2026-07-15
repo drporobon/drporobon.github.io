@@ -36,7 +36,6 @@
 	const params = new URLSearchParams(window.location.search);	
 	let idURL = params.get('id');
 
-
 const contenedor = document.getElementById('resultado');
 
 function loadXML(url) {
@@ -139,8 +138,6 @@ setTimeout(() => {
 
     // Obtener los nodos <punto>
     const puntos = xmlDoc.getElementsByTagName('punto');
-    const contenedor = document.getElementById('resultado');
-
     
 	const idTipoElements = xmlDoc.getElementsByTagName("idTipo");
 	const tipoElements = xmlDoc.getElementsByTagName("tipo");
