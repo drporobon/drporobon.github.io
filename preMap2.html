@@ -65,7 +65,7 @@ fetch(url)
 		}
 	}
 		
-    const xmlDoc2 = new DOMParser().parseFromString(xmlString, 'text/xml');
+    const xmlDoc2 = new DOMParser().parseFromString('mapas.xml', 'text/xml');
     const items2 = xmlDoc2.getElementsByTagName('punto');
 	let idMap = 0;
 	let redireccion = '';
