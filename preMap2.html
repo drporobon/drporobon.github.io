@@ -59,6 +59,7 @@ fetch(url)
 	for (let i = 0; i < idTipoElements.length; i++) {
 		let idTipo = idTipoElements[i].textContent.trim();
 		let tipo = tipoElements[i].textContent.trim();
+		alert(idTipo+"--"+tipo);
 		// Guardamos la relación en el Map (si ya existe, se sobrescribe, pero como es el mismo valor no hay problema)
 		if (!mapaTipos.has(idTipo)) {
 			mapaTipos.set(idTipo, tipo);
