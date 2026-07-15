@@ -111,12 +111,12 @@ fetch(url)
 setTimeout(() => {
   
 	if(idURL==10)
-		xmlDoc = parser.parseFromString(xmlData2, "application/xml");
+		loadXML('preMap2.xml');
 	if(idURL==11)
-		xmlDoc = parser.parseFromString(xmlData21, "application/xml");
+		loadXML('preMap2.xml');
 	
 	if(idURL==50)
-		xmlDoc = parser.parseFromString(xmlData3, "application/xml");
+		loadXML('preMap4.xml');
   
 	loadXML('preMap1.xml');
 }, 300);
