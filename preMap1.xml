@@ -1,1 +1,37 @@
-asd
+<puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Plaza</tipo>
+          <texto>Plaza Cervantes</texto>
+          <sub-texto>Este es el texto descriptivo de la plaza Cervantes</sub-texto>
+        </punto>
+		<punto>
+          <id>2</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Plaza</tipo>
+          <texto>Plaza de los Santos Niños</texto>
+          <sub-texto>Este es el texto descriptivo de la Plaza de los Santos Niños</sub-texto>
+        </punto>
+		<punto>
+          <id>3</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Iglesia</tipo>
+          <texto>Catedral Magistral</texto>
+          <sub-texto>Este es el texto descriptivo de la Catedral Magistral</sub-texto>
+        </punto>
+		<punto>
+          <id>4</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Edificio</tipo>
+          <texto>Fachada Universidad</texto>
+          <sub-texto>Este es el texto descriptivo de la Fachada de la Universidad</sub-texto>
+        </punto>
+		<punto>
+          <id>5</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Calle/Paseo/Boulevar</tipo>
+          <texto>Calle Mayor</texto>
+          <sub-texto>Este es el texto descriptivo de la Calle Mayor</sub-texto>
+        </punto>
+      </puntos>
