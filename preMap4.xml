@@ -1,0 +1,60 @@
+      <puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Gastronomía</tipo>
+          <texto>Haimas Árabes</texto>
+        </punto>
+        <punto>
+          <id>2</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Pulperías y Queserías</texto>
+        </punto>
+        <punto>
+          <id>3</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Dulces y Garrapiñadas</texto>
+        </punto>
+        <punto>
+          <id>4</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Artesanía</tipo>
+          <texto>Marroquinería y Cuero</texto>
+        </punto>
+        <punto>
+          <id>5</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Alimentación para Llevar</tipo>
+          <texto>Miel y Jalea Real</texto>
+        </punto>
+        <punto>
+          <id>6</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Talleres de Oficios Antiguos</tipo>
+          <texto>El Herrero / Forja</texto>
+        </punto>
+		<!--
+Gastronomía
+	Grandes Tabernas y Mesones: 
+	Haimas Árabes: 
+	Pulperías y Queserías: 
+	Dulces y Garrapiñadas:
+Artesanía
+	Marroquinería y Cuero: 
+	Joyas y Bisutería: 
+	Juguetes de Madera:
+	Cosmética e Higiene Natural:
+Alimentación para Llevar
+	Herbolarios y Especias:
+	Miel y Jalea Real: 
+	Conservas y Encurtidos:
+	Licores Tradicionales:
+Talleres de Oficios Antiguos
+	El Herrero / Forja: 
+	El Cantero: 
+	Sopladores de Vidrio o Alfareros: 
+	Escribanos y Cetrería:
+		-->
+      </puntos>
