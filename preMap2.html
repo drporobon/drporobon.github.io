@@ -69,10 +69,10 @@ fetch(url)
     const items2 = xmlDoc2.getElementsByTagName('mapa');
 	let idMap = 0;
 	let redireccion = '';
-	  alert(items2);
+	  alert(items2.length);
 	for (let i = 0; i < items2.length; i++) {
-		let mapaId = items2[i].getAttribute('id');
-		let tipoMapa = items2[i].getAttribute('tipoMapa');
+		const mapaId = items2[i].getAttribute('id');
+		const tipoMapa = items2[i].getAttribute('tipoMapa');
 		alert(mapaId+"--"+tipoMapa);
 		if(mapaId===idURL){
 			idMap = mapaId;
