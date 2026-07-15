@@ -22,6 +22,7 @@
   
   
 <script type="text/xml" id="mapas">
+	<!--
   <mapas>
     <mapa id="1" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Puntos de Interés" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
     <mapa id="2" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Juntas de Distrito" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
@@ -29,6 +30,7 @@
     <mapa id="10" tipoMapa="paginaMapa4" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Centro Comercial Alcalá Magna" boundsLat1="40.49383" boundsLng1="-3.36174" boundsLat2="40.49642" boundsLng2="-3.35633"/>
     <mapa id="50" tipoMapa="paginaMapaTurismo" nivel1="ES" nivel2="Com.Madrid" nivel3="Alcalá de Henares" nivel4="Mercado Cervantino" boundsLat1="40.468505717080504" boundsLng1="-3.3924260056572946" boundsLat2="40.51488636654535" boundsLng2="-3.3433270467341685"/>
   </mapas>
+	-->
 </script>
 
 <script>
@@ -49,6 +51,7 @@ fetch(url)
 	// Parseamos el XML exactamente como lo hacías antes
 		const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
 		const items = xmlDoc.getElementsByTagName('punto');
+	  alert(xmlString+"\n"+items.length);
 
     let puntos = xmlDoc.getElementsByTagName('punto');
     
@@ -67,9 +70,9 @@ fetch(url)
 		
     const xmlDoc2 = new DOMParser().parseFromString('mapas.xml', 'text/xml');
     const items2 = xmlDoc2.getElementsByTagName('mapa');
+	  alert(items2.length);
 	let idMap = 0;
 	let redireccion = '';
-	  alert(items2.length);
 	for (let i = 0; i < items2.length; i++) {
 		const mapaId = items2[i].getAttribute('id');
 		const tipoMapa = items2[i].getAttribute('tipoMapa');
