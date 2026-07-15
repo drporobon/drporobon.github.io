@@ -64,7 +64,43 @@ fetch(url)
 			mapaTipos.set(idTipo, tipo);
 		}
 	}
-alert(mapaTipos);
+		
+    const xmlDoc2 = new DOMParser().parseFromString(xmlString, 'text/xml');
+    const items2 = xmlDoc2.getElementsByTagName('punto');
+	let idMap = 0;
+	let redireccion = '';
+	  
+	for (let i = 0; i < items2.length; i++) {
+		let mapaId = items2[i].getAttribute('id');
+		let tipoMapa = items2[i].getAttribute('tipoMapa');
+		if(mapaId===idURL){
+			idMap = mapaId;
+			redireccion = tipoMapa;		
+		}
+	}
+
+	// Ahora recorremos el Map y creamos la lista
+	const ul = document.getElementById("lista-tipos");
+	mapaTipos.forEach((tipo, idTipo) => {
+		const li = document.createElement("li");
+		//li.textContent = `<a href="paginaMapa4.html?id=${idTipo}">${tipo}</a>`;
+		li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
+		ul.appendChild(li);
+	});
+
+    for (let i = 0; i < puntos.length; i++) {
+      const id = puntos[i].getElementsByTagName('id')[0].textContent;
+      const idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
+      const tipo = puntos[i].getElementsByTagName('tipo')[0].textContent;
+      const texto = puntos[i].getElementsByTagName('texto')[0].textContent;
+
+      const p = document.createElement('p');
+      //p.textContent = `ID: ${id} - Texto: ${texto}`;
+      //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa.html?id=${id}">Mapa</a>`;+
+	  //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa4.html?id=${id}">Mapa4</a>`;
+	  p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
+      contenedor.appendChild(p);
+    }
 				
 	})
 	.catch(error => {
