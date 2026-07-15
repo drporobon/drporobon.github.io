@@ -118,15 +118,18 @@ fetch(url)
 
 setTimeout(() => {
   
-	if(idURL==10)
-		loadXML('preMap2.xml');
-	if(idURL==11)
-		loadXML('preMap2.xml');
-	
-	if(idURL==50)
-		loadXML('preMap4.xml');
-  
 	loadXML('preMap1.xml');
+	
+	if(idURL==10){
+		loadXML('preMap2.xml');
+	}
+	if(idURL==11){
+		loadXML('preMap2.xml');
+	}	
+	if(idURL==50){
+		loadXML('preMap4.xml');
+	}
+  
 }, 300);
 
 
