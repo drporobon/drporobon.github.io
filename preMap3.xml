@@ -1,0 +1,38 @@
+<puntos>
+        <punto>
+          <id>1</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Gastronomía</tipo>
+          <texto>Alcampo</texto>
+        </punto>
+        <punto>
+          <id>2</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Pulperías y Queserías</texto>
+        </punto>
+        <punto>
+          <id>3</id>
+		  <idTipo>1</idTipo>
+		  <tipo>Alimentación Especializada</tipo>
+          <texto>Dulces y Garrapiñadas</texto>
+        </punto>
+        <punto>
+          <id>4</id>
+		  <idTipo>2</idTipo>
+		  <tipo>Muebles</tipo>
+          <texto>Muebles BOOM</texto>
+        </punto>
+        <punto>
+          <id>5</id>
+		  <idTipo>3</idTipo>
+		  <tipo>Alimentación para Llevar</tipo>
+          <texto>Farmacia</texto>
+        </punto>
+        <punto>
+          <id>6</id>
+		  <idTipo>4</idTipo>
+		  <tipo>Electronica</tipo>
+          <texto>GAME</texto>
+        </punto>
+      </puntos>
