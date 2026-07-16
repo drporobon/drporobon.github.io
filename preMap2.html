@@ -67,22 +67,9 @@ fetch(url)
 			mapaTipos.set(idTipo, tipo);
 		}
 	}
-		alert();
+		alert(1);
     loadXML2('mapas.xml');
-
-    for (let i = 0; i < puntos.length; i++) {
-      const id = puntos[i].getElementsByTagName('id')[0].textContent;
-      const idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
-      const tipo = puntos[i].getElementsByTagName('tipo')[0].textContent;
-      const texto = puntos[i].getElementsByTagName('texto')[0].textContent;
-
-      const p = document.createElement('p');
-      //p.textContent = `ID: ${id} - Texto: ${texto}`;
-      //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa.html?id=${id}">Mapa</a>`;+
-	  //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa4.html?id=${id}">Mapa4</a>`;
-	  p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
-      contenedor.appendChild(p);
-    }
+		alert(2);
 				
 	})
 	.catch(error => {
@@ -123,6 +110,20 @@ fetch(url)
 		li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
 		ul.appendChild(li);
 	});
+
+    for (let i = 0; i < puntos.length; i++) {
+      const id = puntos[i].getElementsByTagName('id')[0].textContent;
+      const idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
+      const tipo = puntos[i].getElementsByTagName('tipo')[0].textContent;
+      const texto = puntos[i].getElementsByTagName('texto')[0].textContent;
+
+      const p = document.createElement('p');
+      //p.textContent = `ID: ${id} - Texto: ${texto}`;
+      //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa.html?id=${id}">Mapa</a>`;+
+	  //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa4.html?id=${id}">Mapa4</a>`;
+	  p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
+      contenedor.appendChild(p);
+    }
 		
 	})
 	.catch(error => {
