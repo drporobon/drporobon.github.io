@@ -40,11 +40,6 @@
 
 const contenedor = document.getElementById('resultado');
 
-
-
-
-
-
 	
 function loadXML(url) {
 fetch(url)
@@ -57,7 +52,6 @@ fetch(url)
 	// Parseamos el XML exactamente como lo hacías antes
 		const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
 		const items = xmlDoc.getElementsByTagName('punto');
-	  alert(xmlString+"\n"+items.length);
 
     let puntos = xmlDoc.getElementsByTagName('punto');
     
@@ -73,7 +67,7 @@ fetch(url)
 			mapaTipos.set(idTipo, tipo);
 		}
 	}
-		
+		alert();
     loadXML2('mapas.xml');
 
 	// Ahora recorremos el Map y creamos la lista
@@ -123,7 +117,6 @@ fetch(url)
 	for (let i = 0; i < items2.length; i++) {
 		const mapaId = items2[i].getAttribute('id');
 		const tipoMapa = items2[i].getAttribute('tipoMapa');
-		alert(mapaId+"--"+tipoMapa);
 		if(mapaId===idURL){
 			idMap = mapaId;
 			redireccion = tipoMapa;		
@@ -138,16 +131,19 @@ fetch(url)
 
 setTimeout(() => {
   
-	loadXML('preMap1.xml');
 	
 	if(idURL==10){
 		loadXML('preMap2.xml');
-	}
-	if(idURL==11){
-		loadXML('preMap2.xml');
-	}	
-	if(idURL==50){
-		loadXML('preMap4.xml');
+	}else{
+		if(idURL==11){
+			loadXML('preMap2.xml');
+		}else{
+			if(idURL==50){
+				loadXML('preMap4.xml');
+			}else{
+				loadXML('preMap1.xml');
+			}
+		}
 	}
   
 }, 300);
