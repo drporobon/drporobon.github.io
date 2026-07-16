@@ -54,9 +54,7 @@ fetch(url)
 		// Parseamos el XML exactamente como lo hacías antes
 		const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
 		const items = xmlDoc.getElementsByTagName('punto');
-	
-	    let puntos = xmlDoc.getElementsByTagName('punto');
-	    
+		    
 		let idTipoElements = xmlDoc.getElementsByTagName("idTipo");
 		let tipoElements = xmlDoc.getElementsByTagName("tipo");
 		// Crear un Set para guardar solo los valores únicos
@@ -110,7 +108,10 @@ fetch(url)
 			li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
 			ul.appendChild(li);
 		});
-	alert();
+		
+		let xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+	    let puntos = xmlDoc.getElementsByTagName('punto');
+		alert(puntos.length);
 	    for (let i = 0; i < puntos.length; i++) {
 	      	let id = puntos[i].getElementsByTagName('id')[0].textContent;
 	      	let idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
