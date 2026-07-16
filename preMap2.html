@@ -70,15 +70,6 @@ fetch(url)
 		alert();
     loadXML2('mapas.xml');
 
-	// Ahora recorremos el Map y creamos la lista
-	const ul = document.getElementById("lista-tipos");
-	mapaTipos.forEach((tipo, idTipo) => {
-		const li = document.createElement("li");
-		//li.textContent = `<a href="paginaMapa4.html?id=${idTipo}">${tipo}</a>`;
-		li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
-		ul.appendChild(li);
-	});
-
     for (let i = 0; i < puntos.length; i++) {
       const id = puntos[i].getElementsByTagName('id')[0].textContent;
       const idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
@@ -122,7 +113,17 @@ fetch(url)
 			redireccion = tipoMapa;		
 		}
 	}
-				
+		
+
+	// Ahora recorremos el Map y creamos la lista
+	const ul = document.getElementById("lista-tipos");
+	mapaTipos.forEach((tipo, idTipo) => {
+		const li = document.createElement("li");
+		//li.textContent = `<a href="paginaMapa4.html?id=${idTipo}">${tipo}</a>`;
+		li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
+		ul.appendChild(li);
+	});
+		
 	})
 	.catch(error => {
 		console.error("Hubo un problema al leer el XML externo:", error);
