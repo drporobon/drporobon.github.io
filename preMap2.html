@@ -40,6 +40,8 @@
 
 const contenedor = document.getElementById('resultado');
 
+	// Crear un Set para guardar solo los valores únicos
+	let mapaTipos = new Map();
 	
 function loadXML(url) {
 fetch(url)
@@ -58,7 +60,7 @@ fetch(url)
 	let idTipoElements = xmlDoc.getElementsByTagName("idTipo");
 	let tipoElements = xmlDoc.getElementsByTagName("tipo");
 	// Crear un Set para guardar solo los valores únicos
-	let mapaTipos = new Map();
+	//let mapaTipos = new Map();
 	for (let i = 0; i < idTipoElements.length; i++) {
 		let idTipo = idTipoElements[i].textContent.trim();
 		let tipo = tipoElements[i].textContent.trim();
