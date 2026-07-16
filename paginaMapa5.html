@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa minimalista con XML y botones</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #f5f5f5;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Caja de botones dentro del mapa */
+    .map-buttons {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Botones base */
+    .map-buttons button {
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #e0e0e0;
+      color: #333;
+      transition: all 0.2s ease;
+    }
+
+    /* Hover suave */
+    .map-buttons button:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Botón activo */
+    .map-buttons button.active {
+      background-color: #d62828;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Iconos emoji */
+    .wc-icon, .cafe-icon {
+      font-size: 22px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Animación CSS para parpadeo */
+    .blinking-circle {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+	
+    .leyenda {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script type="text/xml" id="p1">
+    <markers>
+      <marker lat="40.49573" lng="-3.36006" type="p1" id="30" tipoTienda="7" name="Primark" info="Hogar / Regalos"/>
+      <marker lat="40.49573" lng="-3.36006" type="p1" id="44" tipoTienda="8" name="Primark" info="Moda"/>	  
+      <marker lat="40.49564" lng="-3.36011" type="p1" id="38" tipoTienda="8" name="Koröshi" info="Moda"/>
+	  <marker lat="40.49558" lng="-3.35999" type="p1" id="52" tipoTienda="8" name="Zara" info="Moda"/>
+	  <!--<marker lat="40.49552" lng="-3.35997" type="p1" id="38" tipoTienda="8" name="P2" info="Moda"/>-->
+	  <marker lat="40.49546" lng="-3.35996" type="p1" id="45" tipoTienda="8" name="Pull&amp;Bear" info="Moda"/>
+	  <!--<marker lat="40.49540" lng="-3.35994" type="p1" id="38" tipoTienda="8" name="P4" info="Moda"/>-->
+	  <!--<marker lat="40.49534" lng="-3.35993" type="p1" id="38" tipoTienda="8" name="P5" info="Moda"/>-->
+	  <!--<marker lat="40.49528" lng="-3.35991" type="p1" id="38" tipoTienda="8" name="P6" info="Moda"/>-->
+	  <marker lat="40.49522" lng="-3.35989" type="p1" id="69" tipoTienda="11" name="Claire's" info="Salud / Belleza"/>
+	  <marker lat="40.49522" lng="-3.35989" type="p1" id="12" tipoTienda="4" name="Claire's" info="Complementos"/>
+	  <!--<marker lat="40.49516" lng="-3.35987" type="p1" id="38" tipoTienda="8" name="P8" info="Moda"/>-->
+	  <marker lat="40.49510" lng="-3.35985" type="p1" id="33" tipoTienda="8" name="Bershka" info="Moda"/>
+	  <!--<marker lat="40.49504" lng="-3.35982" type="p1" id="38" tipoTienda="8" name="P10" info="Moda"/>-->
+	  <marker lat="40.49499" lng="-3.35979" type="p1" id="48" tipoTienda="8" name="Springfield" info="Moda"/>
+	  <!--<marker lat="40.49494" lng="-3.35974" type="p1" id="38" tipoTienda="8" name="P12" info="Moda"/>-->
+	  <marker lat="40.49489" lng="-3.35970" type="p1" id="7" tipoTienda="3" name="Deichman" info="Calzado"/>
+	  <marker lat="40.49489" lng="-3.35970" type="p1" id="13" tipoTienda="4" name="Deichman" info="Complementos"/>
+	  <marker lat="40.49484" lng="-3.35965" type="p1" id="101" tipoTienda="10" name="Goconut" info="Restauración"/>
+	  <marker lat="40.49479" lng="-3.35960" type="p1" id="86" tipoTienda="12" name="Cex" info="Servicios"/>
+	  <marker lat="40.49474" lng="-3.35955" type="p1" id="75" tipoTienda="11" name="Macho Barbershops" info="Salud / Belleza"/>
+	  <marker lat="40.49470" lng="-3.35949" type="p1" id="31" tipoTienda="7" name="Tramas+" info="Hogar / Regalos"/>
+	  <marker lat="40.49466" lng="-3.35943" type="p1" id="65" tipoTienda="10" name="Ribs" info="Restauración"/>
+	  <!--<marker lat="40.49463" lng="-3.35937" type="p1" id="38" tipoTienda="10" name="P19" info="Moda"/>-->
+	  <marker lat="40.49459" lng="-3.35931" type="p1" id="38" tipoTienda="8" name="P20" info="Moda"/>
+	  <!--<marker lat="40.49456" lng="-3.35924" type="p1" id="38" tipoTienda="8" name="P21" info="Moda"/>-->
+	  <!--<marker lat="40.49453" lng="-3.35917" type="p1" id="38" tipoTienda="8" name="P22" info="Moda"/>-->
+	  <marker lat="40.49450" lng="-3.35910" type="p1" id="62" tipoTienda="10" name="Pappiza" info="Restauración"/>
+	  <marker lat="40.49447" lng="-3.35903" type="p1" id="59" tipoTienda="10" name="Kebab" info="Restauración"/>
+	  <marker lat="40.49444" lng="-3.35896" type="p1" id="64" tipoTienda="10" name="Pure&amp;Bowl" info="Restauración"/>
+	  <marker lat="40.49442" lng="-3.35889" type="p1" id="57" tipoTienda="10" name="100 Montaditos" info="Restauración"/>
+	  <marker lat="40.49440" lng="-3.35872" type="p1" id="58" tipoTienda="10" name="Canel Rolls" info="Restauración"/>
+	  <marker lat="40.49585" lng="-3.35981" type="p1" id="61" tipoTienda="10" name="Loops&amp;Coffe" info="Restauración"/>
+	  <marker lat="40.49583" lng="-3.35973" type="p1" id="60" tipoTienda="10" name="Llao llao" info="Restauración"/>
+	  <marker lat="40.49579" lng="-3.35967" type="p1" id="68" tipoTienda="11" name="Beaty Boutique" info="Salud / Belleza"/>
+	  <marker lat="40.49573" lng="-3.35967" type="p1" id="38" tipoTienda="8" name="TimeRoad" info="Moda"/>
+	  <marker lat="40.49567" lng="-3.35970" type="p1" id="38" tipoTienda="8" name="Unico" info="Moda"/>
+	  <marker lat="40.49561" lng="-3.35972" type="p1" id="38" tipoTienda="8" name="Sumplemento" info="Moda"/>
+	  <!--<marker lat="40.49560" lng="-3.35981" type="p1" id="38" tipoTienda="8" name="P101" info="Moda"/>-->
+	  <marker lat="40.49555" lng="-3.35977" type="p1" id="51" tipoTienda="8" name="Women's Secret" info="Moda"/>
+	  <marker lat="40.49548" lng="-3.35977" type="p1" id="102" tipoTienda="10" name="Starbucks" info="Restauración"/>
+	  <marker lat="40.49542" lng="-3.35975" type="p1" id="76" tipoTienda="11" name="Mazuelas" info="Salud / Belleza"/>
+	  <marker lat="40.49536" lng="-3.35974" type="p1" id="38" tipoTienda="8" name="P105" info="Moda"/>
+	  <marker lat="40.49530" lng="-3.35973" type="p1" id="38" tipoTienda="8" name="P106" info="Moda"/>
+	  <marker lat="40.49524" lng="-3.35971" type="p1" id="38" tipoTienda="8" name="P107" info="Moda"/>
+	  <marker lat="40.49518" lng="-3.35969" type="p1" id="38" tipoTienda="8" name="P108" info="Moda"/>
+	  <marker lat="40.49512" lng="-3.35967" type="p1" id="38" tipoTienda="8" name="P109" info="Moda"/>
+	  <marker lat="40.49506" lng="-3.35964" type="p1" id="38" tipoTienda="8" name="P110" info="Moda"/>
+	  <marker lat="40.49501" lng="-3.35960" type="p1" id="38" tipoTienda="8" name="P111" info="Moda"/>
+	  <marker lat="40.49496" lng="-3.35957" type="p1" id="38" tipoTienda="8" name="P112" info="Moda"/>
+	  <marker lat="40.49491" lng="-3.35953" type="p1" id="38" tipoTienda="8" name="P113" info="Moda"/>
+	  <marker lat="40.49486" lng="-3.35947" type="p1" id="38" tipoTienda="8" name="P114" info="Moda"/>
+	  <marker lat="40.49481" lng="-3.35942" type="p1" id="38" tipoTienda="8" name="P115" info="Moda"/>
+	  <marker lat="40.49477" lng="-3.35936" type="p1" id="38" tipoTienda="8" name="P116" info="Moda"/>
+	  <!--<marker lat="40.49473" lng="-3.35932" type="p1" id="38" tipoTienda="8" name="P117" info="Moda"/>-->
+	  <marker lat="40.49469" lng="-3.35920" type="p1" id="15" tipoTienda="4" name="Lefties" info="Moda"/>
+	  <marker lat="40.49469" lng="-3.35920" type="p1" id="39" tipoTienda="8" name="Lefties" info="Moda"/>
+	  <!--<marker lat="40.49466" lng="-3.35911" type="p1" id="38" tipoTienda="8" name="P119" info="Moda"/>-->
+	  <marker lat="40.49463" lng="-3.35904" type="p1" id="67" tipoTienda="10" name="Vips" info="Restauración"/>
+	  <!--<marker lat="40.49460" lng="-3.35907" type="p1" id="38" tipoTienda="8" name="P121" info="Moda"/>-->
+	  <marker lat="40.49457" lng="-3.35890" type="p1" id="66" tipoTienda="10" name="Tgb" info="Restauración"/>
+	  <marker lat="40.49454" lng="-3.35880" type="p1" id="63" tipoTienda="10" name="Pomodoro" info="Restauración"/>
+	  <marker lat="40.49451" lng="-3.35870" type="p1" id="100" tipoTienda="10" name="Kfc" info="Restauración"/>
+	  <marker lat="40.49446" lng="-3.35854" type="p1" id="89" tipoTienda="12" name="Forus" info="Servicios"/>
+	  <!--
+      <marker lat="40.49571" lng="-3.36005" type="p1" id="1" tipoTienda="1" name="Tienda1" info="Texto de tienda 1."/>
+      <marker lat="40.49559" lng="-3.36002" type="p1" id="2" tipoTienda="1" name="Tienda2" info="Texto de tienda 2."/>
+      <marker lat="40.49562" lng="-3.35977" type="p1" id="3" tipoTienda="2" name="Tienda3" info="Texto de tienda 3."/>
+      <marker lat="40.49543" lng="-3.35995" type="p1" id="4" tipoTienda="3" name="Tienda4" info="Texto de tienda 4."/>
+      <marker lat="40.49542" lng="-3.35970" type="p1" id="5" tipoTienda="1" name="Tienda5" info="Texto de tienda 5."/>
+	  -->
+    </markers>
+  </script>
+
+  <script type="text/xml" id="p0">
+    <markers>
+      <marker lat="40.49573" lng="-3.36005" type="p0" id="30" tipoTienda="7" name="Primark" info="Hogar / Regalos"/>
+      <marker lat="40.49573" lng="-3.36005" type="p0" id="44" tipoTienda="8" name="Primark" info="Moda"/>	  
+	  <marker lat="40.49558" lng="-3.35999" type="p0" id="52" tipoTienda="8" name="Zara" info="Moda"/>
+	  
+	  <!--  
+      <marker lat="40.49564" lng="-3.36011" type="p0" id="38" tipoTienda="8" name="Koröshi" info="Moda"/>
+	  <marker lat="40.49558" lng="-3.35999" type="p0" id="52" tipoTienda="8" name="Zara" info="Moda"/>
+	  <marker lat="40.49552" lng="-3.35997" type="p0" id="38" tipoTienda="8" name="P2" info="Moda"/>
+	  <marker lat="40.49546" lng="-3.35996" type="p0" id="45" tipoTienda="8" name="Pull&amp;Bear" info="Moda"/>
+	  <marker lat="40.49540" lng="-3.35994" type="p0" id="38" tipoTienda="8" name="P4" info="Moda"/>
+	  <marker lat="40.49534" lng="-3.35993" type="p0" id="38" tipoTienda="8" name="P5" info="Moda"/>
+	  <marker lat="40.49528" lng="-3.35991" type="p0" id="38" tipoTienda="8" name="P6" info="Moda"/>
+	  -->
+	  <!--<marker lat="40.49522" lng="-3.35989" type="p0" id="12" tipoTienda="4" name="Claire's" info="Complementos"/>-->
+	  <marker lat="40.49522" lng="-3.35989" type="p0" id="7" tipoTienda="3" name="Deichman" info="Calzado"/>
+	  <marker lat="40.49522" lng="-3.35989" type="p0" id="13" tipoTienda="4" name="Deichman" info="Complementos"/>
+	  <!--<marker lat="40.49516" lng="-3.35987" type="p0" id="33" tipoTienda="8" name="Bershka" info="Moda"/>-->
+	  <marker lat="40.49510" lng="-3.35985" type="p0" id="8" tipoTienda="3" name="JD Sports" info="Calzado"/>
+	  <marker lat="40.49510" lng="-3.35985" type="p0" id="37" tipoTienda="8" name="JD Sports" info="Moda"/>
+	  -->
+	  <!--<marker lat="40.49504" lng="-3.35982" type="p0" id="48" tipoTienda="8" name="Springfield" info="Moda"/>-->
+	  <!--<marker lat="40.49499" lng="-3.35979" type="p0" id="38" tipoTienda="8" name="P12" info="Moda"/>-->
+	  <marker lat="40.49494" lng="-3.35974" type="p0" id="81" tipoTienda="1" name="Primor" info="Salud / Belleza"/>
+	  <!--
+	  <marker lat="40.49489" lng="-3.35970" type="p0" id="101" tipoTienda="10" name="Goconut" info="Restauración"/>
+	  -->
+	  <marker lat="40.49484" lng="-3.35965" type="p0" id="73" tipoTienda="1" name="Jean Louis David" info="Salud / Belleza"/>
+	  <marker lat="40.49479" lng="-3.35960" type="p0" id="46" tipoTienda="8" name="Punt Roma" info="Moda"/>	  
+	  <marker lat="40.49474" lng="-3.35955" type="p0" id="5" tipoTienda="3" name="Botticelli" info="Calzado"/>
+	  <marker lat="40.49470" lng="-3.35949" type="p0" id="16" tipoTienda="4" name="Misako" info="Complementos"/>
+	  <marker lat="40.49466" lng="-3.35943" type="p0" id="18" tipoTienda="4" name="Parfois" info="Complementos"/>
+	  <marker lat="40.49463" lng="-3.35937" type="p0" id="26" tipoTienda="5" name="Yoigo" info="Electrónica / Móvil"/>
+	  <marker lat="40.49459" lng="-3.35931" type="p0" id="91" tipoTienda="12" name="Loterias y Apuestas del Estado" info="Servicios"/>
+	  <!--
+	  <marker lat="40.49456" lng="-3.35924" type="p0" id="38" tipoTienda="8" name="P21" info="Moda"/>
+	  <marker lat="40.49453" lng="-3.35917" type="p0" id="38" tipoTienda="8" name="P22" info="Moda"/>
+	  -->
+	  <marker lat="40.49450" lng="-3.35910" type="p0" id="23" tipoTienda="5" name="Movistar" info="Electrónica / Móvil"/>
+	  <marker lat="40.49447" lng="-3.35903" type="p0" id="25" tipoTienda="5" name="Vodafone" info="Electrónica / Móvil"/>	  
+	  <marker lat="40.49444" lng="-3.35896" type="p0" id="3" tipoTienda="2" name="Herbs&amp;Co. Ecotienda" info="Alimentación Especializada"/>	  
+	  <marker lat="40.49442" lng="-3.35889" type="p0" id="85" tipoTienda="12" name="Casa Móvil" info="Servicios"/> 
+	  <marker lat="40.49440" lng="-3.35872" type="p0" id="103" tipoTienda="10" name="Bombón Boss" info="Restauración"/>
+	  <!--
+	  <marker lat="40.49573" lng="-3.35969" type="p0" id="38" tipoTienda="8" name="P100" info="Moda"/>
+	  <marker lat="40.49567" lng="-3.35970" type="p0" id="38" tipoTienda="8" name="P100-1" info="Moda"/>
+	  <marker lat="40.49561" lng="-3.35973" type="p0" id="38" tipoTienda="8" name="P100-2" info="Moda"/>
+	  <marker lat="40.49560" lng="-3.35981" type="p0" id="38" tipoTienda="8" name="P101" info="Moda"/>
+	  <marker lat="40.49554" lng="-3.35979" type="p0" id="38" tipoTienda="8" name="P102" info="Moda"/>
+	  <marker lat="40.49548" lng="-3.35977" type="p0" id="38" tipoTienda="8" name="P103" info="Moda"/>
+	  <marker lat="40.49542" lng="-3.35975" type="p0" id="38" tipoTienda="8" name="P104" info="Moda"/>
+	  <marker lat="40.49536" lng="-3.35974" type="p0" id="38" tipoTienda="8" name="P105" info="Moda"/>
+	  <marker lat="40.49530" lng="-3.35973" type="p0" id="38" tipoTienda="8" name="P106" info="Moda"/>
+	  <marker lat="40.49524" lng="-3.35971" type="p0" id="38" tipoTienda="8" name="P107" info="Moda"/>
+	  <marker lat="40.49518" lng="-3.35969" type="p0" id="38" tipoTienda="8" name="P108" info="Moda"/>
+	  <marker lat="40.49512" lng="-3.35967" type="p0" id="38" tipoTienda="8" name="P109" info="Moda"/>
+	  <marker lat="40.49506" lng="-3.35964" type="p0" id="38" tipoTienda="8" name="P110" info="Moda"/>
+	  <marker lat="40.49501" lng="-3.35960" type="p0" id="38" tipoTienda="8" name="P111" info="Moda"/>
+	  <marker lat="40.49496" lng="-3.35957" type="p0" id="38" tipoTienda="8" name="P112" info="Moda"/>
+	  <marker lat="40.49491" lng="-3.35953" type="p0" id="38" tipoTienda="8" name="P113" info="Moda"/>
+	  <marker lat="40.49486" lng="-3.35947" type="p0" id="38" tipoTienda="8" name="P114" info="Moda"/>
+	  <marker lat="40.49481" lng="-3.35942" type="p0" id="38" tipoTienda="8" name="P115" info="Moda"/>
+	  <marker lat="40.49477" lng="-3.35936" type="p0" id="38" tipoTienda="8" name="P116" info="Moda"/>
+	  <marker lat="40.49473" lng="-3.35932" type="p0" id="38" tipoTienda="8" name="P117" info="Moda"/>
+	  <marker lat="40.49469" lng="-3.35920" type="p0" id="38" tipoTienda="8" name="P118" info="Moda"/>
+	  -->
+	  
+      <marker lat="40.49575" lng="-3.35985" type="p0" id="40" tipoTienda="8" name="Mango" info="Moda"/>
+      <marker lat="40.49565" lng="-3.35975" type="p0" id="41" tipoTienda="8" name="Mango Teen" info="Moda"/>
+	  
+	  <!--planta baja parte derecha -->
+	  
+	  <marker lat="40.49469" lng="-3.35920" type="p0" id="1" tipoTienda="1" name="Mercadona" info="Alimentación"/>
+	  <marker lat="40.49469" lng="-3.35920" type="p0" id="27" tipoTienda="6" name="Mercadona" info="Hipermercado"/>
+	  <marker lat="40.49469" lng="-3.35920" type="p0" id="77" tipoTienda="11" name="Mercadona" info="Salud / Belleza"/>
+	  <!--
+	  <marker lat="40.49466" lng="-3.35911" type="p0" id="38" tipoTienda="8" name="P120" info="Moda"/>
+	  <marker lat="40.49463" lng="-3.35904" type="p0" id="38" tipoTienda="8" name="P121" info="Moda"/>
+	  -->
+	  <marker lat="40.49460" lng="-3.35897" type="p0" id="53" tipoTienda="9" name="Casa del libro" info="Ocio"/>
+	  <!--<marker lat="40.49457" lng="-3.35890" type="p0" id="38" tipoTienda="8" name="P123" info="Moda"/>-->
+	  <marker lat="40.49454" lng="-3.35883" type="p0" id="28" tipoTienda="7" name="Jysk" info="Hogar / Regalos"/>	  
+	  <marker lat="40.49451" lng="-3.35872" type="p0" id="72" tipoTienda="11" name="Farmacia" info="Salud / Belleza"/>	  
+	  <marker lat="40.49446" lng="-3.35858" type="p0" id="38" tipoTienda="8" name="P126" info="Moda"/>
+	  
+	  
+	  <!--
+      <marker lat="40.49458" lng="-3.35902" type="p0" id="10" tipoTienda="2" name="Tienda10" info="Texto de tienda 10."/>
+      <marker lat="40.49468" lng="-3.35925" type="p0" id="11" tipoTienda="5" name="Tienda11" info="Texto de tienda 11."/>
+      <marker lat="40.49495" lng="-3.35958" type="p0" id="12" tipoTienda="1" name="Tienda12" info="Texto de tienda 12."/>
+      <marker lat="40.49494" lng="-3.35918" type="p0" id="13" tipoTienda="5" name="Tienda13" info="Texto de tienda 13."/>
+      <marker lat="40.49475" lng="-3.35889" type="p0" id="14" tipoTienda="5" name="Tienda14" info="Texto de tienda 14."/>
+	  -->
+    </markers>
+  </script>
+
+  <script type="text/xml" id="p11">
+    <markers>
+	  <marker lat="40.49460" lng="-3.35897" type="p11" id="92" tipoTienda="12" name="Motrio" info="Servicios"/>
+    </markers>
+  </script>
+
+  <script>
+    // 🗺️ Mapa base minimalista
+    //const map = L.map('map').setView([40.4168, -3.7038], 14);
+	
+	const bounds = L.latLngBounds(
+	  //[40.45, -3.45],  // suroeste (lat, lon)
+	  //[40.54, -3.24]   // noreste (lat, lon)
+	  [40.49383, -3.36174],
+	  [40.49642, -3.35633]
+	);
+
+	const map = L.map('map', {
+		//center: [40.4168, -3.7038], // Coordenadas iniciales (por ejemplo, Madrid)
+		center: [40.49500, -3.35943],
+		zoom: 18,		// Zoom inicial
+		maxZoom: 18,    // Zoom máximo permitido
+		minZoom: 18,     // (opcional) Zoom mínimo
+		zoomControl: false, // 🔴 Esto desactiva los botones de zoom
+	  maxBounds: bounds,
+	  maxBoundsViscosity: 1.0 // Qué tan "pegajoso" es el límite
+	});	
+	
+    const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap & CartoDB',
+    }).addTo(map);
+
+    // Capa para los marcadores
+    const markersLayer = L.layerGroup().addTo(map);
+	
+	let hayRojo = 0;
+
+    // Iconos personalizados (emoji)
+    /*const icons = {
+      wc: L.divIcon({
+        html: '<div class="wc-icon">🚻</div>',
+        className: '',
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
+      }),
+      cafe: L.divIcon({
+        html: '<div class="cafe-icon">☕</div>',
+        className: '',
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
+      }),
+    };*/
+
+				
+	const params = new URLSearchParams(window.location.search);	
+	let idURL = params.get('id');
+	let idTipoURL = params.get('idTipo');
+	
+	
+    // Cargar XML desde el HTML
+    function loadXML(id) {
+      markersLayer.clearLayers();
+      const xmlString = document.getElementById(id).textContent.trim();
+      const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('marker');
+
+      for (let i = 0; i < items.length; i++) {
+        const lat = parseFloat(items[i].getAttribute('lat'));
+        const lng = parseFloat(items[i].getAttribute('lng'));
+        const tipo = items[i].getAttribute('type');
+		const idMarker = items[i].getAttribute('id');
+		const tipoTienda = items[i].getAttribute('tipoTienda');
+        const nombre = items[i].getAttribute('name');
+        const info = items[i].getAttribute('info');
+
+        //const marker = L.marker([lat, lng], { icon: icons[tipo] }).addTo(markersLayer);
+        //marker.bindPopup(`<b>${nombre}</b><br/>${info}`);
+		
+		let opacidad=1;
+		let clase='';
+		let color='';
+		if(idURL!=null){
+			if(idMarker == idURL){
+				opacidad = 1;
+				clase = 'blinking-circle';
+				color = 'red';
+				hayRojo = 1;
+			}else{
+				opacidad = 0.3;
+				clase = 'none';
+				color = 'gray';
+			}
+		}else if(idTipoURL!=null){
+			if(tipoTienda == idTipoURL){
+				opacidad = 1;
+				clase = 'blinking-circle';
+				color = 'red';
+				hayRojo = 1;
+			}else{
+				opacidad = 0.3;
+				clase = 'none';
+				color = 'gray';
+			}
+		}
+		
+		const marker = L.circleMarker([lat, lng], {
+			radius: 8,
+			fillColor: color,
+			fillOpacity: opacidad,
+			className: clase,
+			stroke: false // Esto quita el borde
+		}).addTo(map);
+		
+		marker.bindPopup(nombre);
+		marker.setPopupContent('<b>'+nombre+'</b><br/>'+info);
+		markersLayer.addLayer(marker);
+      }
+    }
+	
+	
+    function searchPlantaInXML(id) {
+      const xmlString = document.getElementById(id).textContent.trim();
+      const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('marker');
+
+      for (let i = 0; i < items.length; i++) {
+        const lat = parseFloat(items[i].getAttribute('lat'));
+        const lng = parseFloat(items[i].getAttribute('lng'));
+        const tipo = items[i].getAttribute('type');
+		const idMarker = items[i].getAttribute('id');
+		const tipoTienda = items[i].getAttribute('tipoTienda');
+        const nombre = items[i].getAttribute('name');
+        const info = items[i].getAttribute('info');
+
+		if(idMarker==idURL){
+			loadXML(tipo);
+			//setActive(document.getElementById('btn'+tipo));
+			//const tipo = "p1";
+			setActive(document.getElementById('btn'+tipo.toUpperCase()));
+		}else if(tipoTienda==idTipoURL){
+			loadXML('p0');
+			if(hayRojo == 0){
+				loadXML('p1');
+				if(hayRojo == 0){
+					loadXML('p11');
+					setActive(document.getElementById('btnP11'));
+				}else				
+					setActive(document.getElementById('btnP1'));
+			}else
+				setActive(document.getElementById('btnP0'));
+		
+		}
+      }
+    }
+
+    // Crear control personalizado con botones minimalistas
+    const ButtonsControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd: function () {
+        const div = L.DomUtil.create('div', 'map-buttons');
+        div.innerHTML = `
+          <button id="btnP1">Planta 1</button>
+          <button id="btnP0">Planta 0</button>
+          <button id="btnP11">Planta -1</button>
+        `;
+        L.DomEvent.disableClickPropagation(div);
+        return div;
+      },
+    });
+
+
+
+    // Crear icono con emoji 🚻
+    const wcIcon = L.divIcon({
+      html: '<div class="wc-icon">🚻</div>',
+      className: '', // evita el fondo por defecto
+      iconSize: [20, 20],
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -15]
+    });
+
+  // Añadir marcador con el icono personalizado
+  const markerWC = L.marker([40.49528, -3.35991], { icon: wcIcon }).addTo(map);
+  const markerWC2 = L.marker([40.49447, -3.35917], { icon: wcIcon }).addTo(map);
+
+  // Añadir popup con HTML
+  markerWC.bindPopup('<b>Baño público</b>');
+  markerWC2.bindPopup('<b>Baño público</b>');
+
+
+var doorIcon = L.divIcon({
+    html: '<i class="fas fa-door-closed fa-2x"></i>',
+    className: '',
+    iconSize: [25, 25]
+});
+  const markerDoor = L.marker([40.49498, -3.35994], { icon: doorIcon }).addTo(map);
+
+
+  // Crear la "leyenda"
+  const leyenda = L.control({ position: 'bottomleft' });
+
+  leyenda.onAdd = function (map) {
+    const div = L.DomUtil.create('div', 'leyenda');
+    div.innerHTML = '<strong>Texto Aleatorio</strong>';
+    return div;
+  };
+
+  leyenda.addTo(map);
+
+
+
+    // Añadir los botones al mapa
+    map.addControl(new ButtonsControl());
+
+      const btnP1 = document.getElementById('btnP1');
+      const btnP0 = document.getElementById('btnP0');
+      const btnP11 = document.getElementById('btnP11');
+
+      const buttons = [btnP1, btnP0, btnP11];
+	  
+
+      function setActive(activeButton) {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        activeButton.classList.add('active');
+      }
+	  
+    // Activar los eventos cuando el DOM está listo
+    setTimeout(() => {
+
+      btnP1.onclick = () => {
+        loadXML('p1');
+        setActive(btnP1);
+      };
+      btnP0.onclick = () => {
+        loadXML('p0');
+        setActive(btnP0);
+      };
+      btnP11.onclick = () => {
+        loadXML('p11');
+        setActive(btnP11);
+      };
+    }, 300);
+	
+    searchPlantaInXML('p1');
+    searchPlantaInXML('p0');
+    searchPlantaInXML('p11');
+	
+  </script>
+</body>
+</html>
