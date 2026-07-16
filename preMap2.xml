@@ -5,6 +5,12 @@
 		  <idTipo>1</idTipo>
 		  <tipo>Alimentación</tipo>
           <texto>Mercadona</texto>
+	  	  <lat>40.49469</lat>
+		  <lng>-3.35920</lng>
+		  <type>p0</type>
+		  <tipoTienda>1</tipoTienda> 
+		  <name>Mercadona<name>
+		  <info>Alimentación</info>
         </punto>
         <punto>
           <id>2</id>
@@ -185,12 +191,24 @@
 		  <idTipo>6</idTipo>
 		  <tipo>Hipermercado</tipo>
           <texto>Mercadona</texto>
+	  	  <lat>40.49469</lat>
+		  <lng>-3.35920</lng>
+		  <type>p0</type>
+		  <tipoTienda>6</tipoTienda> 
+		  <name>Mercadona<name>
+		  <info>Hipermercado</info>
         </punto>
         <punto>
           <id>28</id>
 		  <idTipo>7</idTipo>
 		  <tipo>Hogar / Regalos</tipo>
           <texto>Jysk</texto>
+	  	  <lat>40.49454</lat>
+		  <lng>-3.35883</lng>
+		  <type>p0</type>
+		  <tipoTienda>7</tipoTienda> 
+		  <name>Jysk<name>
+		  <info>Hogar / Regalos</info>
         </punto>
         <punto>
           <id>29</id>
@@ -401,6 +419,12 @@
 		  <idTipo>9</idTipo>
 		  <tipo>Ocio</tipo>
           <texto>Casa del libro</texto>
+	  	  <lat>40.49460</lat>
+		  <lng>-3.35897</lng>
+		  <type>p0</type>
+		  <tipoTienda>9</tipoTienda> 
+		  <name>Casa del libro<name>
+		  <info>Ocio</info>
         </punto>
         <punto>
           <id>54</id>
@@ -617,6 +641,12 @@
 		  <idTipo>11</idTipo>
 		  <tipo>Salud / Belleza</tipo>
           <texto>Farmacia</texto>
+		  <lat>40.49451</lat> 
+  		  <lng>-3.35872</lng> 
+		  <type>p0</type>
+		  <tipoTienda>11</tipoTienda> 
+		  <name>Farmacia</name> 
+		  <info>Salud / Belleza</info>
         </punto>
         <punto>
           <id>73</id>
@@ -659,6 +689,12 @@
 		  <idTipo>11</idTipo>
 		  <tipo>Salud / Belleza</tipo>
           <texto>Mercadona</texto>
+	  	  <lat>40.49469</lat>
+		  <lng>-3.35920</lng>
+		  <type>p0</type>
+		  <tipoTienda>1</tipoTienda> 
+		  <name>Mercadona<name>
+		  <info>Salud / Belleza</info>
         </punto>
         <punto>
           <id>78</id>
