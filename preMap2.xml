@@ -1,3 +1,4 @@
+
 <puntos>
         <punto>
           <id>1</id>
@@ -40,6 +41,12 @@
 		  <idTipo>3</idTipo>
 		  <tipo>Calzado</tipo>
           <texto>Deichman</texto>
+		  <lat>40.49489</lat>
+		  <lng>-3.35970</lng>
+		  <type>p1</type>
+		  <tipoTienda>3</tipoTienda> 
+		  <name>Deichman</name>
+		  <info>Calzado</info>
         </punto>
         <punto>
           <id>8</id>
@@ -76,6 +83,12 @@
 		  <idTipo>4</idTipo>
 		  <tipo>Complementos</tipo>
           <texto>Deichman</texto>
+		  <lat>40.49489</lat> 
+		  <lng>-3.35970</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>4</tipoTienda>
+		  <name>Deichman</name>
+		  <info>Complementos</info>
         </punto>
         <punto>
           <id>14</id>
@@ -88,6 +101,12 @@
 		  <idTipo>4</idTipo>
 		  <tipo>Complementos</tipo>
           <texto>Lefties</texto>
+		  <lat>40.49469</lat> 
+		  <lng>-3.35920</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>4</tipoTienda> 
+		  <name>Lefties</name> 
+		  <info>Moda"
         </punto>
         <punto>
           <id>16</id>
@@ -124,6 +143,12 @@
 		  <idTipo>5</idTipo>
 		  <tipo>Electrónica / Móvil</tipo>
           <texto>Cex</texto>
+		  <lat>40.49484</lat> 
+		  <lng>-3.35965</lng> 
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Goconut</name>
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>22</id>
@@ -178,12 +203,24 @@
 		  <idTipo>7</idTipo>
 		  <tipo>Hogar / Regalos</tipo>
           <texto>Primark</texto>
+		  <lat>40.49573</lat> 
+		  <lng>-3.36006</lng>
+		  <type>p1</type>
+		  <tipoTienda>7</tipoTienda>
+		  <name>Primark</name> 
+		  <info>Hogar / Regalos</info>
         </punto>
         <punto>
           <id>31</id>
 		  <idTipo>7</idTipo>
 		  <tipo>Hogar / Regalos</tipo>
           <texto>Tramas+</texto>
+		  <lat>40.49470</lat> 
+		  <lng>-3.35949</lng>
+		  <type>p1</type>
+		  <tipoTienda>7 </tipoTienda>
+		  <name>Tramas+</name> 
+		  <info>Hogar / Regalos</info>
         </punto>		
         <punto>
           <id>32</id>
@@ -196,6 +233,12 @@
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Bershka</texto>
+		  <lat>40.49510</lat> 
+		  <lng>-3.35985</lng> 
+		  <type>p1 </type>
+		  <tipoTienda>8</tipoTienda>
+		  <name>Bershka</name>
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>34</id>
@@ -226,12 +269,24 @@
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Koröshi</texto>
+		  <lat>40.49564</lat> 
+		  <lng>-3.36011</lng>
+		  <type>p1</type>
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Koröshi</name> 
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>39</id>
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Lefties</texto>
+		  <lat>40.49469</lat> 
+		  <lng>-3.35920</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Lefties</name> 
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>40</id>
@@ -262,12 +317,24 @@
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Primark</texto>
+		  <lat>40.49573</lat> 
+		  <lng>-3.36006</lng> 
+		  <type>p1</type>
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Primark</name> 
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>45</id>
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Pull&amp;Bear</texto>
+		  <lat>40.49546</lat>
+		  <lng>-3.35996</lng>
+		  <type>p1</type>
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Pull&amp;Bear</name> 
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>46</id>
@@ -286,6 +353,12 @@
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Springfield</texto>
+		  <lat>40.49499</lat> 
+		  <lng>-3.35979</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Springfield</name>
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>49</id>
@@ -304,12 +377,24 @@
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Women's Secret</texto>
+		  <lat>40.49555</lat> 
+		  <lng>-3.35977</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Women's Secret</name>
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>52</id>
 		  <idTipo>8</idTipo>
 		  <tipo>Moda</tipo>
           <texto>Zara</texto>
+		  <lat>40.49558</lat> 
+		  <lng>-3.35999</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>8</tipoTienda> 
+		  <name>Zara</name>
+		  <info>Moda</info>
         </punto>		
         <punto>
           <id>53</id>
@@ -340,6 +425,12 @@
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>100 Montaditos</texto>
+		  <lat>40.49442</lat> 
+		  <lng>-3.35889</lng>
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda> 
+		  <name>100 Montaditos</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>103</id>
@@ -352,36 +443,72 @@
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Canel Rolls</texto>
+		  <lat>40.49440</lat>
+		  <lng>-3.35872</lng>
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Canel Rolls</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>101</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Goconut</texto>
+		  <lat>40.49484</lat> 
+		  <lng>-3.35965</lng> 
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Goconut</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>59</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Kebab</texto>
+		  <lat>40.49447</lat> 
+		  <lng>-3.35903</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Kebab</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>100</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Kfc</texto>
+		  <lat>40.49451</lat> 
+		  <lng>-3.35870</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Kfc</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>60</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Llao llao</texto>
+		  <lat>40.49583</lat> 
+		  <lng>-3.35973</lng>
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda>
+		  <name>Llao llao</name>
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>61</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Loops&amp;Coffe</texto>
+		  <lat>40.49585</lat>
+		  <lng>-3.35981</lng>
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda>
+		  <name>Loops&amp;Coffe</name>
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>62</id>
@@ -394,42 +521,78 @@
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Pomodoro</texto>
+		  <lat>40.49454</lat> 
+		  <lng>-3.35880</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Pomodoro</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>64</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Pure&amp;Bowl</texto>
+		  <lat>40.49444</lat>
+		  <lng>-3.35896</lng>
+		  <type>p1</type>
+		  <tipoTienda>10</tipoTienda>
+		  <name>Pure&amp;Bowl</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>65</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Ribs</texto>
+		  <lat>40.49466</lat> 
+		  <lng>-3.35943</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Ribs</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>102</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Starbucks</texto>
+		  <lat>40.49548</lat> 
+		  <lng>-3.35977</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Starbucks</name>
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>66</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Tgb</texto>
+		  <lat>40.49457</lat> 
+		  <lng>-3.35890</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Tgb</name> 
+		  <info>Restauración</info>
         </punto>
         <punto>
           <id>67</id>
 		  <idTipo>10</idTipo>
 		  <tipo>Restauración</tipo>
           <texto>Vips</texto>
+		  <lat>40.49463</lat>
+		  <lng>-3.35904</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>10</tipoTienda> 
+		  <name>Vips</name> 
+		  <info>Restauración</info>
         </punto>		
         <punto>
           <id>68</id>
 		  <idTipo>11</idTipo>
 		  <tipo>Salud / Belleza</tipo>
-          <texto>Beaty Boutique</texto>
+          <texto>Beauty Boutique</texto>
         </punto>
         <punto>
           <id>69</id>
@@ -472,12 +635,24 @@
 		  <idTipo>11</idTipo>
 		  <tipo>Salud / Belleza</tipo>
           <texto>Macho Barbershops</texto>
+		  <lat>40.49474</lat> 
+  		  <lng>-3.35955</lng> 
+		  <type>p1</type>
+		  <tipoTienda>11</tipoTienda> 
+		  <name>Macho Barbershops</name> 
+		  <info>Salud / Belleza</info>
         </punto>
         <punto>
           <id>76</id>
 		  <idTipo>11</idTipo>
 		  <tipo>Salud / Belleza</tipo>
           <texto>Mazuelas</texto>
+		  <lat>40.49542</lat>
+		  <lng>-3.35975</lng>
+		  <type>p1</type>
+		  <tipoTienda>11</tipoTienda>
+		  <name>Mazuelas</name> 
+		  <info>Salud / Belleza</info>
         </punto>
         <punto>
           <id>77</id>
@@ -556,6 +731,12 @@
 		  <idTipo>12</idTipo>
 		  <tipo>Servicios</tipo>
           <texto>Forus</texto>
+		  <lat>40.49446</lat> 
+		  <lng>-3.35854</lng> 
+		  <type>p1</type> 
+		  <tipoTienda>12</tipoTienda> 
+		  <name>Forus</name> 
+		  <info>Servicios</info>
         </punto>
         <punto>
           <id>90</id>
