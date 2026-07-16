@@ -513,46 +513,6 @@ var doorIcon = L.divIcon({
     searchPlantaInXML('p0');
     searchPlantaInXML('p11');
 	
-	/*
-// 5. Utilizar la API del navegador para pedir la ubicación real del usuario
-        if (navigator.geolocation) {
-            
-            // Le pedimos la posición actual
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    // Si el usuario acepta el permiso, extraemos la latitud y longitud
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
-
-                    // Centramos el mapa dinámicamente en la ubicación real con zoom detallado (nivel 16)
-                    map.setView([lat, lng], 16);
-
-                    // Creamos el pin marcador en esa posición exacta
-                    const marcador = L.marker([lat, lng]).addTo(map);
-                    
-                    // Añadimos un globo flotante de texto (Popup) que se abre al hacer clic
-                    marcador.bindPopup("<b>¡Estás aquí!</b><br>Ubicación detectada.").openPopup();
-                },
-                function(error) {
-                    // Si ocurre un error o el usuario rechaza el permiso
-                    console.warn("Error al obtener la ubicación: " + error.message);
-                    alert("No se pudo obtener tu ubicación. Por favor, asegúrate de dar permisos en el navegador.");
-                    // Como alternativa, centramos el mapa en una ubicación por defecto
-                    map.setView([40.4167, -3.7037], 13); // Ejemplo: Madrid
-                },
-                {
-                    enableHighAccuracy: true, // Forzar al dispositivo a usar GPS si está disponible
-                    timeout: 5000,            // Tiempo máximo de espera en milisegundos
-                    maximumAge: 0             // No usar ubicaciones guardadas en caché
-                }
-            );
-
-        } else {
-            // El navegador es muy antiguo y no soporta geolocalización
-            alert("Tu navegador no soporta la detección de ubicación.");
-            map.setView([40.4167, -3.7037], 13);
-        }
-		*/
   </script>
 </body>
 </html>
