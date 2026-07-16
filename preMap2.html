@@ -70,7 +70,6 @@ fetch(url)
 			
 	    loadXML2('mapas.xml');
 			
-		let xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
 	    let puntos = xmlDoc.getElementsByTagName('punto');
 		alert(puntos.length);
 	    for (let i = 0; i < puntos.length; i++) {
