@@ -32,130 +32,104 @@
   </mapas>
 	-->
 </script>
-
 <script>
+    const params = new URLSearchParams(window.location.search);    
+    let idURL = params.get('id');
 
-	const params = new URLSearchParams(window.location.search);	
-	let idURL = params.get('id');
+    const contenedor = document.getElementById('resultado');
+    const ulTipos = document.getElementById("lista-tipos"); // Asegúrate de tener este elemento en tu HTML
 
-const contenedor = document.getElementById('resultado');
+    // Crear un Map global para guardar solo los tipos únicos
+    let mapaTipos = new Map();
 
-	// Crear un Set para guardar solo los valores únicos
-	let mapaTipos = new Map();
-	
-function loadXML(url) {
-fetch(url)
-	.then(respuesta => {
-		if (!respuesta.ok) throw new Error("Error al cargar el archivo");
-		return respuesta.text(); // Pasamos el contenido a texto
-	})
-	.then(xmlString => {
-		
-		// Parseamos el XML exactamente como lo hacías antes
-		const xmlDoc = new DOMParser().parseFromString(xmlString, 'text/xml');
-		const items = xmlDoc.getElementsByTagName('punto');
-		    
-		let idTipoElements = xmlDoc.getElementsByTagName("idTipo");
-		let tipoElements = xmlDoc.getElementsByTagName("tipo");
-		// Crear un Set para guardar solo los valores únicos
-		//let mapaTipos = new Map();
-		for (let i = 0; i < idTipoElements.length; i++) {
-			let idTipo = idTipoElements[i].textContent.trim();
-			let tipo = tipoElements[i].textContent.trim();
-			// Guardamos la relación en el Map (si ya existe, se sobrescribe, pero como es el mismo valor no hay problema)
-			if (!mapaTipos.has(idTipo)) {
-				mapaTipos.set(idTipo, tipo);
-			}
-		}
-			
-	    loadXML2('mapas.xml');
-			
-	    let puntos = xmlDoc.getElementsByTagName('punto');
-		alert(puntos.length);
-	    for (let i = 0; i < puntos.length; i++) {
-	      	let id = puntos[i].getElementsByTagName('id')[0].textContent;
-	      	let idTipo = puntos[i].getElementsByTagName('idTipo')[0].textContent;
-	      	let tipo = puntos[i].getElementsByTagName('tipo')[0].textContent;
-	      	let texto = puntos[i].getElementsByTagName('texto')[0].textContent;
-	
-	      	let p = document.createElement('p');
-	      //p.textContent = `ID: ${id} - Texto: ${texto}`;
-	      //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa.html?id=${id}">Mapa</a>`;+
-		  //p.innerHTML = `ID: ${id} - Texto: ${texto}  <a href="paginaMapa4.html?id=${id}">Mapa4</a>`;
-		  	p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
-	      	contenedor.appendChild(p);
-	    }
-		
-	})
-	.catch(error => {
-		console.error("Hubo un problema al leer el XML externo:", error);
-	});
-}
+    // Función genérica para descargar y parsear cualquier XML
+    async function fetchXML(url) {
+        const respuesta = await fetch(url);
+        if (!respuesta.ok) throw new Error("Error al cargar el archivo: " + url);
+        const xmlString = await respuesta.text();
+        return new DOMParser().parseFromString(xmlString, 'text/xml');
+    }
 
-	
-function loadXML2(url) {
-fetch(url)
-	.then(respuesta => {
-		if (!respuesta.ok) throw new Error("Error al cargar el archivo");
-		return respuesta.text(); // Pasamos el contenido a texto
-	})
-	.then(xmlString => {
-		
-	    let xmlDoc2 = new DOMParser().parseFromString(xmlString, 'text/xml');
-	    let items2 = xmlDoc2.getElementsByTagName('mapa');
-	
-		let idMap = 0;
-		let redireccion = '';
-		for (let i = 0; i < items2.length; i++) {
-			const mapaId = items2[i].getAttribute('id');
-			const tipoMapa = items2[i].getAttribute('tipoMapa');
-			if(mapaId===idURL){
-				idMap = mapaId;
-				redireccion = tipoMapa;		
-			}
-		}
-			
-	
-		// Ahora recorremos el Map y creamos la lista
-		let ul = document.getElementById("lista-tipos");
-		mapaTipos.forEach((tipo, idTipo) => {
-			let li = document.createElement("li");
-			//li.textContent = `<a href="paginaMapa4.html?id=${idTipo}">${tipo}</a>`;
-			li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
-			ul.appendChild(li);
-		});
-				
-	})
-	.catch(error => {
-		console.error("Hubo un problema al leer el XML externo:", error);
-	});
-}
+    // Proceso unificado y ordenado
+    async function inicializarMapa(urlPuntos) {
+        try {
+            // 1. Cargamos ambos XML en paralelo (así no perdemos tiempo)
+            const [xmlDoc, xmlDoc2] = await Promise.all([
+                fetchXML(urlPuntos),
+                fetchXML('mapas.xml')
+            ]);
 
-setTimeout(() => {
-  
-	
-	if(idURL==10){
-		loadXML('preMap2.xml');
-	}else{
-		if(idURL==11){
-			loadXML('preMap2.xml');
-		}else{
-			if(idURL==50){
-				loadXML('preMap4.xml');
-			}else{
-				loadXML('preMap1.xml');
-			}
-		}
-	}
-  
-}, 300);
+            // ==========================================
+            // PROCESAR MAPAS (Equivalente a tu loadXML2)
+            // ==========================================
+            const items2 = xmlDoc2.getElementsByTagName('mapa');
+            let idMap = 0;
+            let redireccion = '';
 
+            for (let i = 0; i < items2.length; i++) {
+                const mapaId = items2[i].getAttribute('id');
+                const tipoMapa = items2[i].getAttribute('tipoMapa');
+                if (mapaId === idURL) {
+                    idMap = mapaId;
+                    redireccion = tipoMapa;        
+                }
+            }
 
-  
+            // ==========================================
+            // PROCESAR TIPOS Y CREAR RELACIÓN
+            // ==========================================
+            let idTipoElements = xmlDoc.getElementsByTagName("idTipo");
+            let tipoElements = xmlDoc.getElementsByTagName("tipo");
 
-	
+            for (let i = 0; i < idTipoElements.length; i++) {
+                let idTipo = idTipoElements[i].textContent.trim();
+                let tipo = tipoElements[i].textContent.trim();
+                if (!mapaTipos.has(idTipo)) {
+                    mapaTipos.set(idTipo, tipo);
+                }
+            }
 
-	
+            // Pintar la lista de tipos en el HTML
+            if (ulTipos) {
+                mapaTipos.forEach((tipo, idTipo) => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<a href="${redireccion}.html?idMap=${idMap}&idTipo=${idTipo}">${tipo}</a>`;
+                    ulTipos.appendChild(li);
+                });
+            }
+
+            // ==========================================
+            // PROCESAR Y PINTAR PUNTOS (Equivalente a tu loadXML)
+            // ==========================================
+            let puntos = xmlDoc.getElementsByTagName('punto');
+            
+            for (let i = 0; i < puntos.length; i++) {
+                let id = puntos[i].getElementsByTagName('id')[0].textContent;
+                let texto = puntos[i].getElementsByTagName('texto')[0].textContent;
+
+                let p = document.createElement('p');
+                // Ahora redireccion e idMap TIENEN VALOR porque el código esperó de manera asíncrona
+                p.innerHTML = `${texto}  <a href="${redireccion}.html?idMap=${idMap}&id=${id}">Mapa4</a>`;
+                contenedor.appendChild(p);
+            }
+
+        } catch (error) {
+            console.error("Hubo un problema procesando los datos:", error);
+        }
+    }
+
+    // Determinar qué archivo cargar según el parámetro ID
+    let archivoDestino = 'preMap1.xml'; // Por defecto
+    if (idURL == 10) {
+        archivoDestino = 'preMap2.xml';
+    } else if (idURL == 11) {
+        archivoDestino = 'preMap3.xml';
+    } else if (idURL == 50) {
+        archivoDestino = 'preMap4.xml';
+    }
+
+    // Iniciamos la carga
+    inicializarMapa(archivoDestino);
 </script>
 </body>
 </html>
