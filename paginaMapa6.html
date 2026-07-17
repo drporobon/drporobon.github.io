@@ -114,11 +114,12 @@
     let xmlGlobalDoc = null; 
     let hayRojo = 0;
 
-    // Capturamos parámetros (idMap actúa como id del marcador individual)
+    // Capturamos parámetros de la URL
     const params = new URLSearchParams(window.location.search);	
-    let idURL = params.get('idMap') || params.get('id'); // Soporta ambos formatos
+    let idURL = params.get('idMap') || params.get('id'); 
     let idTipoURL = params.get('idTipo');
 
+    // Función auxiliar segura para extraer texto de los nodos
     function getVal(parent, tagName) {
       const element = parent.getElementsByTagName(tagName)[0];
       return element ? element.textContent.trim() : '';
@@ -133,21 +134,25 @@
 
       for (let i = 0; i < items.length; i++) {
         const tipo = getVal(items[i], 'type');
+        const latStr = getVal(items[i], 'lat');
+        const lngStr = getVal(items[i], 'lng');
         
-        if (tipo !== targetPlantaId) continue;
+        // Control de seguridad: Si el punto no pertenece a esta planta o no tiene coordenadas, saltarlo
+        if (tipo !== targetPlantaId || !latStr || !lngStr) continue;
 
-        const lat = parseFloat(getVal(items[i], 'lat'));
-        const lng = parseFloat(getVal(items[i], 'lng'));
+        const lat = parseFloat(latStr);
+        const lng = parseFloat(lngStr);
         const idMarker = getVal(items[i], 'id');
-        const tipoTienda = getVal(items[i], 'tipoTienda');
-        const nombre = getVal(items[i], 'name');
-        const info = getVal(items[i], 'info');
-		
+        const idTipoNodo = getVal(items[i], 'idTipo');
+        const tipoTiendaNodo = getVal(items[i], 'tipoTienda');
+        const nombre = getVal(items[i], 'name') || getVal(items[i], 'texto'); // Fallback si 'name' está vacío
+        const info = getVal(items[i], 'info') || getVal(items[i], 'tipo');
+
         let opacidad = 1;
         let clase = '';
         let color = '';
 
-        // --- COMPORTAMIENTO ID INDIVIDAL (?idMap=X) ---
+        // --- FILTRO POR ID UNICO (?idMap=X o ?id=X) ---
         if (idURL != null) {
           if (idMarker == idURL) {
             opacidad = 1;
@@ -155,27 +160,27 @@
             color = 'red';
             hayRojo = 1;
           } else {
-            // Se quedan de fondo en gris translúcido
             opacidad = 0.3;
             clase = 'none';
             color = 'gray';
           }
         } 
-        // --- COMPORTAMIENTO CATEGORÍA (?idTipo=X) ---
+        // --- FILTRO POR CATEGORÍA (?idTipo=X) ---
         else if (idTipoURL != null) {
-          if (tipoTienda == idTipoURL) {
+          // Comprobamos contra idTipo o tipoTienda indistintamente
+          if (idTipoNodo == idTipoURL || tipoTiendaNodo == idTipoURL) {
             opacidad = 1;
-            clase = 'blinking-circle';
+            clase = 'blinking-circle'; // Todos los de este tipo parpadean en rojo
             color = 'red';
             hayRojo = 1;
           } else {
-            // EXCLUSIÓN: Si filtramos por categoría, las demás tiendas NO se dibujan
+            // Si filtramos por categoría, las demás tiendas NO se dibujan
             continue;
           }
         } 
-        // --- SIN PARÁMETROS ---
+        // --- NAVEGACIÓN NORMAL (Sin parámetros en URL) ---
         else {
-          color = 'red'; // Por defecto se muestran normales en rojo
+          color = 'red';
           opacidad = 1;
         }
 		
@@ -202,14 +207,18 @@
       for (let i = 0; i < items.length; i++) {
         const tipo = getVal(items[i], 'type');
         const idMarker = getVal(items[i], 'id');
-        const tipoTienda = getVal(items[i], 'tipoTienda');
+        const idTipoNodo = getVal(items[i], 'idTipo');
+        const tipoTiendaNodo = getVal(items[i], 'tipoTienda');
+
+        // Ignorar puntos sin planta definida
+        if (!tipo) continue;
 
         if (idURL && idMarker == idURL) {
           plantaDestino = tipo;
           break; 
         }
         
-        if (idTipoURL && tipoTienda == idTipoURL) {
+        if (idTipoURL && (idTipoNodo == idTipoURL || tipoTiendaNodo == idTipoURL)) {
           tiposConCoincidencia.add(tipo);
         }
       }
@@ -218,7 +227,7 @@
         loadXMLLayer(plantaDestino);
         setActive(document.getElementById('btn' + plantaDestino.toUpperCase()));
       } else if (idTipoURL && tiposConCoincidencia.size > 0) {
-        // Enrutado en cascada idéntico: p0 -> p1 -> p11
+        // Enrutamiento en cascada idéntico: p0 -> p1 -> p11
         if (tiposConCoincidencia.has('p0')) {
           loadXMLLayer('p0');
           setActive(document.getElementById('btnP0'));
@@ -247,7 +256,7 @@
       }
     }
 
-    // Botones de planta
+    // Botones del mapa
     const ButtonsControl = L.Control.extend({
       options: { position: 'topright' },
       onAdd: function () {
@@ -279,7 +288,7 @@
     btnP0.onclick = () => { loadXMLLayer('p0'); setActive(btnP0); };
     btnP11.onclick = () => { loadXMLLayer('p11'); setActive(btnP11); };
 
-    // Servicios estáticos (Baños y puertas)
+    // Capas de baños comunes fijas
     const wcIcon = L.divIcon({
       html: '<div class="wc-icon">🚻</div>',
       className: '',
