@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa minimalista con XML y botones</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #f5f5f5;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Caja de botones dentro del mapa */
+    .map-buttons {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Botones base */
+    .map-buttons button {
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #e0e0e0;
+      color: #333;
+      transition: all 0.2s ease;
+    }
+
+    /* Hover suave */
+    .map-buttons button:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Botón activo */
+    .map-buttons button.active {
+      background-color: #d62828;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Iconos emoji */
+    .wc-icon, .cafe-icon {
+      font-size: 22px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Animación CSS para parpadeo */
+    .blinking-circle {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+	
+    .leyenda {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script type="text/xml" id="p11">
+    <markers>
+	  <marker lat="40.49460" lng="-3.35897" type="p11" id="92" tipoTienda="12" name="Motrio" info="Servicios"/>
+    </markers>
+  </script>
+
+  <script>
+   // Función auxiliar para extraer el texto de un nodo hijo de forma segura
+function getVal(parent, tagName) {
+  const element = parent.getElementsByTagName(tagName)[0];
+  return element ? element.textContent.trim() : '';
+}
+
+// Pintar los marcadores filtrando el documento XML global por el 'type' de planta
+function loadXMLLayer(targetPlantaId) {
+  if (!xmlGlobalDoc) return;
+  markersLayer.clearLayers();
+  hayRojo = 0;
+
+  // 1. Cambiamos 'marker' por 'punto'
+  const items = xmlGlobalDoc.getElementsByTagName('punto');
+
+  for (let i = 0; i < items.length; i++) {
+    // 2. Extraemos los valores desde los nodos hijos
+    const tipo = getVal(items[i], 'type');
+    
+    // Omitir si el punto no pertenece a la planta que queremos pintar
+    if (tipo !== targetPlantaId) continue;
+
+    const lat = parseFloat(getVal(items[i], 'lat'));
+    const lng = parseFloat(getVal(items[i], 'lng'));
+    const idMarker = getVal(items[i], 'id');
+    const tipoTienda = getVal(items[i], 'tipoTienda');
+    const nombre = getVal(items[i], 'name');
+    const info = getVal(items[i], 'info');
+	
+    let opacidad = 1;
+    let clase = '';
+    let color = '';
+
+    if (idURL != null) {
+      if (idMarker == idURL) {
+        opacidad = 1;
+        clase = 'blinking-circle';
+        color = 'red';
+        hayRojo = 1;
+      } else {
+        opacidad = 0.3;
+        clase = 'none';
+        color = 'gray';
+      }
+    } else if (idTipoURL != null) {
+      if (tipoTienda == idTipoURL) {
+        opacidad = 1;
+        clase = 'blinking-circle';
+        color = 'red';
+        hayRojo = 1;
+      } else {
+        opacidad = 0.3;
+        clase = 'none';
+        color = 'gray';
+      }
+    }
+	
+    const marker = L.circleMarker([lat, lng], {
+      radius: 8,
+      fillColor: color,
+      fillOpacity: opacidad,
+      className: clase,
+      stroke: false
+    });
+	
+    marker.bindPopup('<b>' + nombre + '</b><br/>' + info);
+    markersLayer.addLayer(marker);
+  }
+}
+
+// Analizar el XML completo para saber qué planta debe arrancar activa según la URL
+function processUrlRouting() {
+  if (!xmlGlobalDoc) return;
+  
+  // Cambiamos 'marker' por 'punto'
+  const items = xmlGlobalDoc.getElementsByTagName('punto');
+  
+  let plantaDestino = null;
+  let tiposConCoincidencia = new Set();
+
+  for (let i = 0; i < items.length; i++) {
+    const tipo = getVal(items[i], 'type');
+    const idMarker = getVal(items[i], 'id');
+    const tipoTienda = getVal(items[i], 'tipoTienda');
+
+    if (idURL && idMarker == idURL) {
+      plantaDestino = tipo;
+      break; 
+    }
+    
+    if (idTipoURL && tipoTienda == idTipoURL) {
+      tiposConCoincidencia.add(tipo);
+    }
+  }
+
+  // Aplicar rutas (Esto se mantiene exactamente igual)
+  if (plantaDestino) {
+    loadXMLLayer(plantaDestino);
+    setActive(document.getElementById('btn' + plantaDestino.toUpperCase()));
+  } else if (idTipoURL && tiposConCoincidencia.size > 0) {
+    if (tiposConCoincidencia.has('p0')) {
+      loadXMLLayer('p0');
+      setActive(document.getElementById('btnP0'));
+    } else if (tiposConCoincidencia.has('p1')) {
+      loadXMLLayer('p1');
+      setActive(document.getElementById('btnP1'));
+    } else if (tiposConCoincidencia.has('p11')) {
+      loadXMLLayer('p11');
+      setActive(document.getElementById('btnP11'));
+    }
+  } else {
+    loadXMLLayer('p0');
+    setActive(document.getElementById('btnP0'));
+  }
+}
+	
+  </script>
+</body>
+</html>
