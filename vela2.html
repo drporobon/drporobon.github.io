@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón de Vela Consumible por Fases con Imagen</title>
+    <style>
+        /* Fondo de pantalla plano e inmovilizado */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #f4f7f6; /* El color de fondo plano solicitado */
+            font-family: sans-serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- CONTENEDOR DE LA IMAGEN EN EL CENTRO --- */
+        .contenedor-imagen {
+            max-width: 90%;
+            max-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* Ligera sombra para darle profundidad */
+            border-radius: 8px;
+            overflow: hidden;
+            
+            /* Transición suave para cuando cambie el brillo de la imagen */
+            transition: filter 0.5s ease-in-out;
+            filter: brightness(1); /* Brillo normal por defecto */
+        }
+
+        /* Clase dinámica que aplicaremos mediante JS para aclarar la imagen */
+        //.contenedor-imagen.iluminado {
+        //    filter: brightness(1.15); /* Aclara levemente la imagen (un 15% más de brillo) */
+        //}
+		
+		.contenedor-imagen.iluminado {
+			filter: brightness(1.45); /* Mucho más brillo */
+			box-shadow: 0 8px 32px rgba(255, 204, 0, 0.4); /* Resplandor dorado suave alrededor de la imagen */
+			transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+		}
+
+        .contenedor-imagen img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* --- BOTÓN FLOTANTE VELA --- */
+        .boton-vela {
+            position: fixed;        /* Fijo en la pantalla del navegador siempre */
+            bottom: 20px;           /* Distancia desde abajo */
+            right: 20px;            /* Distancia desde la derecha */
+            width: 75px;            /* Tamaño fijo ideal para interacción táctil en móvil */
+            height: 75px;           /* Proporciones idénticas */
+            z-index: 99999;         /* Asegura quedar siempre por encima de todo */
+            border: 2px solid #000000;
+            border-radius: 12px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Sombra visible en móviles */
+        }
+
+        .boton-vela:hover:not(:disabled) {
+            background-color: #f7f7f7;
+            transform: translateY(-2px);
+        }
+
+        .boton-vela:disabled {
+            background-color: #f0f0f0;
+            border-color: #888888;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* --- ESTILOS DEL ICONO --- */
+        .icono-vela {
+            stroke: #000000;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* Ocultamos los elementos de luz por defecto */
+        .llama, .rayos-luz {
+            display: none;
+        }
+
+        /* Transiciones suaves para el efecto de derretido de la cera */
+        .cuerpo-vela, .mecha, .detalles-lineas, .llama {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- CONTROL DE FASES Y ALTURAS --- */
+        
+        /* Inicialmente (Fase 3 líneas): El tamaño base es alto */
+        .cuerpo-vela { transform: scaleY(1); transform-origin: bottom; }
+
+        /* Fase 2: Tras 3 segundos */
+        .boton-vela.fase-2 .cuerpo-vela { transform: scaleY(0.82); }
+        .boton-vela.fase-2 .mecha,
+        .boton-vela.fase-2 .llama,
+        .boton-vela.fase-2 .detalles-lineas { transform: translateY(6px); }
+        .boton-vela.fase-2 .linea-3 { display: none; }
+
+        /* Fase 1: Tras 6 segundos */
+        .boton-vela.fase-1 .cuerpo-vela { transform: scaleY(0.64); }
+        .boton-vela.fase-1 .mecha,
+        .boton-vela.fase-1 .llama,
+        .boton-vela.fase-1 .detalles-lineas { transform: translateY(12px); }
+        .boton-vela.fase-1 .linea-2, .boton-vela.fase-1 .linea-3 { display: none; }
+
+        /* Fase 0: Tras 8 segundos */
+        .boton-vela.fase-0 .cuerpo-vela { transform: scaleY(0.46); }
+        .boton-vela.fase-0 .mecha,
+        .boton-vela.fase-0 .llama,
+        .boton-vela.fase-0 .detalles-lineas { transform: translateY(18px); }
+        .boton-vela.fase-0 .detalles-lineas line { display: none; }
+
+
+        /* --- ESTADO ENCENDIDO --- */
+        .boton-vela.encendida .llama {
+            display: block;
+            fill: #ffcc00; 
+            stroke: #ff9900; 
+            stroke-width: 2;
+            animation: parpadeoLlama 0.15s infinite alternate ease-in-out;
+        }
+
+        .boton-vela.encendida .rayos-luz {
+            display: block;
+        }
+
+        .boton-vela.encendida .rayos-luz line {
+            stroke: #ff9900; 
+            animation: brilloRayos 0.3s infinite alternate ease-in-out;
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes parpadeoLlama {
+            0% {
+                transform: var(--movimiento-fase, translateY(0px)) scale(0.95) skewX(-2deg);
+                filter: drop-shadow(0 0 2px #ffcc00);
+            }
+            100% {
+                transform: var(--movimiento-fase, translateY(0px)) scale(1.05) skewX(2deg);
+                filter: drop-shadow(0 0 6px #ff9900);
+            }
+        }
+
+        /* Definición del desfase Y en la llama por cada fase */
+        .boton-vela.encendida { --movimiento-fase: translateY(0px); }
+        .boton-vela.fase-2.encendida { --movimiento-fase: translateY(6px); }
+        .boton-vela.fase-1.encendida { --movimiento-fase: translateY(12px); }
+        .boton-vela.fase-0.encendida { --movimiento-fase: translateY(18px); }
+
+        @keyframes brilloRayos {
+            from { opacity: 0.3; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor con la imagen centrada -->
+    <div id="contenedorImg" class="contenedor-imagen">
+        <img src="https://www.fundacionkonex.org/custom/web/data/imagenes/repositorio/2010/6/1/218/20160315053236c24cd76e1ce41366a4bbe8a49b02a028.jpg" alt="Retrato Central">
+    </div>
+
+    <!-- Botón flotante vela -->
+    <button id="btnVela" class="boton-vela">
+        <svg viewBox="0 0 100 100" width="85%" height="85%" class="icono-vela">
+            
+            <g class="rayos-luz">
+                <line x1="50" y1="12" x2="50" y2="2" />
+                <line x1="28" y1="23" x2="21" y2="16" />
+                <line x1="72" y1="23" x2="79" y2="16" />
+                <line x1="20" y1="42" x2="10" y2="42" />
+                <line x1="80" y1="42" x2="90" y2="42" />
+            </g>
+
+            <path class="llama" d="M50,12 C46,20 43,26 43,32 C43,37 46,40 50,40 C54,40 57,37 57,32 C57,26 54,20 50,12 Z" />
+            
+            <line class="mecha" x1="50" y1="40" x2="50" y2="48" stroke-width="3" />
+            
+            <path class="cuerpo-vela" d="M35,48 L65,48 L65,88 L35,88 Z" />
+            
+            <g class="detalles-lineas">
+                <line class="linea-1" x1="45" y1="74" x2="55" y2="74" />
+                <line class="linea-2" x1="42" y1="65" x2="58" y2="65" />
+                <line class="linea-3" x1="44" y1="56" x2="56" y2="56" />
+            </g>
+        </svg>
+    </button>
+
+    <script>
+        const boton = document.getElementById('btnVela');
+        const imgContenedor = document.getElementById('contenedorImg');
+
+        boton.addEventListener('click', () => {
+            // Encendemos la vela y aplicamos el efecto de aclarado de la imagen
+            boton.classList.add('encendida');
+            imgContenedor.classList.add('iluminado');
+            boton.disabled = true;
+
+            setTimeout(() => {
+                boton.classList.add('fase-2');
+            }, 3000);
+
+            setTimeout(() => {
+                boton.classList.remove('fase-2');
+                boton.classList.add('fase-1');
+            }, 6000);
+
+            setTimeout(() => {
+                boton.classList.remove('fase-1');
+                boton.classList.add('fase-0');
+            }, 8000);
+
+            setTimeout(() => {
+                // Se apaga la vela: se quita el estado encendido y se restablecen los colores originales de la imagen
+                boton.classList.remove('encendida', 'fase-0');
+                imgContenedor.classList.remove('iluminado');
+                boton.disabled = false; 
+            }, 10000); 
+        });
+    </script>
+
+</body>
+</html>
