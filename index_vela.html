@@ -134,7 +134,8 @@
                         const enlace = document.createElement('a');
                         enlace.className = 'persona-enlace';
                         enlace.href = persona.url;
-                        enlace.target = "_blank"; // Abre el enlace en una pestaña nueva
+                        //enlace.target = "_blank"; // Abre el enlace en una pestaña nueva
+                        enlace.target = "_self"; // Abre el enlace en una pestaña nueva
                         enlace.textContent = `👤 ${persona.nombre}`;
 
                         // Meter el enlace dentro del <li>, y el <li> dentro del <ul>
