@@ -9,7 +9,7 @@
 		  <lng>-3.35920</lng>
 		  <type>p0</type>
 		  <tipoTienda>1</tipoTienda> 
-		  <name>Mercadona<name>
+		  <name>Mercadona</name>
 		  <info>Alimentación</info>
         </punto>
         <punto>
@@ -112,7 +112,7 @@
 		  <type>p1</type> 
 		  <tipoTienda>4</tipoTienda> 
 		  <name>Lefties</name> 
-		  <info>Moda"
+		  <info>Moda</info>
         </punto>
         <punto>
           <id>16</id>
@@ -195,7 +195,7 @@
 		  <lng>-3.35920</lng>
 		  <type>p0</type>
 		  <tipoTienda>6</tipoTienda> 
-		  <name>Mercadona<name>
+		  <name>Mercadona</name>
 		  <info>Hipermercado</info>
         </punto>
         <punto>
@@ -207,7 +207,7 @@
 		  <lng>-3.35883</lng>
 		  <type>p0</type>
 		  <tipoTienda>7</tipoTienda> 
-		  <name>Jysk<name>
+		  <name>Jysk</name>
 		  <info>Hogar / Regalos</info>
         </punto>
         <punto>
@@ -423,7 +423,7 @@
 		  <lng>-3.35897</lng>
 		  <type>p0</type>
 		  <tipoTienda>9</tipoTienda> 
-		  <name>Casa del libro<name>
+		  <name>Casa del libro</name>
 		  <info>Ocio</info>
         </punto>
         <punto>
@@ -693,7 +693,7 @@
 		  <lng>-3.35920</lng>
 		  <type>p0</type>
 		  <tipoTienda>1</tipoTienda> 
-		  <name>Mercadona<name>
+		  <name>Mercadona</name>
 		  <info>Salud / Belleza</info>
         </punto>
         <punto>
