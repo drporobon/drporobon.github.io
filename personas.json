@@ -1,0 +1,28 @@
+{
+            "religiones": [
+                {
+                    "nombre": "Budismo",
+					"icono": "☸️",
+                    "personas": [
+                        { "nombre": "Dalai Lama", "url": "https://es.wikipedia.org/wiki/Dalai_Lama" },
+                        { "nombre": "Thich Nhat Hanh", "url": "https://es.wikipedia.org/wiki/Th%C3%ADch_Nh%E1%BA%A5t_H%E1%B0%A1nh" }
+                    ]
+                },
+                {
+                    "nombre": "Cristianismo",
+					"icono": "✝️",
+                    "personas": [
+                        { "nombre": "Papa Francisco", "url": "https://es.wikipedia.org/wiki/Francisco_(papa)" },
+                        { "nombre": "Teresa de Calcuta", "url": "https://es.wikipedia.org/wiki/Teresa_de_Calcuta" }
+                    ]
+                },
+                {
+                    "nombre": "Islam",
+					"icono": "🌙",
+                    "personas": [
+                        { "nombre": "Rumi (Poeta)", "url": "https://es.wikipedia.org/wiki/Yalal_ad-Din_Muhammad_Rumi" },
+                        { "nombre": "Averroes", "url": "https://es.wikipedia.org/wiki/Averroes" }
+                    ]
+                }
+            ]
+        }
