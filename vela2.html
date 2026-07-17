@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botón de Vela Consumible por Fases con Imagen</title>
+    <title>Botón de Vela Consumible por Fases con Imagen Dinámica</title>
     <style>
         /* Fondo de pantalla plano e inmovilizado */
         body {
@@ -31,20 +31,14 @@
             overflow: hidden;
             
             /* Transición suave para cuando cambie el brillo de la imagen */
-            transition: filter 0.5s ease-in-out;
+            transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
             filter: brightness(1); /* Brillo normal por defecto */
         }
-
-        /* Clase dinámica que aplicaremos mediante JS para aclarar la imagen */
-        //.contenedor-imagen.iluminado {
-        //    filter: brightness(1.15); /* Aclara levemente la imagen (un 15% más de brillo) */
-        //}
 		
-		.contenedor-imagen.iluminado {
-			filter: brightness(1.45); /* Mucho más brillo */
-			box-shadow: 0 8px 32px rgba(255, 204, 0, 0.4); /* Resplandor dorado suave alrededor de la imagen */
-			transition: filter 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-		}
+        .contenedor-imagen.iluminado {
+            filter: brightness(1.45); /* Mucho más brillo */
+            box-shadow: 0 8px 32px rgba(255, 204, 0, 0.4); /* Resplandor dorado suave alrededor de la imagen */
+        }
 
         .contenedor-imagen img {
             max-width: 100%;
@@ -175,9 +169,9 @@
 </head>
 <body>
 
-    <!-- Contenedor con la imagen centrada -->
+    <!-- Contenedor con la imagen central (Cargará vacía y JS le asignará el src) -->
     <div id="contenedorImg" class="contenedor-imagen">
-        <img src="https://www.fundacionkonex.org/custom/web/data/imagenes/repositorio/2010/6/1/218/20160315053236c24cd76e1ce41366a4bbe8a49b02a028.jpg" alt="Retrato Central">
+        <img id="imagenCentral" src="" alt="Cargando personaje...">
     </div>
 
     <!-- Botón flotante vela -->
@@ -209,9 +203,53 @@
     <script>
         const boton = document.getElementById('btnVela');
         const imgContenedor = document.getElementById('contenedorImg');
+        const imagenCentral = document.getElementById('imagenCentral');
 
+        // --- NUEVO: FUNCIÓN PARA BUSCAR LA IMAGEN POR ID EN LA URL ---
+        async function inicializarImagen() {
+            try {
+                // 1. Obtener el ID desde la URL (?id=valor)
+                const parametrosUrl = new URLSearchParams(window.location.search);
+                const idBuscado = parametrosUrl.get('id');
+
+                if (!idBuscado) {
+                    imagenCentral.alt = "Especifica un ?id= en la URL";
+                    return;
+                }
+
+                // 2. Fetch al archivo JSON externo
+                const respuesta = await fetch('personas.json');
+                if (!respuesta.ok) throw new Error('Error al leer religiones.json');
+                const datos = await respuesta.json();
+
+                // 3. Buscar el personaje dentro de las religiones mediante su ID
+                let personajeEncontrado = null;
+                
+                for (const religion of datos.religiones) {
+                    personajeEncontrado = religion.personas.find(p => p.id === idBuscado);
+                    if (personajeEncontrado) break; // Si lo encuentra, rompe el bucle
+                }
+
+                // 4. Asignar la imagen encontrada o un fallback si no existe
+                if (personajeEncontrado && personajeEncontrado.imagen) {
+                    imagenCentral.src = personajeEncontrado.imagen;
+                    imagenCentral.alt = `Foto de ${personajeEncontrado.nombre}`;
+                } else {
+                    imagenCentral.alt = "Personaje no encontrado";
+                }
+
+            } catch (error) {
+                console.error("Error cargando la imagen dinámica:", error);
+                imagenCentral.alt = "Error al cargar los datos";
+            }
+        }
+
+        // Llamamos a la función al cargar la ventana
+        inicializarImagen();
+
+
+        // --- LÓGICA DE COMPORTAMIENTO DE LA VELA ---
         boton.addEventListener('click', () => {
-            // Encendemos la vela y aplicamos el efecto de aclarado de la imagen
             boton.classList.add('encendida');
             imgContenedor.classList.add('iluminado');
             boton.disabled = true;
@@ -231,7 +269,6 @@
             }, 8000);
 
             setTimeout(() => {
-                // Se apaga la vela: se quita el estado encendido y se restablecen los colores originales de la imagen
                 boton.classList.remove('encendida', 'fase-0');
                 imgContenedor.classList.remove('iluminado');
                 boton.disabled = false; 
