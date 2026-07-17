@@ -89,122 +89,229 @@
   <div id="map"></div>
 
   <script>
-   // Función auxiliar para extraer el texto de un nodo hijo de forma segura
-function getVal(parent, tagName) {
-  const element = parent.getElementsByTagName(tagName)[0];
-  return element ? element.textContent.trim() : '';
-}
+    // Configuración de límites y mapa centrado en la zona comercial
+    const bounds = L.latLngBounds(
+      [40.49383, -3.36174],
+      [40.49642, -3.35633]
+    );
 
-// Pintar los marcadores filtrando el documento XML global por el 'type' de planta
-function loadXMLLayer(targetPlantaId) {
-  if (!xmlGlobalDoc) return;
-  markersLayer.clearLayers();
-  hayRojo = 0;
-
-  // 1. Cambiamos 'marker' por 'punto'
-  const items = xmlGlobalDoc.getElementsByTagName('punto');
-
-  for (let i = 0; i < items.length; i++) {
-    // 2. Extraemos los valores desde los nodos hijos
-    const tipo = getVal(items[i], 'type');
-    
-    // Omitir si el punto no pertenece a la planta que queremos pintar
-    if (tipo !== targetPlantaId) continue;
-
-    const lat = parseFloat(getVal(items[i], 'lat'));
-    const lng = parseFloat(getVal(items[i], 'lng'));
-    const idMarker = getVal(items[i], 'id');
-    const tipoTienda = getVal(items[i], 'tipoTienda');
-    const nombre = getVal(items[i], 'name');
-    const info = getVal(items[i], 'info');
+    const map = L.map('map', {
+      center: [40.49500, -3.35943],
+      zoom: 18,
+      maxZoom: 18,
+      minZoom: 18,
+      zoomControl: false,
+      maxBounds: bounds,
+      maxBoundsViscosity: 1.0
+    });	
 	
-    let opacidad = 1;
-    let clase = '';
-    let color = '';
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap & CartoDB',
+    }).addTo(map);
 
-    if (idURL != null) {
-      if (idMarker == idURL) {
-        opacidad = 1;
-        clase = 'blinking-circle';
-        color = 'red';
-        hayRojo = 1;
-      } else {
-        opacidad = 0.3;
-        clase = 'none';
-        color = 'gray';
-      }
-    } else if (idTipoURL != null) {
-      if (tipoTienda == idTipoURL) {
-        opacidad = 1;
-        clase = 'blinking-circle';
-        color = 'red';
-        hayRojo = 1;
-      } else {
-        opacidad = 0.3;
-        clase = 'none';
-        color = 'gray';
+    const markersLayer = L.layerGroup().addTo(map);
+	
+    let xmlGlobalDoc = null; // Almacenará el XML en memoria
+    let hayRojo = 0;
+
+    const params = new URLSearchParams(window.location.search);	
+    let idURL = params.get('id');
+    let idTipoURL = params.get('idTipo');
+
+    // Función auxiliar para extraer de manera limpia el contenido de los nodos hijos
+    function getVal(parent, tagName) {
+      const element = parent.getElementsByTagName(tagName)[0];
+      return element ? element.textContent.trim() : '';
+    }
+	
+    // Pintar los marcadores cargados en xmlGlobalDoc filtrando por la planta solicitada
+    function loadXMLLayer(targetPlantaId) {
+      if (!xmlGlobalDoc) return;
+      markersLayer.clearLayers();
+      hayRojo = 0;
+
+      // Buscamos los nodos estructurados como <punto>
+      const items = xmlGlobalDoc.getElementsByTagName('punto');
+
+      for (let i = 0; i < items.length; i++) {
+        const tipo = getVal(items[i], 'type');
+        
+        // Descartamos los puntos que no coincidan con la planta objetivo
+        if (tipo !== targetPlantaId) continue;
+
+        const lat = parseFloat(getVal(items[i], 'lat'));
+        const lng = parseFloat(getVal(items[i], 'lng'));
+        const idMarker = getVal(items[i], 'id');
+        const tipoTienda = getVal(items[i], 'tipoTienda');
+        const nombre = getVal(items[i], 'name');
+        const info = getVal(items[i], 'info');
+		
+        let opacidad = 1;
+        let clase = '';
+        let color = '';
+
+        if (idURL != null) {
+          if (idMarker == idURL) {
+            opacidad = 1;
+            clase = 'blinking-circle';
+            color = 'red';
+            hayRojo = 1;
+          } else {
+            opacidad = 0.3;
+            clase = 'none';
+            color = 'gray';
+          }
+        } else if (idTipoURL != null) {
+          if (tipoTienda == idTipoURL) {
+            opacidad = 1;
+            clase = 'blinking-circle';
+            color = 'red';
+            hayRojo = 1;
+          } else {
+            opacidad = 0.3;
+            clase = 'none';
+            color = 'gray';
+          }
+        }
+		
+        const marker = L.circleMarker([lat, lng], {
+          radius: 8,
+          fillColor: color,
+          fillOpacity: opacidad,
+          className: clase,
+          stroke: false
+        });
+		
+        marker.bindPopup('<b>' + nombre + '</b><br/>' + info);
+        markersLayer.addLayer(marker);
       }
     }
 	
-    const marker = L.circleMarker([lat, lng], {
-      radius: 8,
-      fillColor: color,
-      fillOpacity: opacidad,
-      className: clase,
-      stroke: false
+    // Examina el XML completo para inicializar la planta que corresponda según la URL
+    function processUrlRouting() {
+      if (!xmlGlobalDoc) return;
+      const items = xmlGlobalDoc.getElementsByTagName('punto');
+      
+      let plantaDestino = null;
+      let tiposConCoincidencia = new Set();
+
+      for (let i = 0; i < items.length; i++) {
+        const tipo = getVal(items[i], 'type');
+        const idMarker = getVal(items[i], 'id');
+        const tipoTienda = getVal(items[i], 'tipoTienda');
+
+        if (idURL && idMarker == idURL) {
+          plantaDestino = tipo;
+          break; // Prioridad al encontrar la id única del comercio
+        }
+        
+        if (idTipoURL && tipoTienda == idTipoURL) {
+          tiposConCoincidencia.add(tipo);
+        }
+      }
+
+      // Enrutar según coincidencias encontradas
+      if (plantaDestino) {
+        loadXMLLayer(plantaDestino);
+        setActive(document.getElementById('btn' + plantaDestino.toUpperCase()));
+      } else if (idTipoURL && tiposConCoincidencia.size > 0) {
+        // Enrutado en cascada replicado: p0 -> p1 -> p11
+        if (tiposConCoincidencia.has('p0')) {
+          loadXMLLayer('p0');
+          setActive(document.getElementById('btnP0'));
+        } else if (tiposConCoincidencia.has('p1')) {
+          loadXMLLayer('p1');
+          setActive(document.getElementById('btnP1'));
+        } else if (tiposConCoincidencia.has('p11')) {
+          loadXMLLayer('p11');
+          setActive(document.getElementById('btnP11'));
+        }
+      } else {
+        // Carga base inicial si no existen parámetros en la URL
+        loadXMLLayer('p0');
+        setActive(document.getElementById('btnP0'));
+      }
+    }
+
+    // Carga de forma asíncrona el archivo XML externo preMap2.xml
+    async function initData() {
+      try {
+        const respuesta = await fetch('preMap2.xml');
+        if (!respuesta.ok) throw new Error('No se pudo leer el archivo preMap2.xml');
+        const xmlTexto = await respuesta.text();
+        
+        // Guardamos la estructura XML parseada en memoria global
+        xmlGlobalDoc = new DOMParser().parseFromString(xmlTexto, 'text/xml');
+        
+        // Enrutamos y cargamos los marcadores
+        processUrlRouting();
+      } catch (error) {
+        console.error("Error cargando los puntos desde el XML:", error);
+      }
+    }
+
+    // Interfaz nativa de botones en esquina superior derecha
+    const ButtonsControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd: function () {
+        const div = L.DomUtil.create('div', 'map-buttons');
+        div.innerHTML = `
+          <button id="btnP1">Planta 1</button>
+          <button id="btnP0">Planta 0</button>
+          <button id="btnP11">Planta -1</button>
+        `;
+        L.DomEvent.disableClickPropagation(div);
+        return div;
+      },
     });
+
+    map.addControl(new ButtonsControl());
+
+    const btnP1 = document.getElementById('btnP1');
+    const btnP0 = document.getElementById('btnP0');
+    const btnP11 = document.getElementById('btnP11');
+    const buttons = [btnP1, btnP0, btnP11];
+
+    function setActive(activeButton) {
+      if (!activeButton) return;
+      buttons.forEach(btn => btn.classList.remove('active'));
+      activeButton.classList.add('active');
+    }
 	
-    marker.bindPopup('<b>' + nombre + '</b><br/>' + info);
-    markersLayer.addLayer(marker);
-  }
-}
+    // Controladores de eventos para los botones físicos
+    btnP1.onclick = () => { loadXMLLayer('p1'); setActive(btnP1); };
+    btnP0.onclick = () => { loadXMLLayer('p0'); setActive(btnP0); };
+    btnP11.onclick = () => { loadXMLLayer('p11'); setActive(btnP11); };
 
-// Analizar el XML completo para saber qué planta debe arrancar activa según la URL
-function processUrlRouting() {
-  if (!xmlGlobalDoc) return;
-  
-  // Cambiamos 'marker' por 'punto'
-  const items = xmlGlobalDoc.getElementsByTagName('punto');
-  
-  let plantaDestino = null;
-  let tiposConCoincidencia = new Set();
+    // Elementos estáticos decorativos del mapa (Servicios)
+    const wcIcon = L.divIcon({
+      html: '<div class="wc-icon">🚻</div>',
+      className: '',
+      iconSize: [20, 20],
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -15]
+    });
 
-  for (let i = 0; i < items.length; i++) {
-    const tipo = getVal(items[i], 'type');
-    const idMarker = getVal(items[i], 'id');
-    const tipoTienda = getVal(items[i], 'tipoTienda');
+    L.marker([40.49528, -3.35991], { icon: wcIcon }).addTo(map).bindPopup('<b>Baño público</b>');
+    L.marker([40.49447, -3.35917], { icon: wcIcon }).addTo(map).bindPopup('<b>Baño público</b>');
 
-    if (idURL && idMarker == idURL) {
-      plantaDestino = tipo;
-      break; 
-    }
-    
-    if (idTipoURL && tipoTienda == idTipoURL) {
-      tiposConCoincidencia.add(tipo);
-    }
-  }
+    const doorIcon = L.divIcon({
+      html: '<i class="fas fa-door-closed fa-2x"></i>',
+      className: '',
+      iconSize: [25, 25]
+    });
+    L.marker([40.49498, -3.35994], { icon: doorIcon }).addTo(map);
 
-  // Aplicar rutas (Esto se mantiene exactamente igual)
-  if (plantaDestino) {
-    loadXMLLayer(plantaDestino);
-    setActive(document.getElementById('btn' + plantaDestino.toUpperCase()));
-  } else if (idTipoURL && tiposConCoincidencia.size > 0) {
-    if (tiposConCoincidencia.has('p0')) {
-      loadXMLLayer('p0');
-      setActive(document.getElementById('btnP0'));
-    } else if (tiposConCoincidencia.has('p1')) {
-      loadXMLLayer('p1');
-      setActive(document.getElementById('btnP1'));
-    } else if (tiposConCoincidencia.has('p11')) {
-      loadXMLLayer('p11');
-      setActive(document.getElementById('btnP11'));
-    }
-  } else {
-    loadXMLLayer('p0');
-    setActive(document.getElementById('btnP0'));
-  }
-}
-	
+    const leyenda = L.control({ position: 'bottomleft' });
+    leyenda.onAdd = function () {
+      const div = L.DomUtil.create('div', 'leyenda');
+      div.innerHTML = '<strong>Texto Aleatorio</strong>';
+      return div;
+    };
+    leyenda.addTo(map);
+
+    // Iniciar llamada al servidor
+    initData();
   </script>
 </body>
 </html>
