@@ -47,7 +47,6 @@
       transition: all 0.2s ease;
     }
 
-    /* Hover suave */
     .map-buttons button:hover {
       background-color: #d0d0d0;
     }
@@ -72,12 +71,8 @@
     }
 
     @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 	
     .leyenda {
@@ -92,12 +87,6 @@
 
 <body>
   <div id="map"></div>
-
-  <script type="text/xml" id="p11">
-    <markers>
-	  <marker lat="40.49460" lng="-3.35897" type="p11" id="92" tipoTienda="12" name="Motrio" info="Servicios"/>
-    </markers>
-  </script>
 
   <script>
    // Función auxiliar para extraer el texto de un nodo hijo de forma segura
