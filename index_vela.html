@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Personas por Religión</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 600px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #34495e;
+            padding-bottom: 10px;
+        }
+        /* Contenedor principal */
+        .directorio {
+            margin-top: 30px;
+        }
+        /* Bloque de cada Religión */
+        details {
+            background-color: #ffffff;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        details[open] {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            color: #2c3e50;
+            outline: none;
+            user-select: none;
+        }
+        summary:hover {
+            color: #2980b9;
+        }
+        /* Lista de personas interna */
+        .lista-personas {
+            list-style: none;
+            padding-left: 15px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        .persona-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .persona-item:last-child {
+            border-bottom: none;
+        }
+        /* Estilo de los enlaces <a> */
+        .persona-enlace {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .persona-enlace:hover {
+            color: #2c3e50;
+            transform: translateX(5px); /* Pequeño efecto de desplazamiento al pasar el cursor */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Directorio de Personajes por Religión</h1>
+
+    <div id="listaReligiones" class="directorio"></div>
+
+    <script>
+        // Convertimos la función en asíncrona (async)
+        async function cargarDirectorio() {
+            try {
+                // 1. Hacemos la petición para obtener el archivo JSON externo
+                const respuesta = await fetch('religiones.json');
+                
+                // Control de errores en caso de que el archivo no exista o falle la red
+                if (!respuesta.ok) {
+                    throw new Error(`No se pudo cargar el archivo JSON. Estado: ${respuesta.status}`);
+                }
+                
+                // 2. Extraemos los datos en formato objeto de JavaScript
+                const datosContenido = await respuesta.json();
+
+                const emojisReligiones = {
+                    "Budismo": "☸️",
+                    "Cristianismo": "✝️",
+                    "Islam": "🌙",
+                    "Judaísmo": "✡️",
+                    "Hinduismo": "🕉️",
+                    "Sijismo": " Khanda "
+                };
+            
+                const contenedor = document.getElementById('listaReligiones');
+
+                // 3. Recorrer cada religión obtenida del JSON externo
+                datosContenido.religiones.forEach(religion => {
+                    
+                    // Crear el elemento contenedor colapsable
+                    const boxReligion = document.createElement('details');
+                    
+                    // Crear el título visible (Summary)
+                    const tituloReligion = document.createElement('summary');
+                    
+                    // Si la religión existe en el diccionario usa su emoji, si no, usa uno por defecto (🌐)
+                    const emoji = emojisReligiones[religion.nombre] || "🌐";                
+                    tituloReligion.textContent = `${emoji} ${religion.nombre}`;
+                    
+                    boxReligion.appendChild(tituloReligion);
+
+                    // Crear la lista <ul> para albergar a las personas
+                    const ulPersonas = document.createElement('ul');
+                    ulPersonas.className = 'lista-personas';
+
+                    // Recorrer las personas de la religión actual
+                    religion.personas.forEach(persona => {
+                        const liPersona = document.createElement('li');
+                        liPersona.className = 'persona-item';
+
+                        // Crear el enlace <a>
+                        const enlace = document.createElement('a');
+                        enlace.className = 'persona-enlace';
+                        enlace.href = persona.url;
+                        enlace.target = "_blank"; // Abre el enlace en una pestaña nueva
+                        enlace.textContent = `👤 ${persona.nombre}`;
+
+                        // Meter el enlace dentro del <li>, y el <li> dentro del <ul>
+                        liPersona.appendChild(enlace);
+                        ulPersonas.appendChild(liPersona);
+                    });
+
+                    // Añadir la lista completa al contenedor de la religión
+                    boxReligion.appendChild(ulPersonas);
+
+                    // Añadir la religión al contenedor principal de la página
+                    contenedor.appendChild(boxReligion);
+                });
+
+            } catch (error) {
+                console.error("Error cargando los datos:", error);
+                document.getElementById('listaReligiones').textContent = "Hubo un error al cargar el directorio de personajes.";
+            }
+        }
+
+        // Renderizar todo al cargar la web de forma asíncrona
+        cargarDirectorio();
+    </script>
+</body>
+</html>
