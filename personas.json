@@ -5,11 +5,13 @@
             "icono": "☸️",
             "personas": [
                 { 
+                    "id": "1", 
                     "nombre": "Dalai Lama", 
                     "url": "https://es.wikipedia.org/wiki/Dalai_Lama",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/55/Dalai_Lama_14th_at_the_Ganden_Tegchenling_Monastery-2022_%28cropped%29.jpg"
                 },
                 { 
+                    "id": "2",
                     "nombre": "Thich Nhat Hanh", 
                     "url": "https://es.wikipedia.org/wiki/Th%C3%ADch_Nh%E1%BA%A5t_H%E1%B0%A1nh",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Thich_Nhat_Hanh_2006.jpg"
@@ -21,11 +23,13 @@
             "icono": "✝️",
             "personas": [
                 { 
+                    "id": "100",
                     "nombre": "Papa Francisco", 
                     "url": "https://es.wikipedia.org/wiki/Francisco_(papa)",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/86/Pope_Francis_in_2023_%28cropped%29.jpg"
                 },
                 { 
+                    "id": "101",
                     "nombre": "Teresa de Calcuta", 
                     "url": "https://es.wikipedia.org/wiki/Teresa_de_Calcuta",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Mother_Teresa_1986_cropped.jpg"
@@ -37,11 +41,13 @@
             "icono": "🌙",
             "personas": [
                 { 
+                    "id": "200",
                     "nombre": "Rumi (Poeta)", 
                     "url": "https://es.wikipedia.org/wiki/Yalal_ad-Din_Muhammad_Rumi",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mevlana_Museum_portrait.jpg"
                 },
                 { 
+                    "id": "201",
                     "nombre": "Averroes", 
                     "url": "https://es.wikipedia.org/wiki/Averroes",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/11/Averroes_portrait.jpg"
@@ -53,6 +59,7 @@
             "icono": "",
             "personas": [
                 { 
+                    "id": "300",
                     "nombre": "Maradona", 
                     "url": "https://drporobon.github.io/vela2.html",
                     "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mevlana_Museum_portrait.jpg"
