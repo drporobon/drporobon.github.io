@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa con Leaflet desde XML externo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.2.1/dist/css/leaflet.extra-markers.min.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.2.1/dist/js/leaflet.extra-markers.min.js"></script>
+    
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+
+        .blinking-circle {
+          animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        
+        @keyframes fluir {
+            to { stroke-dashoffset: -20; }
+        }
+
+        .linea-animada {
+            animation: fluir 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mapa de la Ruta</h2>
+<div id="map"></div>
+<p id="info"></p>
+
+<script>
+    // 1. Inicializar el mapa
+    const bounds = L.latLngBounds(
+      [36.307, -4.454],
+      [36.907, -4.554]
+    );
+
+    const map = L.map('map', {
+        center: [36.60754967575224, -4.504895610729976],
+        zoom: 15,
+        maxZoom: 18,
+        minZoom: 15,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0 
+    });
+    
+    const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+    limpio.addTo(map);
+
+    // 2. Cargar el archivo "ruta1.xml" usando fetch
+    fetch('ruta1.xml')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("No se pudo cargar el archivo XML");
+            }
+            return response.text();
+        })
+        .then(xmlString => {
+            // Parsear la cadena XML obtenida
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+            const puntos = xmlDoc.getElementsByTagName("punto");
+            
+            let coordenadasLinea = [];
+
+            // Procesar los puntos del XML
+            for (let i = 0; i < puntos.length; i++) {
+                let punto = puntos[i];
+                let lat = parseFloat(punto.getElementsByTagName("latitud")[0].textContent);
+                let lon = parseFloat(punto.getElementsByTagName("longitud")[0].textContent);
+                let nombre = punto.getElementsByTagName("nombre")[0].textContent;
+                let coords = [lat, lon];
+                
+                // Marcador de Inicio
+                if (i === 0) {
+                    L.marker(coords, {
+                        icon: L.icon({
+                            iconUrl: 'https://cdn-icons-png.flaticon.com/128/10109/10109952.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                            iconSize: [40, 40],
+                            iconAnchor: [20, 40],
+                            popupAnchor: [0, -40]
+                        })
+                    }).addTo(map).bindPopup(`<b>Inicio: ${nombre}</b>`);
+                } 
+                // Marcador de Fin
+                else if (i === (puntos.length - 1)) {         
+                    L.marker(coords, {
+                        icon: L.icon({
+                            iconUrl: 'https://cdn-icons-png.flaticon.com/128/1247/1247940.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                            iconSize: [40, 40],
+                            iconAnchor: [20, 40],
+                            popupAnchor: [0, -40]
+                        })
+                    }).addTo(map).bindPopup(`<b>Fin: ${nombre}</b>`);
+                }
+
+                coordenadasLinea.push(coords);
+            }   
+            
+            // Dibujar la ruta animada
+            if (coordenadasLinea.length > 1) {
+                let rutaAnimada = L.polyline(coordenadasLinea, {
+                    color: '#2A75D3',
+                    weight: 5,
+                    opacity: 0.8,
+                    dashArray: '10, 10',
+                    className: 'linea-animada' 
+                }).addTo(map);
+                
+                map.fitBounds(rutaAnimada.getBounds());
+            }
+        })
+        .catch(error => console.error('Error cargando el archivo XML:', error));
+</script>
+
+</body>
+</html>
