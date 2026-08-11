@@ -1,0 +1,178 @@
+<ubicaciones>
+            <punto>
+                <latitud>36.599392489373706</latitud>
+                <longitud>-4.51024110401537</longitud>
+                <nombre>Chiringuito Rafael</nombre>
+                <descripcion>descripcion de Chiringuito Rafael</descripcion>
+                <precio>7.50</precio>
+                <tipo>1</tipo>
+            </punto>
+            <punto>
+                <latitud>36.599834054341954</latitud>
+                <longitud>-4.509886438287776</longitud>
+                <nombre>Chiringuito OH Beach</nombre>
+                <descripcion>descripcion de Chiringuito OH Beach</descripcion>
+                <precio>7</precio>
+                <tipo>2</tipo>
+            </punto>
+            <punto>
+                <latitud>36.600360883723695</latitud>
+                <longitud>-4.509488150570174</longitud>
+                <nombre>Chiringuito Larry</nombre>
+                <descripcion>descripcion de Chiringuito Larry</descripcion>
+                <precio>5.75</precio>
+                <tipo>3</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60104453845579</latitud>
+                <longitud>-4.509057620518565</longitud>
+                <nombre>Chiringuito Ma'res</nombre>
+                <descripcion>descripcion de Chiringuito Ma'res</descripcion>
+                <precio>7.25</precio>
+                <tipo>4</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60196723434103</latitud>
+                <longitud>-4.508610020986552</longitud>
+                <nombre>Chiringuito Noami</nombre>
+                <descripcion>descripcion de Chiringuito Noami</descripcion>
+                <precio>6.80</precio>
+                <tipo>5</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60241944265386</latitud>
+                <longitud>-4.5084013940838</longitud>
+                <nombre>Chiringuito La Jábega</nombre>
+                <descripcion>descripcion de Chiringuito La Jábega</descripcion>
+                <precio>6.50</precio>
+                <tipo>6</tipo>
+            </punto>
+            <punto>
+                <latitud>36.603051311531935</latitud>
+                <longitud>-4.5080009633104625</longitud>
+                <nombre>Chiringuito Coco Beach</nombre>
+                <descripcion>descripcion de Chiringuito Coco Beach</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60349090240822</latitud>
+                <longitud>-4.507696684002504</longitud>
+                <nombre>Chiringuito xxxx</nombre>
+                <descripcion>descripcion de Chiringuito xxxx</descripcion>
+                <precio>5.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.603925853001755</latitud>
+                <longitud>-4.50749551832766</longitud>
+                <nombre>Chiringuito La mar bonita</nombre>
+                <descripcion>descripcion de Chiringuito La mar bonita</descripcion>
+                <precio>6.25</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60455351253104</latitud>
+                <longitud>-4.507134761212717</longitud>
+                <nombre>Chiringuito Los Leones</nombre>
+                <descripcion>descripcion de Chiringuito Los Leones</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60525841287917</latitud>
+                <longitud>-4.506744735448925</longitud>
+                <nombre>Chiringuito Tela Marinera</nombre>
+                <descripcion>descripcion de Chiringuito Tela Marinera</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.605897903940836</latitud>
+                <longitud>-4.506355815141952</longitud>
+                <nombre>Restaurante Perujo Playa</nombre>
+                <descripcion>descripcion de Restaurante Perujo Playa</descripcion>
+                <precio>6</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60623487268623</latitud>
+                <longitud>-4.506219022482431</longitud>
+                <nombre>La Caleta Beach Club</nombre>
+                <descripcion>descripcion de La Caleta Beach Club</descripcion>
+                <precio>7.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.606803302256324</latitud>
+                <longitud>-4.50580864450212</longitud>
+                <nombre>Tropicana Beach Club</nombre>
+                <descripcion>descripcion de Tropicana Beach Club</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60769204610328</latitud>
+                <longitud>-4.505148804907712</longitud>
+                <nombre>Remo Beach Club</nombre>
+                <descripcion>descripcion de Remo Beach Club</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60822601542439</latitud>
+                <longitud>-4.504682100538857</longitud>
+                <nombre>Chiringuito El Canarias Playa</nombre>
+                <descripcion>descripcion de Chiringuito El Canarias Playa</descripcion>
+                <precio>5.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60938652470664</latitud>
+                <longitud>-4.503837204699827</longitud>
+                <nombre>Chiringuito "El Lele"</nombre>
+                <descripcion>descripcion de Chiringuito "El Lele"</descripcion>
+                <precio>5.50</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.611729020861084</latitud>
+                <longitud>-4.502040124656596</longitud>
+                <nombre>Horno Beach Club</nombre>
+                <descripcion>descripcion de Horno Beach Club</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61313648456399</latitud>
+                <longitud>-4.5012339438531574</longitud>
+                <nombre>Playa Miguel Beach Club</nombre>
+                <descripcion>descripcion de Playa Miguel Beach Club</descripcion>
+                <precio>6</precio>
+                <tipo>7</tipo>
+            </punto>          
+            <punto>
+                <latitud>36.6138052924634</latitud>
+                <longitud>-4.500706093564169</longitud>
+                <nombre>Chiringuito Antonio</nombre>
+                <descripcion>descripcion de Chiringuito Antonio</descripcion>
+                <precio>6.25</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61498770965764</latitud>
+                <longitud>-4.499883280810573</longitud>
+                <nombre>Chiringuito Rissolee</nombre>
+                <descripcion>descripcion de Chiringuito Rissolee</descripcion>
+                <precio>7.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61602184609088</latitud>
+                <longitud>-4.499258344343108</longitud>
+                <nombre>Chiringuito La Coquina Playa</nombre>
+                <descripcion>descripcion de Chiringuito La Coquina Playa</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+        </ubicaciones>
