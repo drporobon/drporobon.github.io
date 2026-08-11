@@ -60,6 +60,7 @@
     const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
     limpio.addTo(map);
 
+	const params = new URLSearchParams(window.location.search);	
 	let idURL = params.get('id');
     
     // 2. Cargar el archivo "ruta1.xml" usando fetch
