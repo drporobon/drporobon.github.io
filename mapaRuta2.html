@@ -63,7 +63,7 @@
 	let idURL = params.get('id');
     
     // 2. Cargar el archivo "ruta1.xml" usando fetch
-    fetch('ruta'.idURL.'.xml')
+    fetch('ruta'+idURL+'.xml')
         .then(response => {
             if (!response.ok) {
                 throw new Error("No se pudo cargar el archivo XML");
