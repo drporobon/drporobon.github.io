@@ -231,10 +231,13 @@ Talleres de Oficios Antiguos
 		const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
     className: 'mapa-calles-limpias' // Clase específica
-}).addTo(map);*/
+}).addTo(map);
 	  const limpio = L.tileLayer('https://openfreemap.org{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; OpenFreeMap'
-}).addTo(map);
+}).addTo(map);*/
+	  const limpio = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_31xy_1_cb67f567f488abf973d7ffaa', {
+      attribution: '&copy; OpenStreetMap & CartoDB',
+    }).addTo(map);
 
     // Capa para los marcadores
     const markersLayer = L.layerGroup().addTo(map);
