@@ -215,12 +215,15 @@ Talleres de Oficios Antiguos
 	
     /*const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap & CartoDB',
-    }).addTo(map);*/
+    }).addTo(map);
 	const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
 		className: 'mapa-minimalista'
+	}).addTo(map);*/
+	const limpio = L.tileLayer('https://wikimedia.org{z}/{x}/{y}.png', {
+    	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+		className: 'mapa-minimalista'
 	}).addTo(map);
-
 
     // Capa para los marcadores
     const markersLayer = L.layerGroup().addTo(map);
