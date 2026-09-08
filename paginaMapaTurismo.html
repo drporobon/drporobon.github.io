@@ -87,6 +87,11 @@
       font-size: 14px;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
+
+	  /* Transforma el mapa colorido de OSM en un mapa limpio y minimalista */
+	.mapa-minimalista {
+	    filter: grayscale(100%) brightness(115%) contrast(90%);
+	}
   </style>
 </head>
 
@@ -212,7 +217,8 @@ Talleres de Oficios Antiguos
       attribution: '&copy; OpenStreetMap & CartoDB',
     }).addTo(map);*/
 	const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+		className: 'mapa-minimalista'
 	}).addTo(map);
 
 
