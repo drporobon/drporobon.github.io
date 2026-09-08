@@ -208,9 +208,12 @@ Talleres de Oficios Antiguos
 	  maxBoundsViscosity: 1.0 // Qué tan "pegajoso" es el límite
 	});	
 	
-    const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    /*const limpio = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap & CartoDB',
-    }).addTo(map);
+    }).addTo(map);*/
+	const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+	}).addTo(map);
 
 
     // Capa para los marcadores
