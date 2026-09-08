@@ -92,6 +92,10 @@
 	.mapa-minimalista {
 	    filter: grayscale(100%) brightness(115%) contrast(90%);
 	}
+	  .mapa-calles-limpias {
+    /* Convierte a gris, sube mucho el contraste para marcar las calles y aclara el fondo */
+    filter: grayscale(100%) contrast(150%) brightness(110%) invert(0%);
+}
   </style>
 </head>
 
@@ -219,11 +223,15 @@ Talleres de Oficios Antiguos
 	const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
 		className: 'mapa-minimalista'
-	}).addTo(map);*/
+	}).addTo(map);
 	const limpio = L.tileLayer('https://wikimedia.org{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
 		className: 'mapa-minimalista'
-	}).addTo(map);
+	}).addTo(map); */
+		const limpio = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    className: 'mapa-calles-limpias' // Clase específica
+}).addTo(map);
 
     // Capa para los marcadores
     const markersLayer = L.layerGroup().addTo(map);
