@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa minimalista con XML y botones</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #f5f5f5;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Caja de botones dentro del mapa */
+    .map-buttons {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Botones base */
+    .map-buttons button {
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      background-color: #e0e0e0;
+      color: #333;
+      transition: all 0.2s ease;
+    }
+
+    /* Hover suave */
+    .map-buttons button:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Botón activo */
+    .map-buttons button.active {
+      background-color: #d62828;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Transforma el mapa colorido de OSM en un mapa limpio y minimalista */
+    .mapa-minimalista {
+        filter: grayscale(100%) brightness(115%) contrast(90%);
+    }
+    
+    .mapa-calles-limpias {
+        filter: grayscale(100%) contrast(150%) brightness(110%);
+    }
+        
+        /* Definimos la animación de movimiento */
+        @keyframes fluir {
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
+        /* Aplicamos la animación a nuestra línea personalizada */
+        .linea-animada {
+            animation: fluir 1s linear infinite;
+        }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <!-- XML Corregido y cerrado correctamente -->
+  <script type="text/xml" id="p1">
+    <ubicaciones>
+            <punto>
+                <latitud>36.599392489373706</latitud>
+                <longitud>-4.51024110401537</longitud>
+                <nombre>Chiringuito Rafael</nombre>
+                <descripcion>descripcion de Chiringuito Rafael</descripcion>
+                <precio>7.50</precio>
+                <tipo>1</tipo>
+            </punto>
+            <punto>
+                <latitud>36.599834054341954</latitud>
+                <longitud>-4.509886438287776</longitud>
+                <nombre>Chiringuito OH Beach</nombre>
+                <descripcion>descripcion de Chiringuito OH Beach</descripcion>
+                <precio>7</precio>
+                <tipo>2</tipo>
+            </punto>
+            <punto>
+                <latitud>36.600360883723695</latitud>
+                <longitud>-4.509488150570174</longitud>
+                <nombre>Chiringuito Larry</nombre>
+                <descripcion>descripcion de Chiringuito Larry</descripcion>
+                <precio>5.75</precio>
+                <tipo>3</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60104453845579</latitud>
+                <longitud>-4.509057620518565</longitud>
+                <nombre>Chiringuito Ma'res</nombre>
+                <descripcion>descripcion de Chiringuito Ma'res</descripcion>
+                <precio>7.25</precio>
+                <tipo>4</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60196723434103</latitud>
+                <longitud>-4.508610020986552</longitud>
+                <nombre>Chiringuito Noami</nombre>
+                <descripcion>descripcion de Chiringuito Noami</descripcion>
+                <precio>6.80</precio>
+                <tipo>5</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60241944265386</latitud>
+                <longitud>-4.5084013940838</longitud>
+                <nombre>Chiringuito La Jábega</nombre>
+                <descripcion>descripcion de Chiringuito La Jábega</descripcion>
+                <precio>6.50</precio>
+                <tipo>6</tipo>
+            </punto>
+            <punto>
+                <latitud>36.603051311531935</latitud>
+                <longitud>-4.5080009633104625</longitud>
+                <nombre>Chiringuito Coco Beach</nombre>
+                <descripcion>descripcion de Chiringuito Coco Beach</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60349090240822</latitud>
+                <longitud>-4.507696684002504</longitud>
+                <nombre>Chiringuito xxxx</nombre>
+                <descripcion>descripcion de Chiringuito xxxx</descripcion>
+                <precio>5.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.603925853001755</latitud>
+                <longitud>-4.50749551832766</longitud>
+                <nombre>Chiringuito La mar bonita</nombre>
+                <descripcion>descripcion de Chiringuito La mar bonita</descripcion>
+                <precio>6.25</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60455351253104</latitud>
+                <longitud>-4.507134761212717</longitud>
+                <nombre>Chiringuito Los Leones</nombre>
+                <descripcion>descripcion de Chiringuito Los Leones</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60525841287917</latitud>
+                <longitud>-4.506744735448925</longitud>
+                <nombre>Chiringuito Tela Marinera</nombre>
+                <descripcion>descripcion de Chiringuito Tela Marinera</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.605897903940836</latitud>
+                <longitud>-4.506355815141952</longitud>
+                <nombre>Restaurante Perujo Playa</nombre>
+                <descripcion>descripcion de Restaurante Perujo Playa</descripcion>
+                <precio>6</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60623487268623</latitud>
+                <longitud>-4.506219022482431</longitud>
+                <nombre>La Caleta Beach Club</nombre>
+                <descripcion>descripcion de La Caleta Beach Club</descripcion>
+                <precio>7.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.606803302256324</latitud>
+                <longitud>-4.50580864450212</longitud>
+                <nombre>Tropicana Beach Club</nombre>
+                <descripcion>descripcion de Tropicana Beach Club</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60769204610328</latitud>
+                <longitud>-4.505148804907712</longitud>
+                <nombre>Remo Beach Club</nombre>
+                <descripcion>descripcion de Remo Beach Club</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60822601542439</latitud>
+                <longitud>-4.504682100538857</longitud>
+                <nombre>Chiringuito El Canarias Playa</nombre>
+                <descripcion>descripcion de Chiringuito El Canarias Playa</descripcion>
+                <precio>5.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.60938652470664</latitud>
+                <longitud>-4.503837204699827</longitud>
+                <nombre>Chiringuito "El Lele"</nombre>
+                <descripcion>descripcion de Chiringuito "El Lele"</descripcion>
+                <precio>5.50</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.611729020861084</latitud>
+                <longitud>-4.502040124656596</longitud>
+                <nombre>Horno Beach Club</nombre>
+                <descripcion>descripcion de Horno Beach Club</descripcion>
+                <precio>6.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61313648456399</latitud>
+                <longitud>-4.5012339438531574</longitud>
+                <nombre>Playa Miguel Beach Club</nombre>
+                <descripcion>descripcion de Playa Miguel Beach Club</descripcion>
+                <precio>6</precio>
+                <tipo>7</tipo>
+            </punto>          
+            <punto>
+                <latitud>36.6138052924634</latitud>
+                <longitud>-4.500706093564169</longitud>
+                <nombre>Chiringuito Antonio</nombre>
+                <descripcion>descripcion de Chiringuito Antonio</descripcion>
+                <precio>6.25</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61498770965764</latitud>
+                <longitud>-4.499883280810573</longitud>
+                <nombre>Chiringuito Rissolee</nombre>
+                <descripcion>descripcion de Chiringuito Rissolee</descripcion>
+                <precio>7.75</precio>
+                <tipo>7</tipo>
+            </punto>
+            <punto>
+                <latitud>36.61602184609088</latitud>
+                <longitud>-4.499258344343108</longitud>
+                <nombre>Chiringuito La Coquina Playa</nombre>
+                <descripcion>descripcion de Chiringuito La Coquina Playa</descripcion>
+                <precio>8</precio>
+                <tipo>7</tipo>
+            </punto>
+        </ubicaciones>
+  </script>
+
+  <!-- SCRIPT DE INICIALIZACIÓN (Esto es lo que faltaba) -->
+  <script>
+    // 1. Inicializar el mapa con límites geográficos
+    const bounds = L.latLngBounds(
+      [36.307, -4.454],
+      [36.907, -4.554]
+    );
+
+    const map = L.map('map', {
+        center: [36.60754967575224, -4.504895610729976],
+        zoom: 15,        // Zoom inicial
+        maxZoom: 18,    // Zoom máximo permitido
+        minZoom: 15,     // Zoom mínimo
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0 
+    });
+
+    // 2. Cargar la capa base de OpenStreetMap	
+	const limpio = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_31xy_1_cb67f567f488abf973d7ffaa', {
+      attribution: '&copy; OpenStreetMap & CartoDB',
+    }).addTo(map);
+
+    // 3. Aplicar tu filtro minimalista CSS al contenedor de las teselas
+    limpio.getContainer().classList.add('mapa-minimalista');
+
+    // 4. Leer y procesar el contenido XML integrado
+    const xmlText = document.getElementById('p1').textContent;
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+    const puntos = xmlDoc.getElementsByTagName("punto");
+    
+    let coordenadasLinea = [];
+
+    // 5. Recorrer los puntos del XML e insertarlos como marcadores reales en el mapa
+    for (let i = 0; i < puntos.length; i++) {
+      const lat = parseFloat(puntos[i].getElementsByTagName("latitud")[0].textContent);
+      const lng = parseFloat(puntos[i].getElementsByTagName("longitud")[0].textContent);
+      const nombre = puntos[i].getElementsByTagName("nombre")[0].textContent;
+      const desc = puntos[i].getElementsByTagName("descripcion")[0].textContent;
+      const precio = puntos[i].getElementsByTagName("precio")[0].textContent;
+
+      // Crear marcador e incorporar un pop-up con los datos del XML
+	  if(i==0 || (i==(puntos.length-1)))
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`<b>${nombre}</b><br>${desc}<br>Precio: ${precio}€`);
+		
+        // Solo creamos marcadores para el primero y el último (Origen y Destino)
+        /*if (i == 0) {
+            L.marker(coords, {
+                icon: L.icon({
+                    iconUrl: 'https://cdn-icons-png.flaticon.com/128/10109/10109952.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 40],
+                    popupAnchor: [0, -40]
+                })
+            }).addTo(map).bindPopup(`<b>Inicio: ${nombre}</b>`);
+        } else if (i == (puntos.length - 1)) {         
+            L.marker(coords, {
+                icon: L.icon({
+                    iconUrl: 'https://cdn-icons-png.flaticon.com/128/1247/1247940.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 40],
+                    popupAnchor: [0, -40]
+                })
+            }).addTo(map).bindPopup(`<b>Fin: ${nombre}</b>`);
+        }*/
+
+        // Guardar las coordenadas para seguir dibujando la línea continua
+        coordenadasLinea.push([lat, lng]);
+    }
+	 
+    
+    // Dibujar la línea de la ruta animada
+    if (coordenadasLinea.length > 1) {
+        let rutaAnimada = L.polyline(coordenadasLinea, {
+            color: '#2A75D3',       // Color de la ruta
+            weight: 5,              // Grosor
+            opacity: 0.8,
+            dashArray: '10, 10',    // '10px de línea, 10px de espacio'
+            className: 'linea-animada' 
+        }).addTo(map);
+        
+        map.fitBounds(rutaAnimada.getBounds());
+    }
+  </script>
+</body>
+</html>
